@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Works in Korea</title>
+<title>Works in Korea · 한국에서 되는 방법</title>
 <meta name="description" content="Pick your phone and stay type. See what works in Korea right now for taxis, trains, subway, restaurant bookings and food delivery, with the date each answer was checked.">
-<link rel="canonical" href="https://eddpositive.github.io/korea/">
-<meta property="og:type" content="website"><meta property="og:title" content="Works in Korea: what works for your phone and card"><meta property="og:description" content="Pick your setup. See what works in Korea right now for taxis, trains, subway, restaurant bookings and food delivery."><meta property="og:url" content="https://eddpositive.github.io/korea/">
+<link rel="canonical" href="https://eddpositive.github.io/korea/"><link rel="alternate" hreflang="en" href="https://eddpositive.github.io/korea/"><link rel="alternate" hreflang="ja" href="https://eddpositive.github.io/korea/ja/"><link rel="alternate" hreflang="zh-Hant-TW" href="https://eddpositive.github.io/korea/zh-tw/"><link rel="alternate" hreflang="x-default" href="https://eddpositive.github.io/korea/">
+<meta property="og:type" content="website"><meta property="og:title" content="Works in Korea · 한국에서 되는 방법"><meta property="og:description" content="Pick your phone and stay type. See what works in Korea right now for taxis, trains, subway, restaurant bookings and food delivery, with the date each answer was checked."><meta property="og:url" content="https://eddpositive.github.io/korea/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -102,256 +102,109 @@ details ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; color: var(--
 .copied { margin-left: 10px; font-size: 14px; color: var(--muted); }
 footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: grid; gap: 6px; }
 @media (prefers-reduced-motion: no-preference) { .task { transition: border-color .2s; } }
+
+.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.langs { display: flex; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 8px; }
+.langs a[aria-current="page"] { font-weight: 600; color: var(--ink); text-decoration: none; }
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.topics a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 14px; }
+.profile h2 { font: 700 18px/1.3 var(--display); margin: 0; }
+.cta-tool { display: inline-block; margin: 6px 0 18px; }
 </style>
+<script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand">
-      <h1>Works in Korea</h1>
-      <span class="kr">한국에서 되는 방법</span>
-    </div>
+    <div class="brand"><h1>Works in Korea</h1><span class="kr">한국에서 되는 방법</span></div>
+    <nav class="langs" aria-label="Language"><a href="" hreflang="en" aria-current="page">English</a><a href="ja/" hreflang="ja">日本語</a><a href="zh-tw/" hreflang="zh-Hant-TW">繁體中文</a></nav>
     <p class="host" id="host" hidden></p>
     <p class="lede">Many Korean apps block foreign phone numbers and cards. Tell us your setup and see what works for you right now, with the date we last checked each answer.</p>
   </header>
-
   <section class="setup" aria-labelledby="setup-title">
     <h2 id="setup-title">Your setup</h2>
-    <fieldset>
-      <legend>Your phone number in Korea</legend>
-      <div class="opts" id="opt-profile">
-        <label class="opt"><input type="radio" name="profile" id="p-visitor" value="visitor" checked><span>Home number or data-only eSIM<small>Most short-trip visitors</small></span></label>
-        <label class="opt"><input type="radio" name="profile" id="p-krsim" value="krsim"><span>Korean prepaid SIM with a 010 number<small>Tourist SIM, no ARC</small></span></label>
-        <label class="opt"><input type="radio" name="profile" id="p-arc" value="arc"><span>Korean number in my name<small>Resident with an ARC</small></span></label>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Your phone</legend>
-      <div class="opts" id="opt-device">
-        <label class="opt"><input type="radio" name="device" id="d-ios" value="ios" checked><span>iPhone</span></label>
-        <label class="opt"><input type="radio" name="device" id="d-android" value="android"><span>Android</span></label>
-      </div>
-    </fieldset>
+    <fieldset><legend>Your phone number in Korea</legend><div class="opts">
+      <label class="opt"><input type="radio" name="profile" id="p-visitor" value="visitor" checked><span>Home number or data-only eSIM<small>Most short-trip visitors</small></span></label>
+      <label class="opt"><input type="radio" name="profile" id="p-krsim" value="krsim"><span>Korean prepaid SIM with a 010 number<small>Tourist SIM, no ARC</small></span></label>
+      <label class="opt"><input type="radio" name="profile" id="p-arc" value="arc"><span>Korean number in my name<small>Resident with an ARC</small></span></label>
+    </div></fieldset>
+    <fieldset><legend>Your phone</legend><div class="opts">
+      <label class="opt"><input type="radio" name="device" id="d-ios" value="ios" checked><span>iPhone</span></label>
+      <label class="opt"><input type="radio" name="device" id="d-android" value="android"><span>Android</span></label>
+    </div></fieldset>
   </section>
-
   <div class="summary" id="summary" aria-live="polite"></div>
   <main class="tasks" id="tasks"></main>
-
   <section class="checklist" aria-labelledby="cl-title">
     <h2 id="cl-title">Do these before you fly</h2>
     <p>Built from your setup above. Setup steps are easier on home Wi-Fi than at the airport.</p>
     <ol id="checklist"></ol>
     <button class="btn" type="button" id="copy-btn">Copy my checklist</button><span class="copied" id="copied" role="status"></span>
   </section>
-
+  <h2>Guides by topic</h2>
+  <nav class="topics"><a href="mobile-data-sim.html">Mobile data and a phone number</a><a href="maps.html">Getting around: maps and transit directions</a><a href="taxi.html">Calling a taxi</a><a href="tmoney-subway-bus.html">Subway and bus fares (T-money)</a><a href="ktx-train-booking.html">Booking KTX trains</a><a href="restaurant-reservations.html">Restaurant bookings and waitlists</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translating menus and signs</a></nav>
   <footer>
-    <div><strong>How we check:</strong> each answer is checked against official notices and recent reports. "Mixed reports" means sources disagree, so we show a backup route too. Tap "It worked" or "It failed" to help keep answers current.</div>
+    <div>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</div>
     <div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div>
     <div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div>
   </footer>
 </div>
-
 <script>
-const CHECKED = "17 Nov 2026";
-const LABEL = { ok: "Works", warn: "Works with a workaround", bad: "Blocked", mixed: "Mixed reports" };
+const D = {"ui": {"title": "Works in Korea", "kr": "한국에서 되는 방법", "meta_desc": "Pick your phone and stay type. See what works in Korea right now for taxis, trains, subway, restaurant bookings and food delivery, with the date each answer was checked.", "lede": "Many Korean apps block foreign phone numbers and cards. Tell us your setup and see what works for you right now, with the date we last checked each answer.", "setup": "Your setup", "phone_q": "Your phone number in Korea", "device_q": "Your phone", "p_visitor": ["Home number or data-only eSIM", "Most short-trip visitors"], "p_krsim": ["Korean prepaid SIM with a 010 number", "Tourist SIM, no ARC"], "p_arc": ["Korean number in my name", "Resident with an ARC"], "for_setup": "For your setup:", "labels": {"ok": "Works", "warn": "Works with a workaround", "bad": "Blocked", "mixed": "Mixed reports"}, "fails": "If that fails: ", "sources": "Sources and notes", "checked": "Checked", "worked": "It worked", "failed": "It failed", "thanks": "Thanks. Your report helps us keep this answer current.", "cl_title": "Do these before you fly", "cl_lead": "Built from your setup above. Setup steps are easier on home Wi-Fi than at the airport.", "copy": "Copy my checklist", "copied": "Copied.", "copy_fail": "Copy isn't allowed here. Select the list and copy it by hand.", "cl_head": "My Korea setup checklist (Works in Korea, checked {d})", "how": "How we check: each answer is checked against official notices and recent reports. \"Mixed reports\" means sources disagree, so we show a backup route too. Tap \"It worked\" or \"It failed\" to help keep answers current.", "hosts": "Run a guesthouse or rental in Korea? <a href=\"{base}hosts.html\">Send this guide to your guests</a> (숙소 사장님용 안내).", "indep": "Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.", "host_banner": "Shared by {h} to help you get ready for your stay.", "guides": "Guides by topic", "open_tool": "Check your own setup", "back": "All topics", "for_profile": {"visitor": "With a home number or data-only eSIM", "krsim": "With a Korean prepaid 010 number", "arc": "With a Korean number in your name (ARC)"}, "ios": "iPhone", "android": "Android", "langs": "Language"}, "tasks": [{"title": "Mobile data and a phone number", "seo": "Korean phone number for tourists: what an eSIM can and can't do (2026)", "intro": "Most visitors use a data eSIM. That covers maps and messaging, but Korean apps often ask for a Korean number or a full identity check. Here is what each setup can do.", "v": {"visitor": {"s": "warn", "verdict": "Data works anywhere. Apps that send a Korean SMS code will not reach you.", "route": ["Buy a Korea eSIM before you fly for data.", "Pick a plan with a 010 number if you want Korean SMS codes."], "fallback": "A Korean number still won't pass full identity checks (본인인증) without an ARC. Plan on the visitor-friendly apps below."}, "krsim": {"s": "warn", "verdict": "Korean SMS codes work. Full identity checks (본인인증) usually still fail.", "route": ["Use the 010 number for SMS sign-ups.", "Expect PASS-style identity checks to fail without an ARC."], "fallback": "Use passport verification where a service offers it, such as Naver."}, "arc": {"s": "ok", "verdict": "A number in your own name passes most identity checks.", "route": ["Set up PASS identity verification with your carrier.", "Most Korean apps open up after that."], "fallback": "If a check fails, confirm your number is registered to your ARC with your carrier."}}, "notes": ["Korean apps gate features on four things: an ARC, a Korean number in your own name, a Korean payment method, and identity verification."], "id": "data", "slug": "mobile-data-sim", "sources": [["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"], ["Alchera: why a Korean SIM alone fails identity checks", "https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication"]]}, {"title": "Getting around: maps and transit directions", "seo": "Does Google Maps work in Korea? Use Naver Map instead (2026)", "intro": "Google Maps shows places in Korea, but its directions are limited. Korean map apps give full transit and walking directions in English.", "all": {"s": "ok", "verdict": "Naver Map works for everyone, in English, Japanese and Chinese.", "route": ["Install Naver Map and switch the language in settings.", "Use it for walking, subway and bus directions."], "fallback": "Kakao Map is a good second map. Google Maps shows places, but its walking and driving directions are limited in Korea."}, "notes": ["The government conditionally approved Google's map-data export request in February 2026. Better Google routing has not been confirmed yet."], "id": "maps", "slug": "maps", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"], ["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"]]}, {"title": "Calling a taxi", "seo": "How to call a taxi in Korea without a Korean phone number (2026)", "intro": "Kakao T is the app most Koreans use, but visitors often get stuck on card setup. Apps built for visitors take a foreign number and card.", "v": {"visitor": {"s": "ok", "verdict": "Use the taxi apps built for visitors. They take a foreign number and card.", "route": ["k.ride (by Kakao Mobility): sign up with Google, Apple or email.", "Uber also works in Korea with your existing account.", "TABA is another visitor app, run with Seoul and T-money."], "fallback": "Kakao T is what locals use, but reports on foreign cards in Kakao T disagree. If card setup fails, choose pay-to-driver, or hail on the street."}, "krsim": {"s": "ok", "verdict": "Same as visitors: k.ride, Uber or TABA are the reliable picks.", "route": ["k.ride or Uber with your card.", "Kakao T may accept your 010 number for sign-up."], "fallback": "If Kakao T rejects your card, pick pay-to-driver and pay in the taxi."}, "arc": {"s": "ok", "verdict": "Kakao T works fully with a Korean number and Korean card.", "route": ["Kakao T for the most cars.", "k.ride or Uber as backups."], "fallback": "Street hailing works everywhere in big cities."}}, "id": "taxi", "slug": "taxi", "sources": [["Asia Economy: k.ride launch", "https://www.asiae.co.kr/en/article/2024060408155574996"], ["Taxi apps compared for visitors", "https://thebitjoy.com/blogs/blog/korea-taxi-apps-for-foreigners"]]}, {"title": "Subway and bus fares (T-money)", "seo": "T-money with a foreign card: paying for the subway and bus in Korea (2026)", "intro": "Korean subways and buses run on transit cards. Topping one up with a foreign card is now partly possible on iPhone. Cash always works.", "dev": true, "v": {"visitor": {"ios": {"s": "warn", "verdict": "On iPhone, Mobile T-money can now top up with some foreign cards. Not every card brand is supported.", "route": ["Install Mobile T-money and add a transit card.", "Try topping up with your card. If your card brand isn't accepted, use the backup below."], "fallback": "Buy a physical T-money card at a convenience store and top it up with cash at the counter or station machines."}, "android": {"s": "warn", "verdict": "Foreign-card top-up in the Android T-money app was not available at our last check.", "route": ["Buy a physical T-money card at a convenience store.", "Top up with cash at the counter or at station machines."], "fallback": "T-money says a separate app, Mobile Korea Tour Card, supports foreign cards."}}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "With a Korean card, mobile or physical T-money works normally.", "route": ["Add T-money in your wallet app or use a transit-enabled Korean card."], "fallback": "Physical T-money with cash always works."}}, "notes": ["Seoul city said in March 2026 that adding foreign-card top-up inside Apple Pay is still under discussion."], "id": "transit", "slug": "tmoney-subway-bus", "sources": [["SBS Biz: foreign-card top-up for T-money (Mar 2026)", "https://biz.sbs.co.kr/amp/article/20000298518"], ["Seoul city clarification (Mar 2026)", "https://mediahub.seoul.go.kr/archives/2017356"]]}, {"title": "Booking KTX trains", "seo": "How to book KTX tickets as a foreigner after the 2026 changes", "intro": "Korea's rail booking changed a lot in 2026: a new app, SRT folded into KTX, and a longer booking window. Here is the current way to book.", "all": {"s": "ok", "verdict": "Book on KORAIL's English website with a foreign card. It's the most reliable channel.", "route": ["Use KORAIL's English booking site with your passport details.", "Tickets open two months ahead (since 1 Oct 2026). Book early for weekends and holidays."], "fallback": "If your card fails online, try the KORAIL+ app, a reseller like Klook, or a station counter."}, "notes": ["The KORAIL+ app replaced Korail Talk in August 2026.", "SRT was folded into KORAIL on 1 Sep 2026. All high-speed trains are now sold as KTX. Guides that tell you to book SRT separately are out of date."], "id": "ktx", "slug": "ktx-train-booking", "sources": [["Seoul tourism: 2026 KTX changes", "https://www.seoultourism.org/?p=1823"], ["Two-month booking window", "https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/"]]}, {"title": "Restaurant bookings and waitlists", "seo": "Book Korean restaurants without a Korean number: CatchTable Global and Naver (2026)", "intro": "Popular Korean restaurants run bookings and waitlists through apps that used to need a Korean number. Two routes now work for visitors.", "v": {"visitor": {"s": "ok", "verdict": "CatchTable Global and Naver passport verification both work without a Korean number.", "route": ["CatchTable Global: sign up by email, pay deposits with a foreign card.", "Naver Map bookings: verify with your passport (available since 4 Jun 2026)."], "fallback": "Not every restaurant is on these apps. Ask staff to add you to the waitlist in person."}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "All booking apps work, including the local CatchTable app and Naver.", "route": ["Naver Map or CatchTable with your verified number."], "fallback": "CatchTable Global if the local app gives you trouble."}}, "id": "food-booking", "slug": "restaurant-reservations", "sources": [["NAVER: passport verification for visitors", "https://www.navercorp.com/media/pressReleasesDetail?seq=10034359"], ["CatchTable Global on the App Store", "https://apps.apple.com/us/app/catch-table/id1639046576"]]}, {"title": "Food delivery", "seo": "Food delivery in Korea without a Korean number: Baemin and backups (2026)", "intro": "Baemin, Korea's biggest delivery app, added English in 2026. Reports still disagree on whether a foreign number and card get through, so keep a backup.", "v": {"visitor": {"s": "mixed", "verdict": "Baemin added English in February 2026, but reports disagree on whether a foreign number and card get through.", "route": ["Try Baemin first: set your phone to English and check out.", "If checkout fails, use Shuttle, an English delivery app that takes foreign cards."], "fallback": "Your hotel front desk can often order for you."}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "Baemin, Coupang Eats and Yogiyo all work with a verified Korean number.", "route": ["Sign up with your number and add a Korean card or pay app."], "fallback": "Shuttle for English-only menus."}}, "notes": ["Seoul said in August 2026 that visitors without a Korean number can order delivery at Han River parks."], "id": "delivery", "slug": "food-delivery", "sources": [["Herald: delivery without a Korean number (Aug 2026)", "https://biz.heraldcorp.com/article/10827038"], ["Baemin English launch notes", "https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/"]]}, {"title": "Translating menus and signs", "seo": "Translate Korean menus and signs: Papago setup (2026)", "intro": "A camera translation app covers menus, signs and receipts. Set it up before you fly so it works offline.", "all": {"s": "ok", "verdict": "Papago works for everyone. Point the camera at a menu or sign.", "route": ["Install Papago and download the Korean offline pack."], "fallback": "Naver Map also translates place names and reviews."}, "id": "translate", "slug": "translation", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"]]}], "check": {"visitor": ["Buy a Korea eSIM for data (pick one with a 010 number if you want Korean SMS codes).", "Install Naver Map and Papago, and download Papago's Korean offline pack.", "Install k.ride or Uber for taxis.", "Install CatchTable Global and sign up by email.", "Verify your Naver account with your passport.", "Bookmark KORAIL's English site and book KTX trains up to two months ahead.", "Install Shuttle as a delivery backup."], "arc": ["Set up PASS identity verification with your carrier.", "Install Naver Map, Kakao T and Papago.", "Add T-money to your phone or carry a transit-enabled Korean card.", "Book KTX on KORAIL+ or the English website."], "ios_tm": "Install Mobile T-money and test a top-up with your card. Keep some cash as a backup.", "and_tm": "Plan to buy a physical T-money card and top it up with cash on arrival."}, "checked": "17 Nov 2026", "lang": "en"};
 
-/* Each task: verdict per profile (and per device where it matters). */
-const TASKS = [
-  {
-    id: "data", title: "Mobile data and a phone number",
-    v: {
-      visitor: { s: "warn", verdict: "Data works anywhere. Apps that send a Korean SMS code will not reach you.",
-        route: ["Buy a Korea eSIM before you fly for data.", "Pick a plan with a 010 number if you want Korean SMS codes."],
-        fallback: "A Korean number still won't pass full identity checks (본인인증) without an ARC. Plan on the visitor-friendly apps below." },
-      krsim: { s: "warn", verdict: "Korean SMS codes work. Full identity checks (본인인증) usually still fail.",
-        route: ["Use the 010 number for SMS sign-ups.", "Expect PASS-style identity checks to fail without an ARC."],
-        fallback: "Use passport verification where a service offers it, such as Naver." },
-      arc: { s: "ok", verdict: "A number in your own name passes most identity checks.",
-        route: ["Set up PASS identity verification with your carrier.", "Most Korean apps open up after that."],
-        fallback: "If a check fails, confirm your number is registered to your ARC with your carrier." }
-    },
-    notes: ["Korean apps gate features on four things: an ARC, a Korean number in your own name, a Korean payment method, and identity verification."],
-    sources: [["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"], ["Alchera: why a Korean SIM alone fails identity checks", "https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication"]]
-  },
-  {
-    id: "maps", title: "Getting around: maps and transit directions",
-    all: { s: "ok", verdict: "Naver Map works for everyone, in English, Japanese and Chinese.",
-      route: ["Install Naver Map and switch the language in settings.", "Use it for walking, subway and bus directions."],
-      fallback: "Kakao Map is a good second map. Google Maps shows places, but its walking and driving directions are limited in Korea." },
-    notes: ["The government conditionally approved Google's map-data export request in February 2026. Better Google routing has not been confirmed yet."],
-    sources: [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"], ["Seoulstart: Google Maps status", "https://seoulstart.com/guides/digital-korea-guide"]]
-  },
-  {
-    id: "taxi", title: "Calling a taxi",
-    v: {
-      visitor: { s: "ok", verdict: "Use the taxi apps built for visitors. They take a foreign number and card.",
-        route: ["k.ride (by Kakao Mobility): sign up with Google, Apple or email.", "Uber also works in Korea with your existing account.", "TABA is another visitor app, run with Seoul and T-money."],
-        fallback: "Kakao T is what locals use, but reports on foreign cards in Kakao T disagree. If card setup fails, choose pay-to-driver, or hail on the street." },
-      krsim: { s: "ok", verdict: "Same as visitors: k.ride, Uber or TABA are the reliable picks.",
-        route: ["k.ride or Uber with your card.", "Kakao T may accept your 010 number for sign-up."],
-        fallback: "If Kakao T rejects your card, pick pay-to-driver and pay in the taxi." },
-      arc: { s: "ok", verdict: "Kakao T works fully with a Korean number and Korean card.",
-        route: ["Kakao T for the most cars.", "k.ride or Uber as backups."],
-        fallback: "Street hailing works everywhere in big cities." }
-    },
-    sources: [["Asia Economy: k.ride launch", "https://www.asiae.co.kr/en/article/2024060408155574996"], ["Taxi apps compared for visitors", "https://thebitjoy.com/blogs/blog/korea-taxi-apps-for-foreigners"]]
-  },
-  {
-    id: "transit", title: "Subway and bus fares (T-money)",
-    dev: true,
-    v: {
-      visitor: {
-        ios: { s: "warn", verdict: "On iPhone, Mobile T-money can now top up with some foreign cards. Not every card brand is supported.",
-          route: ["Install Mobile T-money and add a transit card.", "Try topping up with your card. If your card brand isn't accepted, use the backup below."],
-          fallback: "Buy a physical T-money card at a convenience store and top it up with cash at the counter or station machines." },
-        android: { s: "warn", verdict: "Foreign-card top-up in the Android T-money app was not available at our last check.",
-          route: ["Buy a physical T-money card at a convenience store.", "Top up with cash at the counter or at station machines."],
-          fallback: "T-money says a separate app, Mobile Korea Tour Card, supports foreign cards." }
-      },
-      krsim: "visitor",
-      arc: { s: "ok", verdict: "With a Korean card, mobile or physical T-money works normally.",
-        route: ["Add T-money in your wallet app or use a transit-enabled Korean card."],
-        fallback: "Physical T-money with cash always works." }
-    },
-    notes: ["Seoul city said in March 2026 that adding foreign-card top-up inside Apple Pay is still under discussion."],
-    sources: [["SBS Biz: foreign-card top-up for T-money (Mar 2026)", "https://biz.sbs.co.kr/amp/article/20000298518"], ["Seoul city clarification (Mar 2026)", "https://mediahub.seoul.go.kr/archives/2017356"]]
-  },
-  {
-    id: "ktx", title: "Booking KTX trains",
-    all: { s: "ok", verdict: "Book on KORAIL's English website with a foreign card. It's the most reliable channel.",
-      route: ["Use KORAIL's English booking site with your passport details.", "Tickets open two months ahead (since 1 Oct 2026). Book early for weekends and holidays."],
-      fallback: "If your card fails online, try the KORAIL+ app, a reseller like Klook, or a station counter." },
-    notes: ["The KORAIL+ app replaced Korail Talk in August 2026.", "SRT was folded into KORAIL on 1 Sep 2026. All high-speed trains are now sold as KTX. Guides that tell you to book SRT separately are out of date."],
-    sources: [["Seoul tourism: 2026 KTX changes", "https://www.seoultourism.org/?p=1823"], ["Two-month booking window", "https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/"]]
-  },
-  {
-    id: "food-booking", title: "Restaurant bookings and waitlists",
-    v: {
-      visitor: { s: "ok", verdict: "CatchTable Global and Naver passport verification both work without a Korean number.",
-        route: ["CatchTable Global: sign up by email, pay deposits with a foreign card.", "Naver Map bookings: verify with your passport (available since 4 Jun 2026)."],
-        fallback: "Not every restaurant is on these apps. Ask staff to add you to the waitlist in person." },
-      krsim: "visitor",
-      arc: { s: "ok", verdict: "All booking apps work, including the local CatchTable app and Naver.",
-        route: ["Naver Map or CatchTable with your verified number."],
-        fallback: "CatchTable Global if the local app gives you trouble." }
-    },
-    sources: [["NAVER: passport verification for visitors", "https://www.navercorp.com/media/pressReleasesDetail?seq=10034359"], ["CatchTable Global on the App Store", "https://apps.apple.com/us/app/catch-table/id1639046576"]]
-  },
-  {
-    id: "delivery", title: "Food delivery",
-    v: {
-      visitor: { s: "mixed", verdict: "Baemin added English in February 2026, but reports disagree on whether a foreign number and card get through.",
-        route: ["Try Baemin first: set your phone to English and check out.", "If checkout fails, use Shuttle, an English delivery app that takes foreign cards."],
-        fallback: "Your hotel front desk can often order for you." },
-      krsim: "visitor",
-      arc: { s: "ok", verdict: "Baemin, Coupang Eats and Yogiyo all work with a verified Korean number.",
-        route: ["Sign up with your number and add a Korean card or pay app."],
-        fallback: "Shuttle for English-only menus." }
-    },
-    notes: ["Seoul said in August 2026 that visitors without a Korean number can order delivery at Han River parks."],
-    sources: [["Herald: delivery without a Korean number (Aug 2026)", "https://biz.heraldcorp.com/article/10827038"], ["Baemin English launch notes", "https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/"]]
-  },
-  {
-    id: "translate", title: "Translating menus and signs",
-    all: { s: "ok", verdict: "Papago works for everyone. Point the camera at a menu or sign.",
-      route: ["Install Papago and download the Korean offline pack."],
-      fallback: "Naver Map also translates place names and reviews." },
-    sources: [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"]]
-  }
-];
-
-const CHECK = {
-  visitor: ["Buy a Korea eSIM for data (pick one with a 010 number if you want Korean SMS codes).", "Install Naver Map and Papago, and download Papago's Korean offline pack.", "Install k.ride or Uber for taxis.", "Install CatchTable Global and sign up by email.", "Verify your Naver account with your passport.", "Bookmark KORAIL's English site and book KTX trains up to two months ahead.", "Install Shuttle as a delivery backup."],
-  arc: ["Set up PASS identity verification with your carrier.", "Install Naver Map, Kakao T and Papago.", "Add T-money to your phone or carry a transit-enabled Korean card.", "Book KTX on KORAIL+ or the English website."]
-};
-
-function resolve(task, profile, device) {
-  if (task.all) return task.all;
-  let v = task.v[profile];
-  if (typeof v === "string") v = task.v[v];
-  if (task.dev && v[device]) v = v[device];
-  return v;
-}
-
-function el(tag, attrs = {}, children = []) {
-  const n = document.createElement(tag);
-  for (const [k, val] of Object.entries(attrs)) {
-    if (k === "text") n.textContent = val; else n.setAttribute(k, val);
-  }
-  for (const c of [].concat(children)) if (c) n.append(c);
-  return n;
-}
-
-function store(key, val) { try { if (val === undefined) return localStorage.getItem(key); localStorage.setItem(key, val); } catch (e) { return null; } }
-
+const U = D.ui;
+function resolve(t, p, dev) { if (t.all) return t.all; let v = t.v[p]; if (typeof v === "string") v = t.v[v]; if (t.dev && v[dev]) v = v[dev]; return v; }
+function el(tag, attrs = {}, kids = []) { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === "text") n.textContent = v; else n.setAttribute(k, v); } for (const c of [].concat(kids)) if (c) n.append(c); return n; }
+function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+function count(path, title) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); } catch (e) {} }
 function render() {
-  const profile = document.querySelector('input[name="profile"]:checked').value;
-  const device = document.querySelector('input[name="device"]:checked').value;
-  const tasksEl = document.getElementById("tasks");
-  tasksEl.replaceChildren();
-  const counts = { ok: 0, warn: 0, mixed: 0, bad: 0 };
-
-  for (const t of TASKS) {
-    const v = resolve(t, profile, device);
-    counts[v.s]++;
-    const card = el("article", { class: "task " + v.s, id: "task-" + t.id });
-    card.append(el("div", { class: "task-head" }, [el("h3", { text: t.title }), el("span", { class: "chip " + v.s, text: LABEL[v.s] })]));
-    card.append(el("p", { class: "verdict", text: v.verdict }));
-    card.append(el("ol", { class: "route" }, v.route.map(r => el("li", { text: r }))));
-    const fb = el("p", { class: "fallback" }); fb.append(el("strong", { text: "If that fails: " }), v.fallback); card.append(fb);
-    const det = el("details");
-    det.append(el("summary", { text: "Sources and notes" }));
-    const ul = el("ul");
-    for (const n of (t.notes || [])) ul.append(el("li", { text: n }));
-    for (const [name, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: name })); ul.append(li); }
-    det.append(ul); card.append(det);
-
-    const rkey = "wik-report-" + t.id + "-" + profile;
-    const rep = el("div", { class: "report" });
-    const thanks = el("span", { class: "thanks", role: "status" });
-    for (const [val, txt] of [["yes", "It worked"], ["no", "It failed"]]) {
-      const b = el("button", { type: "button", "aria-pressed": String(store(rkey) === val), text: txt });
+  const p = document.querySelector('input[name="profile"]:checked').value;
+  const dev = document.querySelector('input[name="device"]:checked').value;
+  const box = document.getElementById("tasks"); box.replaceChildren();
+  const n = { ok: 0, warn: 0, mixed: 0, bad: 0 };
+  for (const t of D.tasks) {
+    const v = resolve(t, p, dev); n[v.s]++;
+    const c = el("article", { class: "task " + v.s, id: "task-" + t.id });
+    const h = el("h3"); h.append(el("a", { href: t.slug + ".html", text: t.title, style: "color:inherit;text-decoration:none" }));
+    c.append(el("div", { class: "task-head" }, [h, el("span", { class: "chip " + v.s, text: U.labels[v.s] })]));
+    c.append(el("p", { class: "verdict", text: v.verdict }));
+    c.append(el("ol", { class: "route" }, v.route.map(r => el("li", { text: r }))));
+    const fb = el("p", { class: "fallback" }); fb.append(el("strong", { text: U.fails }), v.fallback); c.append(fb);
+    const det = el("details"); det.append(el("summary", { text: U.sources })); const ul = el("ul");
+    for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
+    for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
+    det.append(ul); c.append(det);
+    const key = "wik-report-" + t.id + "-" + p, rep = el("div", { class: "report" }), thx = el("span", { class: "thanks", role: "status" });
+    for (const [val, txt] of [["yes", U.worked], ["no", U.failed]]) {
+      const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt });
       b.addEventListener("click", () => {
-        store(rkey, val);
-        rep.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-        thanks.textContent = "Saved on this device. Shared reports open when the site launches.";
+        if (store(key) !== val) count(`report/${D.lang}/${t.id}/${p}/${dev}/${val}`, `${t.id} ${p} ${val}`);
+        store(key, val); rep.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); thx.textContent = U.thanks;
       });
       rep.append(b);
     }
-    rep.append(thanks);
-    card.append(el("div", { class: "meta" }, [el("span", { text: "Checked " + CHECKED }), rep]));
-    tasksEl.append(card);
+    rep.append(thx);
+    c.append(el("div", { class: "meta" }, [el("span", { text: U.checked + " " + D.checked }), rep]));
+    box.append(c);
   }
-
-  const sum = document.getElementById("summary");
-  sum.replaceChildren(el("b", { text: "For your setup:" }));
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (counts[k]) sum.append(el("span", { class: "chip " + k, text: counts[k] + " " + LABEL[k].toLowerCase() }));
-
-  let items = (profile === "arc" ? CHECK.arc : CHECK.visitor).slice();
-  if (profile !== "arc") items.splice(3, 0, device === "ios" ? "Install Mobile T-money and test a top-up with your card. Keep some cash as a backup." : "Plan to buy a physical T-money card and top it up with cash on arrival.");
+  const sum = document.getElementById("summary"); sum.replaceChildren(el("b", { text: U.for_setup }));
+  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sum.append(el("span", { class: "chip " + k, text: n[k] + " · " + U.labels[k] }));
+  const items = (p === "arc" ? D.check.arc : D.check.visitor).slice();
+  if (p !== "arc") items.splice(3, 0, dev === "ios" ? D.check.ios_tm : D.check.and_tm);
   document.getElementById("checklist").replaceChildren(...items.map(i => el("li", { text: i })));
-  store("wik-setup", profile + "|" + device);
+  store("wik-setup", p + "|" + dev);
 }
-
+const saved = store("wik-setup");
+if (saved) { const [p, d] = saved.split("|"); const a = document.querySelector(`input[name="profile"][value="${p}"]`); if (a) a.checked = true; const b = document.querySelector(`input[name="device"][value="${d}"]`); if (b) b.checked = true; }
 document.querySelectorAll('input[name="profile"], input[name="device"]').forEach(i => i.addEventListener("change", render));
 document.getElementById("copy-btn").addEventListener("click", async () => {
-  const text = "My Korea setup checklist (Works in Korea, checked " + CHECKED + ")\n" + [...document.querySelectorAll("#checklist li")].map((li, i) => (i + 1) + ". " + li.textContent).join("\n");
+  const text = U.cl_head.replace("{d}", D.checked) + "\n" + [...document.querySelectorAll("#checklist li")].map((li, i) => (i + 1) + ". " + li.textContent).join("\n");
   const out = document.getElementById("copied");
-  try { await navigator.clipboard.writeText(text); out.textContent = "Copied."; }
-  catch (e) { out.textContent = "Copy isn't allowed here. Select the list and copy it by hand."; }
+  try { await navigator.clipboard.writeText(text); out.textContent = U.copied; count(`copy-checklist/${D.lang}`, "copy checklist"); } catch (e) { out.textContent = U.copy_fail; }
 });
-const saved = store("wik-setup");
-if (saved) {
-  const [p, d] = saved.split("|");
-  const pi = document.querySelector('input[name="profile"][value="' + p + '"]'); if (pi) pi.checked = true;
-  const di = document.querySelector('input[name="device"][value="' + d + '"]'); if (di) di.checked = true;
-}
 render();
-/* Host mode: hosts share ?host=Their+Place so guests see who sent the guide. */
-try {
-  const h = new URLSearchParams(location.search).get("host");
-  if (h) { const b = document.getElementById("host"); b.textContent = "Shared by " + h.slice(0, 60) + " to help you get ready for your stay."; b.hidden = false; }
-} catch (e) {}
+try { const h = new URLSearchParams(location.search).get("host"); if (h) { const b = document.getElementById("host"); b.textContent = U.host_banner.replace("{h}", h.slice(0, 60)); b.hidden = false; count(`host/${h.slice(0, 60)}`, "host link"); } } catch (e) {}
+
 </script>
 </body>
 </html>

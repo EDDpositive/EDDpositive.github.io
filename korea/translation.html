@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translate Korean menus and signs: Papago setup (2026)</title>
+<meta name="description" content="A camera translation app covers menus, signs and receipts. Set it up before you fly so it works offline.">
+<link rel="canonical" href="https://eddpositive.github.io/korea/translation.html"><link rel="alternate" hreflang="en" href="https://eddpositive.github.io/korea/translation.html"><link rel="alternate" hreflang="ja" href="https://eddpositive.github.io/korea/ja/translation.html"><link rel="alternate" hreflang="zh-Hant-TW" href="https://eddpositive.github.io/korea/zh-tw/translation.html"><link rel="alternate" hreflang="x-default" href="https://eddpositive.github.io/korea/translation.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Translate Korean menus and signs: Papago setup (2026)"><meta property="og:description" content="A camera translation app covers menus, signs and receipts. Set it up before you fly so it works offline."><meta property="og:url" content="https://eddpositive.github.io/korea/translation.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: setup bar on top, then a scannable list of task cards, each led by a verdict chip. */
+  --bg: #f4f5f2;
+  --surface: #ffffff;
+  --ink: #16202b;
+  --muted: #5b6672;
+  --line: #dde1dc;
+  --accent: #1f4fd1;
+  --accent-soft: #e6ecfc;
+  --ok: #17803d; --ok-bg: #e5f4ea;
+  --warn: #9a5b00; --warn-bg: #fdf1dc;
+  --bad: #b3261e; --bad-bg: #fbe7e5;
+  --mixed: #5b4bb7; --mixed-bg: #eeebfb;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d;
+    --accent: #7d9cff; --accent-soft: #1d2a4d;
+    --ok: #5fd08a; --ok-bg: #12301f; --warn: #f0b45a; --warn-bg: #36270f;
+    --bad: #ff8a80; --bad-bg: #3a1714; --mixed: #b4a8ff; --mixed-bg: #251f45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d;
+  --accent: #7d9cff; --accent-soft: #1d2a4d;
+  --ok: #5fd08a; --ok-bg: #12301f; --warn: #f0b45a; --warn-bg: #36270f;
+  --bad: #ff8a80; --bad-bg: #3a1714; --mixed: #b4a8ff; --mixed-bg: #251f45;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--body); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+header.top { padding: 28px 0 8px; }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font: 800 clamp(30px, 6vw, 44px)/1.05 var(--display); margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+.brand .kr { font: 600 15px var(--body); color: var(--muted); }
+.lede { color: var(--muted); max-width: 62ch; margin: 10px 0 0; }
+.setup { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin: 18px 0; display: grid; gap: 14px; }
+.setup h2 { font: 600 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt span { display: inline-block; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; background: var(--bg); font-size: 15px; }
+.opt input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; }
+.opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt small { display: block; font-size: 12px; opacity: .8; }
+.summary { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 14px; }
+.summary b { font: 600 15px var(--body); margin-right: 4px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font: 600 13px var(--body); white-space: nowrap; }
+.chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.chip.ok { color: var(--ok); background: var(--ok-bg); }
+.chip.warn { color: var(--warn); background: var(--warn-bg); }
+.chip.bad { color: var(--bad); background: var(--bad-bg); }
+.chip.mixed { color: var(--mixed); background: var(--mixed-bg); }
+.tasks { display: grid; gap: 12px; }
+.task { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; }
+.task.ok { border-left-color: var(--ok); }
+.task.warn { border-left-color: var(--warn); }
+.task.bad { border-left-color: var(--bad); }
+.task.mixed { border-left-color: var(--mixed); }
+.task-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.task h3 { font: 700 20px/1.2 var(--display); margin: 0; text-wrap: balance; }
+.task .verdict { font-weight: 600; margin: 0; }
+.route { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.fallback { margin: 0; color: var(--muted); }
+.fallback strong { color: var(--ink); }
+details { border-top: 1px dashed var(--line); padding-top: 8px; }
+summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+details ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 13px; color: var(--muted); }
+.report { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.report button { font: 500 13px var(--body); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.report button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.report .thanks { font-size: 13px; color: var(--muted); }
+.checklist { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin: 22px 0; }
+.checklist h2 { font: 700 22px var(--display); margin: 0 0 4px; }
+.checklist p { margin: 0 0 10px; color: var(--muted); }
+.checklist ol { margin: 0 0 12px; padding-left: 22px; display: grid; gap: 6px; }
+.btn { font: 600 15px var(--body); padding: 10px 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.copied { margin-left: 10px; font-size: 14px; color: var(--muted); }
+footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: no-preference) { .task { transition: border-color .2s; } }
+
+.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.langs { display: flex; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 8px; }
+.langs a[aria-current="page"] { font-weight: 600; color: var(--ink); text-decoration: none; }
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.topics a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 14px; }
+.profile h2 { font: 700 18px/1.3 var(--display); margin: 0; }
+.cta-tool { display: inline-block; margin: 6px 0 18px; }
+</style>
+<script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Translate Korean menus and signs: Papago setup (2026)", "dateModified": "2026-11-17", "inLanguage": "en", "url": "https://eddpositive.github.io/korea/translation.html"}</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="meta"><a href="./">← Works in Korea</a></p>
+    <div class="brand"><h1>Translate Korean menus and signs: Papago setup (2026)</h1></div>
+    <nav class="langs" aria-label="Language"><a href="translation.html" hreflang="en" aria-current="page">English</a><a href="ja/translation.html" hreflang="ja">日本語</a><a href="zh-tw/translation.html" hreflang="zh-Hant-TW">繁體中文</a></nav>
+    <p class="lede">A camera translation app covers menus, signs and receipts. Set it up before you fly so it works offline.</p>
+    <p class="meta">Checked 17 Nov 2026</p>
+  </header>
+  <a class="btn cta-tool" href="./">Check your own setup</a>
+  <main class="tasks"><article class="task ok profile"><div class="task-head"><h2>Works</h2><span class="chip ok">Works</span></div>
+<p class="verdict">Papago works for everyone. Point the camera at a menu or sign.</p><ol class="route"><li>Install Papago and download the Korean offline pack.</li></ol><p class="fallback"><strong>If that fails: </strong>Naver Map also translates place names and reviews.</p></article></main>
+  <section class="checklist"><h2>Sources and notes</h2><ul><li><a href="https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide" rel="noopener" target="_blank">LG U+ travel app guide</a></li></ul></section>
+  <h2>Guides by topic</h2><nav class="topics"><a href="mobile-data-sim.html">Mobile data and a phone number</a><a href="maps.html">Getting around: maps and transit directions</a><a href="taxi.html">Calling a taxi</a><a href="tmoney-subway-bus.html">Subway and bus fares (T-money)</a><a href="ktx-train-booking.html">Booking KTX trains</a><a href="restaurant-reservations.html">Restaurant bookings and waitlists</a><a href="food-delivery.html">Food delivery</a></nav>
+  <footer><div>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</div><div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div><div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div></footer>
+</div>
+</body>
+</html>

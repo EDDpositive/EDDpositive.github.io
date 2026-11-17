@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Works in Korea · 韓国で使える方法</title>
+<meta name="description" content="スマホの状況を選ぶだけで、韓国でタクシー・鉄道・地下鉄・飲食店予約・デリバリーが今どう使えるかを、確認日つきで表示します。">
+<link rel="canonical" href="https://eddpositive.github.io/korea/ja/"><link rel="alternate" hreflang="en" href="https://eddpositive.github.io/korea/"><link rel="alternate" hreflang="ja" href="https://eddpositive.github.io/korea/ja/"><link rel="alternate" hreflang="zh-Hant-TW" href="https://eddpositive.github.io/korea/zh-tw/"><link rel="alternate" hreflang="x-default" href="https://eddpositive.github.io/korea/">
+<meta property="og:type" content="website"><meta property="og:title" content="Works in Korea · 韓国で使える方法"><meta property="og:description" content="スマホの状況を選ぶだけで、韓国でタクシー・鉄道・地下鉄・飲食店予約・デリバリーが今どう使えるかを、確認日つきで表示します。"><meta property="og:url" content="https://eddpositive.github.io/korea/ja/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: setup bar on top, then a scannable list of task cards, each led by a verdict chip. */
+  --bg: #f4f5f2;
+  --surface: #ffffff;
+  --ink: #16202b;
+  --muted: #5b6672;
+  --line: #dde1dc;
+  --accent: #1f4fd1;
+  --accent-soft: #e6ecfc;
+  --ok: #17803d; --ok-bg: #e5f4ea;
+  --warn: #9a5b00; --warn-bg: #fdf1dc;
+  --bad: #b3261e; --bad-bg: #fbe7e5;
+  --mixed: #5b4bb7; --mixed-bg: #eeebfb;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d;
+    --accent: #7d9cff; --accent-soft: #1d2a4d;
+    --ok: #5fd08a; --ok-bg: #12301f; --warn: #f0b45a; --warn-bg: #36270f;
+    --bad: #ff8a80; --bad-bg: #3a1714; --mixed: #b4a8ff; --mixed-bg: #251f45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d;
+  --accent: #7d9cff; --accent-soft: #1d2a4d;
+  --ok: #5fd08a; --ok-bg: #12301f; --warn: #f0b45a; --warn-bg: #36270f;
+  --bad: #ff8a80; --bad-bg: #3a1714; --mixed: #b4a8ff; --mixed-bg: #251f45;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--body); }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+header.top { padding: 28px 0 8px; }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.brand h1 { font: 800 clamp(30px, 6vw, 44px)/1.05 var(--display); margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+.brand .kr { font: 600 15px var(--body); color: var(--muted); }
+.lede { color: var(--muted); max-width: 62ch; margin: 10px 0 0; }
+.setup { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin: 18px 0; display: grid; gap: 14px; }
+.setup h2 { font: 600 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt span { display: inline-block; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; background: var(--bg); font-size: 15px; }
+.opt input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; }
+.opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt small { display: block; font-size: 12px; opacity: .8; }
+.summary { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 14px; }
+.summary b { font: 600 15px var(--body); margin-right: 4px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font: 600 13px var(--body); white-space: nowrap; }
+.chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.chip.ok { color: var(--ok); background: var(--ok-bg); }
+.chip.warn { color: var(--warn); background: var(--warn-bg); }
+.chip.bad { color: var(--bad); background: var(--bad-bg); }
+.chip.mixed { color: var(--mixed); background: var(--mixed-bg); }
+.tasks { display: grid; gap: 12px; }
+.task { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; }
+.task.ok { border-left-color: var(--ok); }
+.task.warn { border-left-color: var(--warn); }
+.task.bad { border-left-color: var(--bad); }
+.task.mixed { border-left-color: var(--mixed); }
+.task-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.task h3 { font: 700 20px/1.2 var(--display); margin: 0; text-wrap: balance; }
+.task .verdict { font-weight: 600; margin: 0; }
+.route { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.fallback { margin: 0; color: var(--muted); }
+.fallback strong { color: var(--ink); }
+details { border-top: 1px dashed var(--line); padding-top: 8px; }
+summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+details ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 13px; color: var(--muted); }
+.report { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.report button { font: 500 13px var(--body); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+.report button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.report .thanks { font-size: 13px; color: var(--muted); }
+.checklist { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin: 22px 0; }
+.checklist h2 { font: 700 22px var(--display); margin: 0 0 4px; }
+.checklist p { margin: 0 0 10px; color: var(--muted); }
+.checklist ol { margin: 0 0 12px; padding-left: 22px; display: grid; gap: 6px; }
+.btn { font: 600 15px var(--body); padding: 10px 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; cursor: pointer; }
+.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.copied { margin-left: 10px; font-size: 14px; color: var(--muted); }
+footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: no-preference) { .task { transition: border-color .2s; } }
+
+.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.langs { display: flex; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 8px; }
+.langs a[aria-current="page"] { font-weight: 600; color: var(--ink); text-decoration: none; }
+.topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.topics a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 14px; }
+.profile h2 { font: 700 18px/1.3 var(--display); margin: 0; }
+.cta-tool { display: inline-block; margin: 6px 0 18px; }
+</style>
+<script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>Works in Korea</h1><span class="kr">韓国で使える方法</span></div>
+    <nav class="langs" aria-label="言語"><a href="../" hreflang="en">English</a><a href="../ja/" hreflang="ja" aria-current="page">日本語</a><a href="../zh-tw/" hreflang="zh-Hant-TW">繁體中文</a></nav>
+    <p class="host" id="host" hidden></p>
+    <p class="lede">韓国のアプリの多くは、海外の電話番号やカードを受け付けません。あなたの状況を選ぶと、今使える方法と、各回答を最後に確認した日付がわかります。</p>
+  </header>
+  <section class="setup" aria-labelledby="setup-title">
+    <h2 id="setup-title">あなたの状況</h2>
+    <fieldset><legend>韓国で使う電話番号</legend><div class="opts">
+      <label class="opt"><input type="radio" name="profile" id="p-visitor" value="visitor" checked><span>自国の番号、またはデータ専用eSIM<small>短期旅行者の多く</small></span></label>
+      <label class="opt"><input type="radio" name="profile" id="p-krsim" value="krsim"><span>010番号つき韓国プリペイドSIM<small>旅行者用SIM、外国人登録証なし</small></span></label>
+      <label class="opt"><input type="radio" name="profile" id="p-arc" value="arc"><span>自分名義の韓国の番号<small>外国人登録証のある在住者</small></span></label>
+    </div></fieldset>
+    <fieldset><legend>スマホ</legend><div class="opts">
+      <label class="opt"><input type="radio" name="device" id="d-ios" value="ios" checked><span>iPhone</span></label>
+      <label class="opt"><input type="radio" name="device" id="d-android" value="android"><span>Android</span></label>
+    </div></fieldset>
+  </section>
+  <div class="summary" id="summary" aria-live="polite"></div>
+  <main class="tasks" id="tasks"></main>
+  <section class="checklist" aria-labelledby="cl-title">
+    <h2 id="cl-title">出発前にやること</h2>
+    <p>上で選んだ状況から作りました。設定は空港より自宅のWi-Fiで済ませるのがおすすめです。</p>
+    <ol id="checklist"></ol>
+    <button class="btn" type="button" id="copy-btn">チェックリストをコピー</button><span class="copied" id="copied" role="status"></span>
+  </section>
+  <h2>テーマ別ガイド</h2>
+  <nav class="topics"><a href="mobile-data-sim.html">モバイルデータと電話番号</a><a href="maps.html">移動: 地図と乗り換え案内</a><a href="taxi.html">タクシーを呼ぶ</a><a href="tmoney-subway-bus.html">地下鉄・バスの運賃(T-money)</a><a href="ktx-train-booking.html">KTXの予約</a><a href="restaurant-reservations.html">飲食店の予約と順番待ち</a><a href="food-delivery.html">フードデリバリー</a><a href="translation.html">メニューや看板の翻訳</a></nav>
+  <footer>
+    <div>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</div>
+    <div>韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</div>
+    <div>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</div>
+  </footer>
+</div>
+<script>
+const D = {"ui": {"title": "Works in Korea", "kr": "韓国で使える方法", "meta_desc": "スマホの状況を選ぶだけで、韓国でタクシー・鉄道・地下鉄・飲食店予約・デリバリーが今どう使えるかを、確認日つきで表示します。", "lede": "韓国のアプリの多くは、海外の電話番号やカードを受け付けません。あなたの状況を選ぶと、今使える方法と、各回答を最後に確認した日付がわかります。", "setup": "あなたの状況", "phone_q": "韓国で使う電話番号", "device_q": "スマホ", "p_visitor": ["自国の番号、またはデータ専用eSIM", "短期旅行者の多く"], "p_krsim": ["010番号つき韓国プリペイドSIM", "旅行者用SIM、外国人登録証なし"], "p_arc": ["自分名義の韓国の番号", "外国人登録証のある在住者"], "for_setup": "あなたの状況では:", "labels": {"ok": "使える", "warn": "回避策あり", "bad": "使えない", "mixed": "情報が割れている"}, "fails": "うまくいかない場合: ", "sources": "出典とメモ", "checked": "確認日", "worked": "使えた", "failed": "使えなかった", "thanks": "ありがとうございます。報告は回答の更新に使います。", "cl_title": "出発前にやること", "cl_lead": "上で選んだ状況から作りました。設定は空港より自宅のWi-Fiで済ませるのがおすすめです。", "copy": "チェックリストをコピー", "copied": "コピーしました。", "copy_fail": "ここではコピーできません。リストを選択して手動でコピーしてください。", "cl_head": "韓国旅行の準備チェックリスト(Works in Korea、{d}確認)", "how": "確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。", "hosts": "韓国で宿を運営していますか? <a href=\"{base}hosts.html\">このガイドをゲストに送る</a>(韓国語)。", "indep": "独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。", "host_banner": "{h}より、ご滞在の準備のためにお送りしています。", "guides": "テーマ別ガイド", "open_tool": "自分の状況で確認する", "back": "すべてのテーマ", "for_profile": {"visitor": "自国の番号またはデータ専用eSIMの場合", "krsim": "韓国プリペイドの010番号の場合", "arc": "自分名義の韓国の番号(外国人登録証あり)の場合"}, "ios": "iPhone", "android": "Android", "langs": "言語"}, "tasks": [{"title": "モバイルデータと電話番号", "seo": "旅行者の韓国の電話番号: eSIMでできること・できないこと(2026)", "intro": "多くの旅行者はデータ用eSIMを使います。地図やメッセージには十分ですが、韓国のアプリは韓国の番号や本人認証を求めることがよくあります。状況ごとにできることをまとめました。", "v": {"visitor": {"s": "warn", "verdict": "データはどこでも使えます。韓国のSMS認証コードは届きません。", "route": ["出発前にデータ用の韓国eSIMを買う。", "韓国のSMS認証を受けたいなら010番号つきのプランを選ぶ。"], "fallback": "韓国の番号があっても、外国人登録証がなければ本人認証(본인인증)はほぼ通りません。下の旅行者向けアプリを前提に計画してください。"}, "krsim": {"s": "warn", "verdict": "韓国のSMS認証は使えます。本人認証(본인인증)はたいてい通りません。", "route": ["SMSでの登録には010番号を使う。", "外国人登録証がないとPASS型の本人認証は通らないと考えておく。"], "fallback": "Naverのようにパスポート認証があるサービスはそれを使う。"}, "arc": {"s": "ok", "verdict": "自分名義の番号なら、ほとんどの本人認証が通ります。", "route": ["携帯会社でPASSの本人認証を設定する。", "そのあとは多くの韓国アプリが使えるようになります。"], "fallback": "認証に失敗したら、番号が外国人登録証と紐づいているか携帯会社に確認する。"}}, "notes": ["韓国のアプリは4つの条件で機能を制限します: 外国人登録証、自分名義の韓国の番号、韓国の決済手段、本人認証。"], "id": "data", "slug": "mobile-data-sim", "sources": [["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"], ["Alchera: why a Korean SIM alone fails identity checks", "https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication"]]}, {"title": "移動: 地図と乗り換え案内", "seo": "韓国でGoogleマップは使える? 代わりにNaver Mapを(2026)", "intro": "Googleマップは韓国でも場所は表示できますが、経路案内は限られます。韓国の地図アプリなら英語で乗り換えや徒歩の案内が使えます。", "all": {"s": "ok", "verdict": "Naver Mapは誰でも使えます。英語・日本語・中国語に対応しています。", "route": ["Naver Mapを入れ、設定で言語を切り替える。", "徒歩・地下鉄・バスの案内に使う。"], "fallback": "Kakao Mapも良い予備です。Googleマップは場所の表示はできますが、韓国では徒歩・車の経路案内が限られます。"}, "notes": ["政府は2026年2月にGoogleの地図データ持ち出し申請を条件付きで承認しました。Googleの経路案内が改善されたかはまだ確認できていません。"], "id": "maps", "slug": "maps", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"], ["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"]]}, {"title": "タクシーを呼ぶ", "seo": "韓国の電話番号なしでタクシーを呼ぶ方法(2026)", "intro": "韓国人の多くはKakao Tを使いますが、旅行者はカード登録でつまずきがちです。旅行者向けのアプリなら海外の番号とカードが使えます。", "v": {"visitor": {"s": "ok", "verdict": "旅行者向けのタクシーアプリを使いましょう。海外の番号とカードが使えます。", "route": ["k.ride(Kakao Mobility提供): Google、Apple、メールで登録できます。", "Uberも今のアカウントのまま韓国で使えます。", "TABAはソウル市とT-moneyが運営する旅行者向けアプリです。"], "fallback": "地元の人はKakao Tを使いますが、海外カードが使えるかは報告が割れています。カード登録に失敗したら「運転手に直接支払い」を選ぶか、道で手を挙げて止めてください。"}, "krsim": {"s": "ok", "verdict": "旅行者と同じく、k.ride・Uber・TABAが確実です。", "route": ["k.rideかUberを自分のカードで使う。", "Kakao Tは010番号で登録できる場合があります。"], "fallback": "Kakao Tでカードが拒否されたら、「運転手に直接支払い」を選んで車内で払う。"}, "arc": {"s": "ok", "verdict": "韓国の番号と韓国のカードがあればKakao Tがすべて使えます。", "route": ["車が最も多いのはKakao T。", "予備にk.rideかUber。"], "fallback": "大都市なら道でタクシーを止めるのも確実です。"}}, "id": "taxi", "slug": "taxi", "sources": [["Asia Economy: k.ride launch", "https://www.asiae.co.kr/en/article/2024060408155574996"], ["Taxi apps compared for visitors", "https://thebitjoy.com/blogs/blog/korea-taxi-apps-for-foreigners"]]}, {"title": "地下鉄・バスの運賃(T-money)", "seo": "海外カードでT-money: 韓国の地下鉄・バスの払い方(2026)", "intro": "韓国の地下鉄とバスは交通カードで乗ります。海外カードでのチャージはiPhoneで一部できるようになりました。現金なら必ずチャージできます。", "dev": true, "v": {"visitor": {"ios": {"s": "warn", "verdict": "iPhoneでは、モバイルT-moneyで一部の海外カードからチャージできるようになりました。すべてのカードブランドには対応していません。", "route": ["モバイルT-moneyを入れて交通カードを追加する。", "自分のカードでチャージを試す。対応していなければ下の予備の方法を使う。"], "fallback": "コンビニでT-moneyカードを買い、レジや駅の機械で現金チャージする。"}, "android": {"s": "warn", "verdict": "前回の確認時点では、AndroidのT-moneyアプリで海外カードからのチャージはできませんでした。", "route": ["コンビニでT-moneyカードを買う。", "レジや駅の機械で現金チャージする。"], "fallback": "T-moneyによると、別アプリの「Mobile Korea Tour Card」は海外カードに対応しています。"}}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "韓国のカードがあれば、モバイルでもカードでもT-moneyは普通に使えます。", "route": ["ウォレットアプリにT-moneyを追加するか、交通機能つきの韓国のカードを使う。"], "fallback": "カードのT-moneyに現金チャージする方法はいつでも使えます。"}}, "notes": ["ソウル市は2026年3月、Apple Pay内で海外カードからチャージできるようにする件はまだ協議中だと説明しました。"], "id": "transit", "slug": "tmoney-subway-bus", "sources": [["SBS Biz: foreign-card top-up for T-money (Mar 2026)", "https://biz.sbs.co.kr/amp/article/20000298518"], ["Seoul city clarification (Mar 2026)", "https://mediahub.seoul.go.kr/archives/2017356"]]}, {"title": "KTXの予約", "seo": "2026年の変更後、外国人がKTXを予約する方法", "intro": "2026年、韓国の鉄道予約は大きく変わりました。新しいアプリ、SRTのKTXへの統合、予約期間の延長です。今の予約方法をまとめました。", "all": {"s": "ok", "verdict": "KORAILの英語サイトで海外カードを使って予約するのが最も確実です。", "route": ["KORAILの英語予約サイトでパスポート情報を使って予約する。", "2026年10月1日から2か月前に予約が開きます。週末や連休は早めに。"], "fallback": "オンラインでカードが通らなければ、KORAIL+アプリ、Klookなどの代理店、駅の窓口を試す。"}, "notes": ["2026年8月、KORAIL+アプリがKorail Talkに代わりました。", "2026年9月1日にSRTはKORAILに統合され、高速列車はすべてKTXとして販売されています。SRTを別に予約するよう書いているガイドは古い情報です。"], "id": "ktx", "slug": "ktx-train-booking", "sources": [["Seoul tourism: 2026 KTX changes", "https://www.seoultourism.org/?p=1823"], ["Two-month booking window", "https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/"]]}, {"title": "飲食店の予約と順番待ち", "seo": "韓国の番号なしで韓国の飲食店を予約: CatchTable GlobalとNaver(2026)", "intro": "韓国の人気店は、以前は韓国の番号が必要だったアプリで予約や順番待ちを受け付けています。今は旅行者向けに2つの方法があります。", "v": {"visitor": {"s": "ok", "verdict": "CatchTable GlobalとNaverのパスポート認証は、どちらも韓国の番号なしで使えます。", "route": ["CatchTable Global: メールで登録し、デポジットは海外カードで払える。", "Naver Mapの予約: パスポートで認証(2026年6月4日から)。"], "fallback": "すべての店がこれらのアプリにあるわけではありません。店頭でスタッフに順番待ちに入れてもらいましょう。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "韓国版のCatchTableやNaverを含め、すべての予約アプリが使えます。", "route": ["認証済みの番号でNaver MapかCatchTableを使う。"], "fallback": "韓国版アプリでうまくいかなければCatchTable Globalを使う。"}}, "id": "food-booking", "slug": "restaurant-reservations", "sources": [["NAVER: passport verification for visitors", "https://www.navercorp.com/media/pressReleasesDetail?seq=10034359"], ["CatchTable Global on the App Store", "https://apps.apple.com/us/app/catch-table/id1639046576"]]}, {"title": "フードデリバリー", "seo": "韓国の番号なしで韓国のデリバリー: 配達の民族と予備の方法(2026)", "intro": "韓国最大のデリバリーアプリ「配達の民族(Baemin)」は2026年に英語に対応しました。ただ海外の番号やカードが通るかは報告が割れているので、予備を用意しておきましょう。", "v": {"visitor": {"s": "mixed", "verdict": "Baeminは2026年2月に英語対応しましたが、海外の番号とカードが通るかは報告が割れています。", "route": ["まずBaeminを試す。スマホを英語設定にして注文する。", "決済で失敗したら、海外カードが使える英語のデリバリーアプリShuttleを使う。"], "fallback": "ホテルのフロントが代わりに注文してくれることもよくあります。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "認証済みの韓国の番号があれば、Baemin、Coupang Eats、Yogiyoがすべて使えます。", "route": ["番号で登録し、韓国のカードか決済アプリを追加する。"], "fallback": "英語メニューだけで注文したいならShuttle。"}}, "notes": ["ソウル市は2026年8月、韓国の番号がない旅行者も漢江公園でデリバリーを注文できると発表しました。"], "id": "delivery", "slug": "food-delivery", "sources": [["Herald: delivery without a Korean number (Aug 2026)", "https://biz.heraldcorp.com/article/10827038"], ["Baemin English launch notes", "https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/"]]}, {"title": "メニューや看板の翻訳", "seo": "韓国語のメニュー・看板を翻訳: Papagoの準備(2026)", "intro": "カメラ翻訳アプリがあれば、メニュー・看板・レシートを読めます。オフラインで使えるよう出発前に準備しましょう。", "all": {"s": "ok", "verdict": "Papagoは誰でも使えます。メニューや看板にカメラを向けるだけです。", "route": ["Papagoを入れ、韓国語のオフラインパックをダウンロードする。"], "fallback": "Naver Mapでも店名や口コミを翻訳できます。"}, "id": "translate", "slug": "translation", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"]]}], "check": {"visitor": ["データ用の韓国eSIMを買う(韓国のSMS認証を受けたいなら010番号つきを選ぶ)。", "Naver MapとPapagoを入れ、Papagoの韓国語オフラインパックをダウンロードする。", "タクシー用にk.rideかUberを入れる。", "CatchTable Globalを入れてメールで登録する。", "Naverアカウントをパスポートで認証する。", "KORAILの英語サイトをブックマークし、KTXは最大2か月前から予約する。", "デリバリーの予備としてShuttleを入れる。"], "arc": ["携帯会社でPASSの本人認証を設定する。", "Naver Map、Kakao T、Papagoを入れる。", "スマホにT-moneyを追加するか、交通機能つきの韓国のカードを持つ。", "KTXはKORAIL+か英語サイトで予約する。"], "ios_tm": "モバイルT-moneyを入れ、自分のカードでチャージできるか試す。予備に現金も用意する。", "and_tm": "到着後にT-moneyカードを買い、現金でチャージする予定にする。"}, "checked": "2026年11月17日", "lang": "ja"};
+
+const U = D.ui;
+function resolve(t, p, dev) { if (t.all) return t.all; let v = t.v[p]; if (typeof v === "string") v = t.v[v]; if (t.dev && v[dev]) v = v[dev]; return v; }
+function el(tag, attrs = {}, kids = []) { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === "text") n.textContent = v; else n.setAttribute(k, v); } for (const c of [].concat(kids)) if (c) n.append(c); return n; }
+function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+function count(path, title) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); } catch (e) {} }
+function render() {
+  const p = document.querySelector('input[name="profile"]:checked').value;
+  const dev = document.querySelector('input[name="device"]:checked').value;
+  const box = document.getElementById("tasks"); box.replaceChildren();
+  const n = { ok: 0, warn: 0, mixed: 0, bad: 0 };
+  for (const t of D.tasks) {
+    const v = resolve(t, p, dev); n[v.s]++;
+    const c = el("article", { class: "task " + v.s, id: "task-" + t.id });
+    const h = el("h3"); h.append(el("a", { href: t.slug + ".html", text: t.title, style: "color:inherit;text-decoration:none" }));
+    c.append(el("div", { class: "task-head" }, [h, el("span", { class: "chip " + v.s, text: U.labels[v.s] })]));
+    c.append(el("p", { class: "verdict", text: v.verdict }));
+    c.append(el("ol", { class: "route" }, v.route.map(r => el("li", { text: r }))));
+    const fb = el("p", { class: "fallback" }); fb.append(el("strong", { text: U.fails }), v.fallback); c.append(fb);
+    const det = el("details"); det.append(el("summary", { text: U.sources })); const ul = el("ul");
+    for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
+    for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
+    det.append(ul); c.append(det);
+    const key = "wik-report-" + t.id + "-" + p, rep = el("div", { class: "report" }), thx = el("span", { class: "thanks", role: "status" });
+    for (const [val, txt] of [["yes", U.worked], ["no", U.failed]]) {
+      const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt });
+      b.addEventListener("click", () => {
+        if (store(key) !== val) count(`report/${D.lang}/${t.id}/${p}/${dev}/${val}`, `${t.id} ${p} ${val}`);
+        store(key, val); rep.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); thx.textContent = U.thanks;
+      });
+      rep.append(b);
+    }
+    rep.append(thx);
+    c.append(el("div", { class: "meta" }, [el("span", { text: U.checked + " " + D.checked }), rep]));
+    box.append(c);
+  }
+  const sum = document.getElementById("summary"); sum.replaceChildren(el("b", { text: U.for_setup }));
+  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sum.append(el("span", { class: "chip " + k, text: n[k] + " · " + U.labels[k] }));
+  const items = (p === "arc" ? D.check.arc : D.check.visitor).slice();
+  if (p !== "arc") items.splice(3, 0, dev === "ios" ? D.check.ios_tm : D.check.and_tm);
+  document.getElementById("checklist").replaceChildren(...items.map(i => el("li", { text: i })));
+  store("wik-setup", p + "|" + dev);
+}
+const saved = store("wik-setup");
+if (saved) { const [p, d] = saved.split("|"); const a = document.querySelector(`input[name="profile"][value="${p}"]`); if (a) a.checked = true; const b = document.querySelector(`input[name="device"][value="${d}"]`); if (b) b.checked = true; }
+document.querySelectorAll('input[name="profile"], input[name="device"]').forEach(i => i.addEventListener("change", render));
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const text = U.cl_head.replace("{d}", D.checked) + "\n" + [...document.querySelectorAll("#checklist li")].map((li, i) => (i + 1) + ". " + li.textContent).join("\n");
+  const out = document.getElementById("copied");
+  try { await navigator.clipboard.writeText(text); out.textContent = U.copied; count(`copy-checklist/${D.lang}`, "copy checklist"); } catch (e) { out.textContent = U.copy_fail; }
+});
+render();
+try { const h = new URLSearchParams(location.search).get("host"); if (h) { const b = document.getElementById("host"); b.textContent = U.host_banner.replace("{h}", h.slice(0, 60)); b.hidden = false; count(`host/${h.slice(0, 60)}`, "host link"); } } catch (e) {}
+
+</script>
+</body>
+</html>
