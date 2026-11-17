@@ -311,3 +311,17 @@ PLAN = {
         ],
     },
 }
+
+# The question people actually type, per task. Shown as the topic page's
+# first heading and sent as FAQPage data so search and AI answers can quote it.
+QUESTION = {
+    "en": {"data": "Do I need a Korean phone number in Korea?", "maps": "Does Google Maps work in Korea?", "taxi": "Can I call a taxi in Korea without a Korean number?",
+           "transit": "Can I top up T-money with a foreign card?", "ktx": "How do I book a KTX train as a foreigner?", "food-booking": "Can I book restaurants in Korea without a Korean number?",
+           "delivery": "Can I order food delivery in Korea as a tourist?", "translate": "What is the best translation app for Korea?"},
+    "ja": {"data": "韓国で韓国の電話番号は必要?", "maps": "韓国でGoogleマップは使える?", "taxi": "韓国の番号なしでタクシーを呼べる?",
+           "transit": "T-moneyに海外カードでチャージできる?", "ktx": "外国人がKTXを予約するには?", "food-booking": "韓国の番号なしでレストランを予約できる?",
+           "delivery": "旅行者でも韓国でデリバリーを頼める?", "translate": "韓国旅行におすすめの翻訳アプリは?"},
+    "zh-tw": {"data": "在韓國需要韓國電話號碼嗎?", "maps": "Google地圖在韓國能用嗎?", "taxi": "沒有韓國號碼能在韓國叫計程車嗎?",
+              "transit": "T-money可以用國外信用卡儲值嗎?", "ktx": "外國人怎麼訂KTX?", "food-booking": "沒有韓國號碼能在韓國訂餐廳嗎?",
+              "delivery": "觀光客能在韓國叫外送嗎?", "translate": "去韓國用哪個翻譯App最好?"},
+}
