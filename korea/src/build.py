@@ -8,7 +8,7 @@ import html, json, os, sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from data import CHECKED, CHECKED_ISO, LANGS, SOURCES, TASK_META  # noqa: E402
-from data_extra import BRAND, ICONS, PHRASES, SHORT, X  # noqa: E402
+from data_extra import BRAND, ICONS, KEYWORDS, PHRASES, SHORT, UX, X  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 SITE = "https://eddpositive.github.io/korea/"
@@ -16,6 +16,7 @@ GOAT = "https://eddpositive.goatcounter.com/count"
 CSS = open(os.path.join(os.path.dirname(__file__), "style.css"), encoding="utf-8").read()
 e = lambda s: html.escape(str(s), quote=True)
 icon = lambda tid: f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONS[tid]}</svg>'
+PWA_HEAD = lambda up: f'\n<link rel="manifest" href="{up}manifest.webmanifest"><link rel="apple-touch-icon" href="{up}icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">'
 
 
 def head(lang, title, desc, path, alt_paths, extra=""):
@@ -55,7 +56,7 @@ def hero(lang, alt, up, h1, lede, home="./", trust=True):
     tr = f'<p class="trust">{e(x["trust"])}</p>' if trust else ""
     return f"""<header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="{home}">EasyMode<b>Korea</b></a>{lang_links(lang, alt, up)}</div>
-  {mode}<h1>{e(h1)}</h1><p>{e(lede)}</p>{tr}
+  {mode}<h1>{e(h1)}</h1><p class="lede">{e(lede)}</p>{tr}
 </div></header>"""
 
 
@@ -106,28 +107,39 @@ document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !documen
 
 
 def build_tool(lang):
-    L = LANGS[lang]; U = L["ui"]; x = X[lang]; S = SHORT[lang]; d = L["dir"]; up = "../" if d else ""
+    L = LANGS[lang]; U = L["ui"]; x = X[lang]; S = SHORT[lang]; ux = UX[lang]; d = L["dir"]; up = "../" if d else ""
     path = d
     alt = {k: LANGS[k]["dir"] for k in LANGS}
     topics = "".join(f'<a href="{t["slug"]}.html">{e(t["short"])}</a>' for t in task_list(lang))
     keys = ("staff", "means", "stay_title", "taxi_card", "taxi_ko", "taxi_means", "deliv_card", "deliv_ko", "deliv_means", "station", "checkin", "contact", "note", "map")
-    data = {"ui": U, "x": {k: x[k] for k in keys}, "s": S, "tasks": task_list(lang), "check": L["check"], "checked": CHECKED[lang], "lang": lang}
-    prof = "".join(f'<label><input type="radio" name="profile" value="{p}"{" checked" if p == "visitor" else ""}><span>{e(S["prof"][p])}</span></label>' for p in ("visitor", "krsim", "arc"))
-    dev = "".join(f'<label><input type="radio" name="device" value="{v}"{" checked" if v == "ios" else ""}><span>{e(U[v])}</span></label>' for v in ("ios", "android"))
+    tasks = task_list(lang)
+    for t in tasks: t["kw"] = (KEYWORDS[t["id"]] + " " + t["short"] + " " + t["title"]).lower()
+    data = {"ui": U, "x": {k: x[k] for k in keys}, "s": S, "ux": ux, "tasks": tasks, "check": L["check"], "checked": CHECKED[lang], "lang": lang,
+            "langs": {k: {"name": LANGS[k]["name"], "dir": LANGS[k]["dir"]} for k in LANGS}, "up": up}
+    q1 = "".join(f'<button type="button" class="opt-big" data-p="{p}"><b>{e(ux["q1_opts"][p][0])}</b><span>{e(ux["q1_opts"][p][1])}</span></button>' for p in ("visitor", "krsim", "arc"))
+    q2 = "".join(f'<button type="button" class="opt-big" data-d="{v}"><b>{e(U[v])}</b></button>' for v in ("ios", "android"))
     steps = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in x["first"])
     body = f"""
 {hero(lang, alt, up, x['hook'], x['lede'])}
-<div class="setupbar"><div class="wrap">
-  <div class="seg" role="radiogroup" aria-label="{e(S['setup_q'])}">{prof}</div>
-  <div class="seg" role="radiogroup" aria-label="{e(U['device_q'])}">{dev}</div>
-</div></div>
-<div class="wrap">
+<div class="wrap pre">
+  <div class="banner" id="lang-suggest" hidden></div>
+  <div class="banner" id="install" hidden><span>{e(ux['install'])}</span><button class="btn alt" type="button" id="install-btn">{e(ux['install_btn'])}</button></div>
+  <section class="onb" id="onb" aria-live="polite">
+    <div id="onb1"><h2>{e(ux['q1'])}</h2><div class="opts-big">{q1}</div></div>
+    <div id="onb2" hidden><h2>{e(ux['q2'])}</h2><div class="opts-big two">{q2}</div><button type="button" class="linkbtn" id="onb-back">← {e(ux['back'])}</button></div>
+  </section>
+</div>
+<div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">{e(ux['change'])}</button></div></div>
+<div class="wrap" id="main" hidden>
   <section class="stay" id="stay" hidden aria-live="polite"></section>
+  <p class="greet">{e(ux['greet'])}</p>
   <div class="score" id="score" aria-live="polite"></div>
-  <p class="hint">{e(S['tap'])}</p>
+  <label class="search"><span class="sr">{e(ux['search'])}</span><input id="q" type="search" placeholder="{e(ux['search'])}" autocomplete="off"></label>
+  <p class="hint" id="nores" hidden>{e(ux['nores'])}</p>
   <main class="rows" id="rows"></main>
-  <details class="panel" open><summary>{e(U['cl_title'])}</summary><div class="in">
-    <p class="hint">{e(U['cl_lead'])}</p><ol id="checklist"></ol>
+  <details class="panel" open id="cl"><summary>{e(U['cl_title'])}</summary><div class="in">
+    <div class="progress"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+    <ul class="checks" id="checklist"></ul>
     <div class="actions"><button class="btn" type="button" id="copy-btn">{e(U['copy'])}</button><span class="copied" id="copied" role="status"></span></div>
   </div></details>
   <details class="panel" id="first-24"><summary>{e(x['first_title'])}</summary><div class="in timeline"><p class="hint">{e(x['first_lead'])}</p><ol>{steps}</ol></div></details>
@@ -143,25 +155,36 @@ const D = {json.dumps(data, ensure_ascii=False)};
 </body>
 </html>
 """
-    write(path + "index.html", head(lang, f"{BRAND}: {x['hook']}", x["lede"], path, alt) + body)
+    write(path + "index.html", head(lang, f"{BRAND}: {x['hook']}", x["lede"], path, alt, PWA_HEAD(up)) + body)
     return path
 
 
 TOOL_JS = r"""
-const U = D.ui, XS = D.x, S = D.s;
+const U = D.ui, XS = D.x, S = D.s, UX = D.ux;
+let P = null, DEV = null;
 function resolve(t, p, dev) { if (t.all) return t.all; let v = t.v[p]; if (typeof v === "string") v = t.v[v]; if (t.dev && v[dev]) v = v[dev]; return v; }
+function setStep(n) { document.getElementById("onb1").hidden = n !== 1; document.getElementById("onb2").hidden = n !== 2; }
+function openOnb() { document.getElementById("onb").hidden = false; document.getElementById("main").hidden = true; document.getElementById("mybar").hidden = true; setStep(1); document.querySelector("#onb1 .opt-big").focus(); }
+function finish() {
+  store("wik-setup", P + "|" + DEV); document.body.classList.add("ret");
+  document.getElementById("onb").hidden = true; document.getElementById("main").hidden = false; document.getElementById("mybar").hidden = false;
+  document.getElementById("mysetup").textContent = UX.setup_is + ": " + S.prof[P] + " · " + U[DEV];
+  render(); count("setup/" + D.lang + "/" + P + "/" + DEV, "setup");
+}
+document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { P = b.dataset.p; if (P === "arc") { DEV = "ios"; finish(); } else { setStep(2); document.querySelector("#onb2 .opt-big").focus(); } }));
+document.querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => { DEV = b.dataset.d; finish(); }));
+document.getElementById("onb-back").addEventListener("click", () => setStep(1));
+document.getElementById("change").addEventListener("click", openOnb);
 function render() {
-  const p = document.querySelector('input[name="profile"]:checked').value;
-  const dev = document.querySelector('input[name="device"]:checked').value;
   const open = new Set([...document.querySelectorAll(".row[open]")].map(r => r.id));
   const rows = document.getElementById("rows"); rows.replaceChildren();
   const n = { ok: 0, warn: 0, mixed: 0, bad: 0 };
   for (const t of D.tasks) {
-    const v = resolve(t, p, dev); n[v.s]++;
-    const row = el("details", { class: "row " + v.s, id: "task-" + t.id });
+    const v = resolve(t, P, DEV); n[v.s]++;
+    const row = el("details", { class: "row " + v.s, id: "task-" + t.id, "data-kw": t.kw });
     if (open.has(row.id)) row.open = true;
     const sum = el("summary");
-    const txt = el("span", { class: "txt" }, [el("span", { class: "top" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: U.labels[v.s] })]), el("span", { class: "sub", text: v.verdict })]);
+    const txt = el("span", { class: "txt" }, [el("span", { class: "top" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]), el("span", { class: "sub", text: v.verdict })]);
     sum.append(el("span", { class: "ic", html: t.icon }), txt);
     row.append(sum);
     const body = el("div", { class: "body" });
@@ -176,11 +199,11 @@ function render() {
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
     for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
     det.append(ul);
-    const key = "wik-report-" + t.id + "-" + p, rep = el("div", { class: "report" }), thx = el("span", { role: "status" });
-    for (const [val, txt] of [["yes", U.worked], ["no", U.failed]]) {
-      const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt });
+    const key = "wik-report-" + t.id + "-" + P, rep = el("div", { class: "report" }), thx = el("span", { role: "status" });
+    for (const [val, txt2] of [["yes", U.worked], ["no", U.failed]]) {
+      const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt2 });
       b.addEventListener("click", () => {
-        if (store(key) !== val) count(`report/${D.lang}/${t.id}/${p}/${dev}/${val}`, `${t.id} ${p} ${val}`);
+        if (store(key) !== val) count(`report/${D.lang}/${t.id}/${P}/${DEV}/${val}`, `${t.id} ${P} ${val}`);
         store(key, val); rep.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); thx.textContent = U.thanks;
       });
       rep.append(b);
@@ -190,12 +213,36 @@ function render() {
     row.append(body); rows.append(row);
   }
   const sc = document.getElementById("score"); sc.replaceChildren();
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sc.append(el("span", { class: "pill " + k, text: n[k] + " · " + U.labels[k] }));
-  const items = (p === "arc" ? D.check.arc : D.check.visitor).slice();
-  if (p !== "arc") items.splice(3, 0, dev === "ios" ? D.check.ios_tm : D.check.and_tm);
-  document.getElementById("checklist").replaceChildren(...items.map(i => el("li", { text: i })));
-  store("wik-setup", p + "|" + dev);
+  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sc.append(el("span", { class: "pill " + k, text: n[k] + " · " + UX.tone[k] }));
+  checklist(); filter();
 }
+function checklist() {
+  const items = (P === "arc" ? D.check.arc : D.check.visitor).slice();
+  if (P !== "arc") items.splice(3, 0, DEV === "ios" ? D.check.ios_tm : D.check.and_tm);
+  const key = "wik-done-" + D.lang + "-" + P + "-" + DEV;
+  let done = []; try { done = JSON.parse(store(key) || "[]"); } catch (e) {}
+  const ul = document.getElementById("checklist"); ul.replaceChildren();
+  items.forEach((txt, i) => {
+    const id = "ck-" + i, cb = el("input", { type: "checkbox", id });
+    cb.checked = done.includes(i);
+    cb.addEventListener("change", () => { done = cb.checked ? [...new Set([...done, i])] : done.filter(j => j !== i); store(key, JSON.stringify(done)); progress(done.length, items.length); });
+    ul.append(el("li", {}, [cb, el("label", { for: id, text: txt })]));
+  });
+  progress(done.length, items.length);
+}
+function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = UX.ready.replace("{d}", d).replace("{n}", n); }
+function filter() {
+  const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
+  document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });
+  document.getElementById("nores").hidden = shown > 0;
+  if (q && shown === 1) { const r = [...document.querySelectorAll(".row")].find(x => !x.hidden); r.open = true; }
+}
+document.getElementById("q").addEventListener("input", filter);
+document.getElementById("copy-btn").addEventListener("click", async () => {
+  const txt = U.cl_head + "\n" + [...document.querySelectorAll("#checklist label")].map(l => "- " + l.textContent).join("\n") + "\n" + location.origin + location.pathname;
+  try { await navigator.clipboard.writeText(txt); document.getElementById("copied").textContent = "✓"; } catch (e) {}
+  count("copy-checklist/" + D.lang, "copy checklist");
+});
 function stay() {
   let g = null;
   try { const m = location.hash.match(/[#&]g=([A-Za-z0-9_-]+)/); if (m) { const b = atob(m[1].replace(/-/g, "+").replace(/_/g, "/")); g = JSON.parse(new TextDecoder().decode(Uint8Array.from(b, c => c.charCodeAt(0)))); } } catch (e) { g = null; }
@@ -218,17 +265,28 @@ function stay() {
   box.hidden = false;
   if (s("n", 60)) count(`host/${s("n", 60)}`, "host stay page");
 }
-const saved = store("wik-setup");
-if (saved) { const [p, d] = saved.split("|"); const a = document.querySelector(`input[name="profile"][value="${p}"]`); if (a) a.checked = true; const b = document.querySelector(`input[name="device"][value="${d}"]`); if (b) b.checked = true; }
-document.querySelectorAll('input[name="profile"], input[name="device"]').forEach(i => i.addEventListener("change", render));
-document.getElementById("copy-btn").addEventListener("click", async () => {
-  const text = U.cl_head.replace("{d}", D.checked) + "\n" + [...document.querySelectorAll("#checklist li")].map((li, i) => (i + 1) + ". " + li.textContent).join("\n");
-  const out = document.getElementById("copied");
-  try { await navigator.clipboard.writeText(text); out.textContent = U.copied; count(`copy-checklist/${D.lang}`, "copy checklist"); } catch (e) { out.textContent = U.copy_fail; }
-});
-render(); stay();
-const target = location.hash.match(/^#task-[\w-]+$/); if (target) { const r = document.querySelector(target[0]); if (r) r.open = true; }
+/* Suggest the reader's language once. */
+(function () {
+  if (store("wik-lang-dismiss")) return;
+  const want = (navigator.language || "").toLowerCase();
+  const target = want.startsWith("ja") ? "ja" : (want.startsWith("zh-tw") || want.startsWith("zh-hk") || want.startsWith("zh-hant")) ? "zh-tw" : want.startsWith("en") ? "en" : null;
+  if (!target || target === D.lang) return;
+  const b = document.getElementById("lang-suggest"), L2 = D.langs[target];
+  const go = el("a", { class: "btn alt", href: D.up + L2.dir + location.hash, text: UX.switch });
+  const no = el("button", { type: "button", class: "linkbtn", text: UX.dismiss }); no.addEventListener("click", () => { store("wik-lang-dismiss", "1"); b.hidden = true; });
+  b.append(el("span", { text: UX.suggest.replace("{l}", L2.name) }), go, no); b.hidden = false;
+})();
+/* Installable + offline. */
+let deferred = null;
+window.addEventListener("beforeinstallprompt", ev => { ev.preventDefault(); deferred = ev; document.getElementById("install").hidden = false; });
+document.getElementById("install-btn").addEventListener("click", async () => { if (!deferred) return; deferred.prompt(); try { await deferred.userChoice; } catch (e) {} deferred = null; document.getElementById("install").hidden = true; count("install", "install"); });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register(D.up + "sw.js").catch(() => {});
+const saved = (store("wik-setup") || "").split("|");
+if (saved[0] && S.prof[saved[0]] && (saved[1] === "ios" || saved[1] === "android")) { P = saved[0]; DEV = saved[1]; finish(); } else { openOnb(); }
+stay();
+const target = location.hash.match(/^#task-[\w-]+$/); if (target && P) { const r = document.querySelector(target[0]); if (r) { r.open = true; r.scrollIntoView(); } }
 """
+
 
 TOPIC_JS = r"""
 (function () {

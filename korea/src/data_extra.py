@@ -162,3 +162,58 @@ ICONS = {
     "delivery": '<path d="M4 7h12v10H4z"/><path d="M16 10h3l2 3v4h-5"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>',
     "translate": '<path d="M3 5h9M7.5 3v2M5 5c.8 3 2.8 5.3 6 6.5M10 5c-.8 3-2.8 5.3-6 6.5"/><path d="M13 21l4-9 4 9M14.5 18h5"/>',
 }
+
+# Toss-style flow: one question at a time, friendly verdict words, search, progress.
+UX = {
+    "en": {
+        "q1": "First, do you have a Korean phone number?",
+        "q1_opts": {"visitor": ["No, just my home number or a data eSIM", "Most visitors"], "krsim": ["Yes, a Korean prepaid SIM (010)", "Tourist SIM, no residence card"], "arc": ["Yes, in my own name", "I live here and have a residence card (ARC)"]},
+        "q2": "Which phone do you use?", "back": "Back",
+        "greet": "Here's Korea in Easy Mode, for your phone.",
+        "setup_is": "Your setup", "change": "Change",
+        "tone": {"ok": "Good to go", "warn": "One extra step", "mixed": "Reports differ", "bad": "Blocked"},
+        "search": "What do you need? Try taxi, subway, Wi-Fi", "nores": "Nothing matched. Try another word, or browse the list below.",
+        "ready": "{d} of {n} done before you fly",
+        "suggest": "This page is also in {l}.", "switch": "Switch", "dismiss": "No thanks",
+        "install": "Add EasyModeKorea to your home screen. It opens even without data.", "install_btn": "Install",
+        "offline": "You're offline. Everything here still works.",
+    },
+    "ja": {
+        "q1": "まず、韓国の電話番号はありますか?",
+        "q1_opts": {"visitor": ["ない(自国の番号かデータeSIMだけ)", "ほとんどの旅行者"], "krsim": ["ある(韓国のプリペイドSIM・010)", "旅行者用SIM、登録証なし"], "arc": ["ある(自分名義)", "韓国在住で外国人登録証がある"]},
+        "q2": "使っているスマホは?", "back": "戻る",
+        "greet": "あなたのスマホ向け、韓国イージーモードです。",
+        "setup_is": "あなたの状況", "change": "変更",
+        "tone": {"ok": "そのまま使える", "warn": "ひと手間あり", "mixed": "情報が割れている", "bad": "使えない"},
+        "search": "何が必要ですか?例: タクシー、地下鉄、Wi-Fi", "nores": "見つかりませんでした。別の言葉で探すか、下の一覧から選んでください。",
+        "ready": "出発前の準備 {d}/{n} 完了",
+        "suggest": "このページは{l}でも読めます。", "switch": "切り替える", "dismiss": "このままでいい",
+        "install": "EasyModeKoreaをホーム画面に追加。データがなくても開けます。", "install_btn": "追加",
+        "offline": "オフラインです。このページの内容はそのまま使えます。",
+    },
+    "zh-tw": {
+        "q1": "首先,你有韓國電話號碼嗎?",
+        "q1_opts": {"visitor": ["沒有,只有本國號碼或上網eSIM", "大多數旅客"], "krsim": ["有,韓國預付卡(010)", "旅客SIM卡,沒有登錄證"], "arc": ["有,是我名下的", "我住在韓國,有外國人登錄證"]},
+        "q2": "你用哪種手機?", "back": "返回",
+        "greet": "這是為你的手機準備的韓國簡單模式。",
+        "setup_is": "你的狀況", "change": "更改",
+        "tone": {"ok": "直接能用", "warn": "多一個步驟", "mixed": "說法不一", "bad": "無法使用"},
+        "search": "需要什麼?例如:計程車、地鐵、Wi-Fi", "nores": "找不到。換個詞試試,或從下面清單選。",
+        "ready": "出發前準備完成 {d}/{n}",
+        "suggest": "這個頁面也有{l}版。", "switch": "切換", "dismiss": "不用了",
+        "install": "把EasyModeKorea加到主畫面,沒有網路也能開。", "install_btn": "加入",
+        "offline": "目前離線。這頁的內容照樣能用。",
+    },
+}
+
+# Search words per task (all languages share one list; matching is case-insensitive substring).
+KEYWORDS = {
+    "data": "esim sim phone number 010 data wifi wi-fi internet roaming 電話 データ 番号 上網 電話號碼 網路 와이파이",
+    "maps": "map maps google naver directions navigation route 地図 グーグル 地圖 導航 路線",
+    "taxi": "taxi cab uber kakao k.ride tada taba ride タクシー 計程車 叫車",
+    "transit": "subway metro bus tmoney t-money transit card top up recharge 地下鉄 バス 交通カード 地鐵 公車 交通卡 儲值",
+    "ktx": "ktx train korail srt rail busan station 鉄道 電車 列車 火車 高鐵 釜山",
+    "food-booking": "restaurant reservation booking waitlist catchtable naver queue レストラン 予約 順番待ち 餐廳 訂位 候位",
+    "delivery": "delivery food baemin coupang eats shuttle order chicken デリバリー 出前 外送 外賣",
+    "translate": "translate translation papago menu sign korean language 翻訳 メニュー 翻譯 菜單",
+}
