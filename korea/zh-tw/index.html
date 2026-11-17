@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Works in Korea · 在韓國行得通的方法</title>
-<meta name="description" content="選擇你的手機狀況,就能看到在韓國叫計程車、搭火車與地鐵、訂餐廳、叫外送現在怎麼做,每個答案都標示確認日期。">
+<title>EasyModeKorea: 韓國App是困難模式?切換成簡單模式。</title>
+<meta name="description" content="大多數韓國App都要韓國電話號碼。選一次你的狀況,這裡每個答案都會顯示你能用的方法,還有我們最後確認的日期。">
 <link rel="canonical" href="https://eddpositive.github.io/korea/zh-tw/"><link rel="alternate" hreflang="en" href="https://eddpositive.github.io/korea/"><link rel="alternate" hreflang="ja" href="https://eddpositive.github.io/korea/ja/"><link rel="alternate" hreflang="zh-Hant-TW" href="https://eddpositive.github.io/korea/zh-tw/"><link rel="alternate" hreflang="x-default" href="https://eddpositive.github.io/korea/">
-<meta property="og:type" content="website"><meta property="og:title" content="Works in Korea · 在韓國行得通的方法"><meta property="og:description" content="選擇你的手機狀況,就能看到在韓國叫計程車、搭火車與地鐵、訂餐廳、叫外送現在怎麼做,每個答案都標示確認日期。"><meta property="og:url" content="https://eddpositive.github.io/korea/zh-tw/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EasyModeKorea"><meta property="og:title" content="EasyModeKorea: 韓國App是困難模式?切換成簡單模式。"><meta property="og:description" content="大多數韓國App都要韓國電話號碼。選一次你的狀況,這裡每個答案都會顯示你能用的方法,還有我們最後確認的日期。"><meta property="og:url" content="https://eddpositive.github.io/korea/zh-tw/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -103,24 +103,43 @@ details ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; color: var(--
 footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: grid; gap: 6px; }
 @media (prefers-reduced-motion: no-preference) { .task { transition: border-color .2s; } }
 
-.host { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px; margin: 16px 0 0; font-weight: 500; }
+.hook { font: 800 clamp(26px, 6vw, 40px)/1.12 var(--display); letter-spacing: -0.02em; margin: 6px 0 0; text-wrap: balance; }
+.brandline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font: 700 15px var(--body); color: var(--accent); }
+.trust { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
 .langs { display: flex; gap: 12px; flex-wrap: wrap; font-size: 14px; margin-top: 8px; }
 .langs a[aria-current="page"] { font-weight: 600; color: var(--ink); text-decoration: none; }
 .topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
 .topics a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: 14px; }
-.profile h2 { font: 700 18px/1.3 var(--display); margin: 0; }
+.glance { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 4px 0 16px; }
+.glance a { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 500; }
+.glance a::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
+.glance a.ok::before { background: var(--ok); } .glance a.warn::before { background: var(--warn); } .glance a.mixed::before { background: var(--mixed); } .glance a.bad::before { background: var(--bad); }
+.staff { border: 2px dashed var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; }
+.staff .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+.staff .ko { font: 700 22px/1.35 "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", var(--body); }
+.staff .mean { font-size: 14px; color: var(--muted); }
+.stay { background: var(--surface); border: 2px solid var(--accent); border-radius: 14px; padding: 16px; margin: 18px 0; display: grid; gap: 12px; }
+.stay h2 { font: 700 22px var(--display); margin: 0; }
+.stay .from { color: var(--muted); font-size: 14px; margin: 0; }
+.stay .big { font: 800 26px/1.35 "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", var(--body); word-break: keep-all; }
+.stay dl { margin: 0; display: grid; gap: 6px; } .stay dt { font-size: 12px; color: var(--muted); } .stay dd { margin: 0 0 6px; font-weight: 500; }
+.first ol { padding-left: 22px; display: grid; gap: 8px; margin: 0; } .first b { display: block; }
+.profile[hidden] { display: none; }
 .cta-tool { display: inline-block; margin: 6px 0 18px; }
+.linkbtn { background: none; border: 0; color: var(--accent); font: 500 14px var(--body); cursor: pointer; padding: 0; text-decoration: underline; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><h1>Works in Korea</h1><span class="kr">在韓國行得通的方法</span></div>
+    <div class="brandline">EasyModeKorea</div>
+    <h1 class="hook">韓國App是困難模式?切換成簡單模式。</h1>
     <nav class="langs" aria-label="語言"><a href="../" hreflang="en">English</a><a href="../ja/" hreflang="ja">日本語</a><a href="../zh-tw/" hreflang="zh-Hant-TW" aria-current="page">繁體中文</a></nav>
-    <p class="host" id="host" hidden></p>
-    <p class="lede">很多韓國App不接受國外電話號碼和信用卡。選擇你的狀況,就能看到現在可行的方法,以及每個答案最後確認的日期。</p>
+    <p class="lede">大多數韓國App都要韓國電話號碼。選一次你的狀況,這裡每個答案都會顯示你能用的方法,還有我們最後確認的日期。</p>
+    <p class="trust">在首爾製作。每個答案都對照官方公告與旅客回報確認,並標示確認日期。我們不收任何App的上架費。</p>
   </header>
+  <section class="stay" id="stay" hidden aria-live="polite"></section>
   <section class="setup" aria-labelledby="setup-title">
     <h2 id="setup-title">你的狀況</h2>
     <fieldset><legend>你在韓國用的電話號碼</legend><div class="opts">
@@ -133,7 +152,8 @@ footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: gr
       <label class="opt"><input type="radio" name="device" id="d-android" value="android"><span>Android</span></label>
     </div></fieldset>
   </section>
-  <div class="summary" id="summary" aria-live="polite"></div>
+  <h2>一眼看懂</h2>
+  <nav class="glance" id="glance" aria-label="一眼看懂"></nav>
   <main class="tasks" id="tasks"></main>
   <section class="checklist" aria-labelledby="cl-title">
     <h2 id="cl-title">出發前要做的事</h2>
@@ -141,35 +161,36 @@ footer { color: var(--muted); font-size: 13px; padding: 10px 0 40px; display: gr
     <ol id="checklist"></ol>
     <button class="btn" type="button" id="copy-btn">複製我的清單</button><span class="copied" id="copied" role="status"></span>
   </section>
+  <section class="checklist first" id="first-24"><h2>到韓國的最初24小時,照這個順序</h2><p>旅行最容易卡關的就是剛到的幾小時:機場、計程車、入住。照這個順序做。</p><ol><li><b>出發前</b>在抵達前3天內線上填寫e-Arrival Card(e-arrivalcard.go.kr)。確認你的國籍是否需要K-ETA(k-eta.go.kr)。</li><li><b>出發前</b>安裝清單上的App,在家裡的Wi-Fi先設定好。</li><li><b>降落時</b>下飛機前先開啟eSIM上網,入境時就能用地圖和訊息。</li><li><b>在機場</b>在機場便利商店買T-money卡,用現金儲值。iPhone也可以用Mobile T-money。</li><li><b>進市區</b>搭機場鐵路(AREX)或機場巴士,或用k.ride、Uber叫計程車。</li><li><b>到住宿</b>把住宿地址卡給司機看。如果房東傳了連結給你,就在這一頁最上方。</li><li><b>第一晚</b>用護照完成Naver認證,設定CatchTable Global,晚餐就能訂位。</li></ol></section>
   <h2>主題指南</h2>
-  <nav class="topics"><a href="mobile-data-sim.html">上網與電話號碼</a><a href="maps.html">交通移動:地圖與轉乘導航</a><a href="taxi.html">叫計程車</a><a href="tmoney-subway-bus.html">地鐵與公車車資(T-money)</a><a href="ktx-train-booking.html">預訂KTX火車</a><a href="restaurant-reservations.html">餐廳訂位與候位</a><a href="food-delivery.html">叫外送</a><a href="translation.html">翻譯菜單與招牌</a></nav>
-  <footer>
-    <div>確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。</div>
-    <div>在韓國經營民宿或旅館嗎?<a href="../hosts.html">把這份指南傳給你的房客</a>(韓文頁面)。</div>
-    <div>獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。</div>
-  </footer>
+  <nav class="topics"><a href="mobile-data-sim.html">上網與電話號碼</a><a href="maps.html">交通移動:地圖與轉乘導航</a><a href="taxi.html">叫計程車</a><a href="tmoney-subway-bus.html">地鐵與公車車資(T-money)</a><a href="ktx-train-booking.html">預訂KTX火車</a><a href="restaurant-reservations.html">餐廳訂位與候位</a><a href="food-delivery.html">叫外送</a><a href="translation.html">翻譯菜單與招牌</a><a href="changes.html">更新紀錄</a></nav>
+  <footer><div>在首爾製作。每個答案都對照官方公告與旅客回報確認,並標示確認日期。我們不收任何App的上架費。</div><div>確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。</div><div>在韓國經營民宿或旅館嗎?<a href="../hosts.html">把這份指南傳給你的房客</a>(韓文頁面)。</div><div>獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。</div></footer>
 </div>
 <script>
-const D = {"ui": {"title": "Works in Korea", "kr": "在韓國行得通的方法", "meta_desc": "選擇你的手機狀況,就能看到在韓國叫計程車、搭火車與地鐵、訂餐廳、叫外送現在怎麼做,每個答案都標示確認日期。", "lede": "很多韓國App不接受國外電話號碼和信用卡。選擇你的狀況,就能看到現在可行的方法,以及每個答案最後確認的日期。", "setup": "你的狀況", "phone_q": "你在韓國用的電話號碼", "device_q": "你的手機", "p_visitor": ["本國號碼或只有上網的eSIM", "大多數短期旅客"], "p_krsim": ["有010號碼的韓國預付卡", "旅客SIM卡,沒有外國人登錄證"], "p_arc": ["我名下的韓國號碼", "有外國人登錄證的居民"], "for_setup": "你的狀況:", "labels": {"ok": "可以用", "warn": "有替代方法", "bad": "無法使用", "mixed": "說法不一"}, "fails": "如果不行: ", "sources": "資料來源與備註", "checked": "確認日", "worked": "成功了", "failed": "沒成功", "thanks": "謝謝。你的回報會幫我們更新這個答案。", "cl_title": "出發前要做的事", "cl_lead": "根據你上面選的狀況整理。設定步驟在家裡的Wi-Fi做,會比在機場順利。", "copy": "複製我的清單", "copied": "已複製。", "copy_fail": "這裡無法複製。請選取清單後手動複製。", "cl_head": "我的韓國旅行準備清單(Works in Korea,{d}確認)", "how": "確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。", "hosts": "在韓國經營民宿或旅館嗎?<a href=\"{base}hosts.html\">把這份指南傳給你的房客</a>(韓文頁面)。", "indep": "獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。", "host_banner": "{h} 提供這份指南,幫你為入住做好準備。", "guides": "主題指南", "open_tool": "用自己的狀況確認", "back": "所有主題", "for_profile": {"visitor": "本國號碼或只有上網的eSIM", "krsim": "韓國預付卡的010號碼", "arc": "你名下的韓國號碼(有外國人登錄證)"}, "ios": "iPhone", "android": "Android", "langs": "語言"}, "tasks": [{"title": "上網與電話號碼", "seo": "旅客的韓國電話號碼:eSIM能做什麼、不能做什麼(2026)", "intro": "大多數旅客用上網的eSIM。查地圖、傳訊息都夠用,但韓國App常要求韓國號碼或完整的身分認證。以下是各種狀況能做到的事。", "v": {"visitor": {"s": "warn", "verdict": "上網到哪都能用。需要韓國簡訊驗證碼的App收不到。", "route": ["出發前先買上網用的韓國eSIM。", "想收韓國簡訊驗證碼,就選有010號碼的方案。"], "fallback": "就算有韓國號碼,沒有外國人登錄證通常也過不了身分認證(본인인증)。請以下面的旅客友善App為主規劃。"}, "krsim": {"s": "warn", "verdict": "韓國簡訊驗證碼可以收。完整身分認證(본인인증)通常還是過不了。", "route": ["用010號碼完成簡訊註冊。", "沒有外國人登錄證,PASS這類身分認證大多會失敗。"], "fallback": "服務若提供護照認證(例如Naver),就用護照認證。"}, "arc": {"s": "ok", "verdict": "用你名下的號碼,大多數身分認證都能通過。", "route": ["向電信公司設定PASS身分認證。", "之後大部分韓國App都能用。"], "fallback": "認證失敗時,向電信公司確認號碼是否已綁定外國人登錄證。"}}, "notes": ["韓國App用四個條件限制功能:外國人登錄證、本人名下的韓國號碼、韓國付款方式,以及身分認證。"], "id": "data", "slug": "mobile-data-sim", "sources": [["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"], ["Alchera: why a Korean SIM alone fails identity checks", "https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication"]]}, {"title": "交通移動:地圖與轉乘導航", "seo": "Google地圖在韓國能用嗎?改用Naver Map(2026)", "intro": "Google地圖在韓國能顯示地點,但路線導航有限。韓國的地圖App能用英文提供完整的轉乘與步行導航。", "all": {"s": "ok", "verdict": "Naver Map人人都能用,支援英文、日文和中文。", "route": ["安裝Naver Map,在設定中切換語言。", "用來查步行、地鐵和公車路線。"], "fallback": "Kakao Map是不錯的備用地圖。Google地圖能顯示地點,但在韓國的步行與開車導航有限。"}, "notes": ["政府在2026年2月有條件批准了Google的地圖資料出口申請。Google導航是否已改善,目前還無法確認。"], "id": "maps", "slug": "maps", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"], ["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"]]}, {"title": "叫計程車", "seo": "沒有韓國電話號碼,在韓國怎麼叫計程車(2026)", "intro": "多數韓國人用Kakao T,但旅客常卡在綁卡這一步。專為旅客設計的App可以用國外號碼和信用卡。", "v": {"visitor": {"s": "ok", "verdict": "用專為旅客設計的叫車App,國外號碼和信用卡都能用。", "route": ["k.ride(Kakao Mobility推出):可用Google、Apple或電子郵件註冊。", "Uber在韓國也能用你原本的帳號。", "TABA是首爾市與T-money合作的旅客App。"], "fallback": "在地人用Kakao T,但國外信用卡能不能用,各方說法不一。綁卡失敗時,選「直接付給司機」,或在路邊招車。"}, "krsim": {"s": "ok", "verdict": "和旅客一樣,k.ride、Uber或TABA最可靠。", "route": ["用你的卡使用k.ride或Uber。", "Kakao T可能接受用010號碼註冊。"], "fallback": "Kakao T拒絕你的卡時,選「直接付給司機」,在車上付款。"}, "arc": {"s": "ok", "verdict": "有韓國號碼和韓國卡,Kakao T所有功能都能用。", "route": ["Kakao T車最多。", "k.ride或Uber當備用。"], "fallback": "在大城市,路邊招車到處都行。"}}, "id": "taxi", "slug": "taxi", "sources": [["Asia Economy: k.ride launch", "https://www.asiae.co.kr/en/article/2024060408155574996"], ["Taxi apps compared for visitors", "https://thebitjoy.com/blogs/blog/korea-taxi-apps-for-foreigners"]]}, {"title": "地鐵與公車車資(T-money)", "seo": "用國外信用卡儲值T-money:韓國地鐵與公車怎麼付(2026)", "intro": "韓國的地鐵和公車用交通卡搭乘。iPhone現在可以部分用國外信用卡儲值,用現金儲值則一定可以。", "dev": true, "v": {"visitor": {"ios": {"s": "warn", "verdict": "在iPhone上,Mobile T-money現在可以用部分國外信用卡儲值,但不是所有卡別都支援。", "route": ["安裝Mobile T-money並新增交通卡。", "試著用你的卡儲值。若你的卡別不支援,就用下面的備用方法。"], "fallback": "在便利商店買實體T-money卡,在櫃台或車站機器用現金儲值。"}, "android": {"s": "warn", "verdict": "我們上次確認時,Android版T-money App還不能用國外信用卡儲值。", "route": ["在便利商店買實體T-money卡。", "在櫃台或車站機器用現金儲值。"], "fallback": "T-money表示,另一個App「Mobile Korea Tour Card」支援國外信用卡。"}}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "有韓國卡的話,手機版或實體T-money都能正常使用。", "route": ["在錢包App加入T-money,或使用有交通功能的韓國卡。"], "fallback": "實體T-money用現金儲值,一定可行。"}}, "notes": ["首爾市在2026年3月表示,讓Apple Pay內可用國外信用卡儲值一事仍在協商中。"], "id": "transit", "slug": "tmoney-subway-bus", "sources": [["SBS Biz: foreign-card top-up for T-money (Mar 2026)", "https://biz.sbs.co.kr/amp/article/20000298518"], ["Seoul city clarification (Mar 2026)", "https://mediahub.seoul.go.kr/archives/2017356"]]}, {"title": "預訂KTX火車", "seo": "2026年改制後,外國人怎麼訂KTX車票", "intro": "2026年韓國的鐵路訂票改了很多:新App、SRT併入KTX、可提前訂票的期間變長。以下是現在的訂票方式。", "all": {"s": "ok", "verdict": "在KORAIL英文網站用國外信用卡訂票最可靠。", "route": ["在KORAIL英文訂票網站用護照資料訂票。", "自2026年10月1日起,可提前兩個月訂票。週末和連假請提早訂。"], "fallback": "線上刷卡失敗時,試試KORAIL+ App、Klook等代售平台,或車站櫃台。"}, "notes": ["KORAIL+ App在2026年8月取代了Korail Talk。", "SRT在2026年9月1日併入KORAIL,所有高鐵列車現在都以KTX名義販售。叫你另外訂SRT的指南已經過時。"], "id": "ktx", "slug": "ktx-train-booking", "sources": [["Seoul tourism: 2026 KTX changes", "https://www.seoultourism.org/?p=1823"], ["Two-month booking window", "https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/"]]}, {"title": "餐廳訂位與候位", "seo": "沒有韓國號碼也能訂韓國餐廳:CatchTable Global與Naver(2026)", "intro": "韓國熱門餐廳的訂位和候位,過去都要韓國號碼。現在旅客有兩種可行方法。", "v": {"visitor": {"s": "ok", "verdict": "CatchTable Global和Naver護照認證,都不需要韓國號碼。", "route": ["CatchTable Global:用電子郵件註冊,訂金可用國外信用卡付。", "Naver Map訂位:用護照認證(2026年6月4日起)。"], "fallback": "不是每家餐廳都在這些App上。可以直接請店員幫你登記候位。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "所有訂位App都能用,包括韓國版CatchTable和Naver。", "route": ["用已認證的號碼使用Naver Map或CatchTable。"], "fallback": "韓國版App有問題時,改用CatchTable Global。"}}, "id": "food-booking", "slug": "restaurant-reservations", "sources": [["NAVER: passport verification for visitors", "https://www.navercorp.com/media/pressReleasesDetail?seq=10034359"], ["CatchTable Global on the App Store", "https://apps.apple.com/us/app/catch-table/id1639046576"]]}, {"title": "叫外送", "seo": "沒有韓國號碼在韓國叫外送:外送民族與備用方法(2026)", "intro": "韓國最大的外送App「外送民族(Baemin)」在2026年加入了英文。但國外號碼和信用卡能不能過,各方說法不一,建議準備備用方案。", "v": {"visitor": {"s": "mixed", "verdict": "Baemin在2026年2月加入英文,但國外號碼和信用卡能不能過,各方說法不一。", "route": ["先試Baemin:把手機設成英文後下單。", "結帳失敗時,改用接受國外信用卡的英文外送App「Shuttle」。"], "fallback": "飯店櫃台常常可以幫你代訂。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "有已認證的韓國號碼,Baemin、Coupang Eats和Yogiyo都能用。", "route": ["用你的號碼註冊,再加入韓國卡或支付App。"], "fallback": "只想看英文菜單,就用Shuttle。"}}, "notes": ["首爾市在2026年8月表示,沒有韓國號碼的旅客也能在漢江公園叫外送。"], "id": "delivery", "slug": "food-delivery", "sources": [["Herald: delivery without a Korean number (Aug 2026)", "https://biz.heraldcorp.com/article/10827038"], ["Baemin English launch notes", "https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/"]]}, {"title": "翻譯菜單與招牌", "seo": "翻譯韓文菜單與招牌:Papago設定(2026)", "intro": "有相機翻譯App,就能看懂菜單、招牌和收據。出發前先設定好,離線也能用。", "all": {"s": "ok", "verdict": "Papago人人都能用,把相機對準菜單或招牌就行。", "route": ["安裝Papago,下載韓文離線包。"], "fallback": "Naver Map也能翻譯店名和評論。"}, "id": "translate", "slug": "translation", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"]]}], "check": {"visitor": ["買一張上網用的韓國eSIM(想收韓國簡訊驗證碼,就選有010號碼的方案)。", "安裝Naver Map和Papago,並下載Papago的韓文離線包。", "安裝k.ride或Uber叫計程車。", "安裝CatchTable Global並用電子郵件註冊。", "用護照完成Naver帳號認證。", "把KORAIL英文網站加入書籤,KTX最早可在兩個月前訂票。", "安裝Shuttle作為外送的備用方案。"], "arc": ["向電信公司設定PASS身分認證。", "安裝Naver Map、Kakao T和Papago。", "在手機加入T-money,或帶一張有交通功能的韓國卡。", "用KORAIL+或英文網站訂KTX。"], "ios_tm": "安裝Mobile T-money,試試用你的卡儲值。另外準備一些現金備用。", "and_tm": "抵達後買一張實體T-money卡,用現金儲值。"}, "checked": "2026年11月17日", "lang": "zh-tw"};
+const D = {"ui": {"title": "EasyModeKorea", "kr": "在韓國行得通的方法", "meta_desc": "選擇你的手機狀況,就能看到在韓國叫計程車、搭火車與地鐵、訂餐廳、叫外送現在怎麼做,每個答案都標示確認日期。", "lede": "很多韓國App不接受國外電話號碼和信用卡。選擇你的狀況,就能看到現在可行的方法,以及每個答案最後確認的日期。", "setup": "你的狀況", "phone_q": "你在韓國用的電話號碼", "device_q": "你的手機", "p_visitor": ["本國號碼或只有上網的eSIM", "大多數短期旅客"], "p_krsim": ["有010號碼的韓國預付卡", "旅客SIM卡,沒有外國人登錄證"], "p_arc": ["我名下的韓國號碼", "有外國人登錄證的居民"], "for_setup": "你的狀況:", "labels": {"ok": "可以用", "warn": "有替代方法", "bad": "無法使用", "mixed": "說法不一"}, "fails": "如果不行: ", "sources": "資料來源與備註", "checked": "確認日", "worked": "成功了", "failed": "沒成功", "thanks": "謝謝。你的回報會幫我們更新這個答案。", "cl_title": "出發前要做的事", "cl_lead": "根據你上面選的狀況整理。設定步驟在家裡的Wi-Fi做,會比在機場順利。", "copy": "複製我的清單", "copied": "已複製。", "copy_fail": "這裡無法複製。請選取清單後手動複製。", "cl_head": "我的韓國旅行準備清單(EasyModeKorea,{d}確認)", "how": "確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。", "hosts": "在韓國經營民宿或旅館嗎?<a href=\"{base}hosts.html\">把這份指南傳給你的房客</a>(韓文頁面)。", "indep": "獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。", "host_banner": "{h} 提供這份指南,幫你為入住做好準備。", "guides": "主題指南", "open_tool": "用自己的狀況確認", "back": "所有主題", "for_profile": {"visitor": "本國號碼或只有上網的eSIM", "krsim": "韓國預付卡的010號碼", "arc": "你名下的韓國號碼(有外國人登錄證)"}, "ios": "iPhone", "android": "Android", "langs": "語言"}, "x": {"staff": "給店員看", "means": "意思", "stay_title": "你的住宿", "stay_from": "由 {h} 提供", "taxi_card": "給計程車司機看", "taxi_ko": "기사님, 이 주소로 가 주세요.", "taxi_means": "請載我到這個地址。", "deliv_card": "外送地址", "deliv_ko": "문 앞에 두고 가 주세요.", "deliv_means": "請放在門口。", "station": "最近的車站", "checkin": "入住時間", "contact": "聯絡房東", "note": "房東的話", "map": "用Naver Map開啟"}, "tasks": [{"title": "上網與電話號碼", "seo": "旅客的韓國電話號碼:eSIM能做什麼、不能做什麼(2026)", "intro": "大多數旅客用上網的eSIM。查地圖、傳訊息都夠用,但韓國App常要求韓國號碼或完整的身分認證。以下是各種狀況能做到的事。", "v": {"visitor": {"s": "warn", "verdict": "上網到哪都能用。需要韓國簡訊驗證碼的App收不到。", "route": ["出發前先買上網用的韓國eSIM。", "想收韓國簡訊驗證碼,就選有010號碼的方案。"], "fallback": "就算有韓國號碼,沒有外國人登錄證通常也過不了身分認證(본인인증)。請以下面的旅客友善App為主規劃。"}, "krsim": {"s": "warn", "verdict": "韓國簡訊驗證碼可以收。完整身分認證(본인인증)通常還是過不了。", "route": ["用010號碼完成簡訊註冊。", "沒有外國人登錄證,PASS這類身分認證大多會失敗。"], "fallback": "服務若提供護照認證(例如Naver),就用護照認證。"}, "arc": {"s": "ok", "verdict": "用你名下的號碼,大多數身分認證都能通過。", "route": ["向電信公司設定PASS身分認證。", "之後大部分韓國App都能用。"], "fallback": "認證失敗時,向電信公司確認號碼是否已綁定外國人登錄證。"}}, "notes": ["韓國App用四個條件限制功能:外國人登錄證、本人名下的韓國號碼、韓國付款方式,以及身分認證。"], "id": "data", "slug": "mobile-data-sim", "sources": [["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"], ["Alchera: why a Korean SIM alone fails identity checks", "https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication"]], "phrases": [["와이파이 비밀번호가 뭐예요?", "Wi-Fi密碼是什麼?"]]}, {"title": "交通移動:地圖與轉乘導航", "seo": "Google地圖在韓國能用嗎?改用Naver Map(2026)", "intro": "Google地圖在韓國能顯示地點,但路線導航有限。韓國的地圖App能用英文提供完整的轉乘與步行導航。", "all": {"s": "ok", "verdict": "Naver Map人人都能用,支援英文、日文和中文。", "route": ["安裝Naver Map,在設定中切換語言。", "用來查步行、地鐵和公車路線。"], "fallback": "Kakao Map是不錯的備用地圖。Google地圖能顯示地點,但在韓國的步行與開車導航有限。"}, "notes": ["政府在2026年2月有條件批准了Google的地圖資料出口申請。Google導航是否已改善,目前還無法確認。"], "id": "maps", "slug": "maps", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"], ["Seoulstart: the four keys", "https://seoulstart.com/guides/digital-korea-guide"]], "phrases": [["여기 어떻게 가요?", "這裡要怎麼去?(給對方看地圖)"]]}, {"title": "叫計程車", "seo": "沒有韓國電話號碼,在韓國怎麼叫計程車(2026)", "intro": "多數韓國人用Kakao T,但旅客常卡在綁卡這一步。專為旅客設計的App可以用國外號碼和信用卡。", "v": {"visitor": {"s": "ok", "verdict": "用專為旅客設計的叫車App,國外號碼和信用卡都能用。", "route": ["k.ride(Kakao Mobility推出):可用Google、Apple或電子郵件註冊。", "Uber在韓國也能用你原本的帳號。", "TABA是首爾市與T-money合作的旅客App。"], "fallback": "在地人用Kakao T,但國外信用卡能不能用,各方說法不一。綁卡失敗時,選「直接付給司機」,或在路邊招車。"}, "krsim": {"s": "ok", "verdict": "和旅客一樣,k.ride、Uber或TABA最可靠。", "route": ["用你的卡使用k.ride或Uber。", "Kakao T可能接受用010號碼註冊。"], "fallback": "Kakao T拒絕你的卡時,選「直接付給司機」,在車上付款。"}, "arc": {"s": "ok", "verdict": "有韓國號碼和韓國卡,Kakao T所有功能都能用。", "route": ["Kakao T車最多。", "k.ride或Uber當備用。"], "fallback": "在大城市,路邊招車到處都行。"}}, "id": "taxi", "slug": "taxi", "sources": [["Asia Economy: k.ride launch", "https://www.asiae.co.kr/en/article/2024060408155574996"], ["Taxi apps compared for visitors", "https://thebitjoy.com/blogs/blog/korea-taxi-apps-for-foreigners"]], "phrases": [["기사님, 이 주소로 가 주세요.", "請載我到這個地址。"], ["기사님께 직접 결제할게요.", "我直接付給司機。"]]}, {"title": "地鐵與公車車資(T-money)", "seo": "用國外信用卡儲值T-money:韓國地鐵與公車怎麼付(2026)", "intro": "韓國的地鐵和公車用交通卡搭乘。iPhone現在可以部分用國外信用卡儲值,用現金儲值則一定可以。", "dev": true, "v": {"visitor": {"ios": {"s": "warn", "verdict": "在iPhone上,Mobile T-money現在可以用部分國外信用卡儲值,但不是所有卡別都支援。", "route": ["安裝Mobile T-money並新增交通卡。", "試著用你的卡儲值。若你的卡別不支援,就用下面的備用方法。"], "fallback": "在便利商店買實體T-money卡,在櫃台或車站機器用現金儲值。"}, "android": {"s": "warn", "verdict": "我們上次確認時,Android版T-money App還不能用國外信用卡儲值。", "route": ["在便利商店買實體T-money卡。", "在櫃台或車站機器用現金儲值。"], "fallback": "T-money表示,另一個App「Mobile Korea Tour Card」支援國外信用卡。"}}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "有韓國卡的話,手機版或實體T-money都能正常使用。", "route": ["在錢包App加入T-money,或使用有交通功能的韓國卡。"], "fallback": "實體T-money用現金儲值,一定可行。"}}, "notes": ["首爾市在2026年3月表示,讓Apple Pay內可用國外信用卡儲值一事仍在協商中。"], "id": "transit", "slug": "tmoney-subway-bus", "sources": [["SBS Biz: foreign-card top-up for T-money (Mar 2026)", "https://biz.sbs.co.kr/amp/article/20000298518"], ["Seoul city clarification (Mar 2026)", "https://mediahub.seoul.go.kr/archives/2017356"]], "phrases": [["티머니 충전해 주세요. 만 원이요.", "請幫我儲值T-money,一萬韓元。"]]}, {"title": "預訂KTX火車", "seo": "2026年改制後,外國人怎麼訂KTX車票", "intro": "2026年韓國的鐵路訂票改了很多:新App、SRT併入KTX、可提前訂票的期間變長。以下是現在的訂票方式。", "all": {"s": "ok", "verdict": "在KORAIL英文網站用國外信用卡訂票最可靠。", "route": ["在KORAIL英文訂票網站用護照資料訂票。", "自2026年10月1日起,可提前兩個月訂票。週末和連假請提早訂。"], "fallback": "線上刷卡失敗時,試試KORAIL+ App、Klook等代售平台,或車站櫃台。"}, "notes": ["KORAIL+ App在2026年8月取代了Korail Talk。", "SRT在2026年9月1日併入KORAIL,所有高鐵列車現在都以KTX名義販售。叫你另外訂SRT的指南已經過時。"], "id": "ktx", "slug": "ktx-train-booking", "sources": [["Seoul tourism: 2026 KTX changes", "https://www.seoultourism.org/?p=1823"], ["Two-month booking window", "https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/"]], "phrases": [["이 표 몇 번 타는 곳이에요?", "這張票在第幾月台搭車?"]]}, {"title": "餐廳訂位與候位", "seo": "沒有韓國號碼也能訂韓國餐廳:CatchTable Global與Naver(2026)", "intro": "韓國熱門餐廳的訂位和候位,過去都要韓國號碼。現在旅客有兩種可行方法。", "v": {"visitor": {"s": "ok", "verdict": "CatchTable Global和Naver護照認證,都不需要韓國號碼。", "route": ["CatchTable Global:用電子郵件註冊,訂金可用國外信用卡付。", "Naver Map訂位:用護照認證(2026年6月4日起)。"], "fallback": "不是每家餐廳都在這些App上。可以直接請店員幫你登記候位。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "所有訂位App都能用,包括韓國版CatchTable和Naver。", "route": ["用已認證的號碼使用Naver Map或CatchTable。"], "fallback": "韓國版App有問題時,改用CatchTable Global。"}}, "id": "food-booking", "slug": "restaurant-reservations", "sources": [["NAVER: passport verification for visitors", "https://www.navercorp.com/media/pressReleasesDetail?seq=10034359"], ["CatchTable Global on the App Store", "https://apps.apple.com/us/app/catch-table/id1639046576"]], "phrases": [["한국 번호가 없는데 대기 명단에 올려 주실 수 있나요?", "我沒有韓國號碼,可以幫我登記候位嗎?"]]}, {"title": "叫外送", "seo": "沒有韓國號碼在韓國叫外送:外送民族與備用方法(2026)", "intro": "韓國最大的外送App「外送民族(Baemin)」在2026年加入了英文。但國外號碼和信用卡能不能過,各方說法不一,建議準備備用方案。", "v": {"visitor": {"s": "mixed", "verdict": "Baemin在2026年2月加入英文,但國外號碼和信用卡能不能過,各方說法不一。", "route": ["先試Baemin:把手機設成英文後下單。", "結帳失敗時,改用接受國外信用卡的英文外送App「Shuttle」。"], "fallback": "飯店櫃台常常可以幫你代訂。"}, "krsim": "visitor", "arc": {"s": "ok", "verdict": "有已認證的韓國號碼,Baemin、Coupang Eats和Yogiyo都能用。", "route": ["用你的號碼註冊,再加入韓國卡或支付App。"], "fallback": "只想看英文菜單,就用Shuttle。"}}, "notes": ["首爾市在2026年8月表示,沒有韓國號碼的旅客也能在漢江公園叫外送。"], "id": "delivery", "slug": "food-delivery", "sources": [["Herald: delivery without a Korean number (Aug 2026)", "https://biz.heraldcorp.com/article/10827038"], ["Baemin English launch notes", "https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/"]], "phrases": [["배달 주문 좀 도와주실 수 있나요?", "可以幫我叫外送嗎?(請房東或櫃台幫忙)"]]}, {"title": "翻譯菜單與招牌", "seo": "翻譯韓文菜單與招牌:Papago設定(2026)", "intro": "有相機翻譯App,就能看懂菜單、招牌和收據。出發前先設定好,離線也能用。", "all": {"s": "ok", "verdict": "Papago人人都能用,把相機對準菜單或招牌就行。", "route": ["安裝Papago,下載韓文離線包。"], "fallback": "Naver Map也能翻譯店名和評論。"}, "id": "translate", "slug": "translation", "sources": [["LG U+ travel app guide", "https://lguplus.com/korea-sim/eng/pc/support/blog/korea_travel_essential_apps_guide"]], "phrases": [["영어 메뉴 있어요?", "有英文菜單嗎?"]]}], "check": {"visitor": ["買一張上網用的韓國eSIM(想收韓國簡訊驗證碼,就選有010號碼的方案)。", "安裝Naver Map和Papago,並下載Papago的韓文離線包。", "安裝k.ride或Uber叫計程車。", "安裝CatchTable Global並用電子郵件註冊。", "用護照完成Naver帳號認證。", "把KORAIL英文網站加入書籤,KTX最早可在兩個月前訂票。", "安裝Shuttle作為外送的備用方案。"], "arc": ["向電信公司設定PASS身分認證。", "安裝Naver Map、Kakao T和Papago。", "在手機加入T-money,或帶一張有交通功能的韓國卡。", "用KORAIL+或英文網站訂KTX。"], "ios_tm": "安裝Mobile T-money,試試用你的卡儲值。另外準備一些現金備用。", "and_tm": "抵達後買一張實體T-money卡,用現金儲值。"}, "checked": "2026年11月17日", "lang": "zh-tw"};
 
-const U = D.ui;
-function resolve(t, p, dev) { if (t.all) return t.all; let v = t.v[p]; if (typeof v === "string") v = t.v[v]; if (t.dev && v[dev]) v = v[dev]; return v; }
 function el(tag, attrs = {}, kids = []) { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === "text") n.textContent = v; else n.setAttribute(k, v); } for (const c of [].concat(kids)) if (c) n.append(c); return n; }
 function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 function count(path, title) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); } catch (e) {} }
+
+const U = D.ui, XS = D.x;
+function resolve(t, p, dev) { if (t.all) return t.all; let v = t.v[p]; if (typeof v === "string") v = t.v[v]; if (t.dev && v[dev]) v = v[dev]; return v; }
+function staff(t) { return t.phrases.map(([ko, m]) => el("div", { class: "staff" }, [el("span", { class: "lbl", text: XS.staff }), el("span", { class: "ko", lang: "ko", text: ko }), el("span", { class: "mean", text: XS.means + ": " + m })])); }
 function render() {
   const p = document.querySelector('input[name="profile"]:checked').value;
   const dev = document.querySelector('input[name="device"]:checked').value;
-  const box = document.getElementById("tasks"); box.replaceChildren();
-  const n = { ok: 0, warn: 0, mixed: 0, bad: 0 };
+  const box = document.getElementById("tasks"), glance = document.getElementById("glance");
+  box.replaceChildren(); glance.replaceChildren();
   for (const t of D.tasks) {
-    const v = resolve(t, p, dev); n[v.s]++;
+    const v = resolve(t, p, dev);
+    glance.append(el("a", { href: "#task-" + t.id, class: v.s, text: t.title, title: U.labels[v.s] }));
     const c = el("article", { class: "task " + v.s, id: "task-" + t.id });
     const h = el("h3"); h.append(el("a", { href: t.slug + ".html", text: t.title, style: "color:inherit;text-decoration:none" }));
     c.append(el("div", { class: "task-head" }, [h, el("span", { class: "chip " + v.s, text: U.labels[v.s] })]));
     c.append(el("p", { class: "verdict", text: v.verdict }));
     c.append(el("ol", { class: "route" }, v.route.map(r => el("li", { text: r }))));
     const fb = el("p", { class: "fallback" }); fb.append(el("strong", { text: U.fails }), v.fallback); c.append(fb);
+    for (const s of staff(t)) c.append(s);
     const det = el("details"); det.append(el("summary", { text: U.sources })); const ul = el("ul");
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
     for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
@@ -187,12 +208,29 @@ function render() {
     c.append(el("div", { class: "meta" }, [el("span", { text: U.checked + " " + D.checked }), rep]));
     box.append(c);
   }
-  const sum = document.getElementById("summary"); sum.replaceChildren(el("b", { text: U.for_setup }));
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sum.append(el("span", { class: "chip " + k, text: n[k] + " · " + U.labels[k] }));
   const items = (p === "arc" ? D.check.arc : D.check.visitor).slice();
   if (p !== "arc") items.splice(3, 0, dev === "ios" ? D.check.ios_tm : D.check.and_tm);
   document.getElementById("checklist").replaceChildren(...items.map(i => el("li", { text: i })));
   store("wik-setup", p + "|" + dev);
+}
+/* Host stay card: details come from #g=<base64url JSON> and are only ever set as text. */
+function stay() {
+  let g = null;
+  try { const m = location.hash.match(/[#&]g=([A-Za-z0-9_-]+)/); if (m) { const b = atob(m[1].replace(/-/g, "+").replace(/_/g, "/")); g = JSON.parse(new TextDecoder().decode(Uint8Array.from(b, c => c.charCodeAt(0)))); } } catch (e) { g = null; }
+  if (!g || typeof g !== "object") return;
+  const s = (k, n) => String(g[k] || "").slice(0, n);
+  const box = document.getElementById("stay");
+  box.append(el("h2", { text: XS.stay_title + (s("n", 60) ? ": " + s("n", 60) : "") }));
+  if (s("a", 160)) {
+    box.append(el("div", { class: "staff" }, [el("span", { class: "lbl", text: XS.taxi_card }), el("span", { class: "ko", lang: "ko", text: XS.taxi_ko }), el("span", { class: "big", lang: "ko", text: s("a", 160) }), el("span", { class: "mean", text: XS.means + ": " + XS.taxi_means })]));
+    box.append(el("div", { class: "staff" }, [el("span", { class: "lbl", text: XS.deliv_card }), el("span", { class: "big", lang: "ko", text: s("a", 160) }), el("span", { class: "ko", lang: "ko", text: XS.deliv_ko }), el("span", { class: "mean", text: XS.means + ": " + XS.deliv_means })]));
+    box.append(el("a", { class: "btn", href: "https://map.naver.com/p/search/" + encodeURIComponent(s("a", 160)), rel: "noopener", target: "_blank", text: XS.map }));
+  }
+  const dl = el("dl");
+  for (const [k, lbl, n] of [["s", XS.station, 80], ["c", XS.checkin, 40], ["k", XS.contact, 80], ["t", XS.note, 280]]) if (s(k, n)) dl.append(el("dt", { text: lbl }), el("dd", { text: s(k, n) }));
+  if (dl.children.length) box.append(dl);
+  box.hidden = false;
+  if (s("n", 60)) count(`host/${s("n", 60)}`, "host stay page");
 }
 const saved = store("wik-setup");
 if (saved) { const [p, d] = saved.split("|"); const a = document.querySelector(`input[name="profile"][value="${p}"]`); if (a) a.checked = true; const b = document.querySelector(`input[name="device"][value="${d}"]`); if (b) b.checked = true; }
@@ -202,8 +240,7 @@ document.getElementById("copy-btn").addEventListener("click", async () => {
   const out = document.getElementById("copied");
   try { await navigator.clipboard.writeText(text); out.textContent = U.copied; count(`copy-checklist/${D.lang}`, "copy checklist"); } catch (e) { out.textContent = U.copy_fail; }
 });
-render();
-try { const h = new URLSearchParams(location.search).get("host"); if (h) { const b = document.getElementById("host"); b.textContent = U.host_banner.replace("{h}", h.slice(0, 60)); b.hidden = false; count(`host/${h.slice(0, 60)}`, "host link"); } } catch (e) {}
+render(); stay();
 
 </script>
 </body>

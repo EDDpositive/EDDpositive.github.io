@@ -1,4 +1,4 @@
-"""Works in Korea content, one block per language.
+"""EasyModeKorea content, one block per language.
 Every fact here was checked against the listed sources on CHECKED. When a fact changes,
 edit all three languages and the CHECKED date, then run: python korea/src/build.py
 """
@@ -39,7 +39,7 @@ LANGS = {}
 LANGS["en"] = {
     "html_lang": "en", "dir": "", "name": "English",
     "ui": {
-        "title": "Works in Korea", "kr": "한국에서 되는 방법",
+        "title": "EasyModeKorea", "kr": "한국에서 되는 방법",
         "meta_desc": "Pick your phone and stay type. See what works in Korea right now for taxis, trains, subway, restaurant bookings and food delivery, with the date each answer was checked.",
         "lede": "Many Korean apps block foreign phone numbers and cards. Tell us your setup and see what works for you right now, with the date we last checked each answer.",
         "setup": "Your setup", "phone_q": "Your phone number in Korea", "device_q": "Your phone",
@@ -53,7 +53,7 @@ LANGS["en"] = {
         "thanks": "Thanks. Your report helps us keep this answer current.",
         "cl_title": "Do these before you fly", "cl_lead": "Built from your setup above. Setup steps are easier on home Wi-Fi than at the airport.",
         "copy": "Copy my checklist", "copied": "Copied.", "copy_fail": "Copy isn't allowed here. Select the list and copy it by hand.",
-        "cl_head": "My Korea setup checklist (Works in Korea, checked {d})",
+        "cl_head": "My Korea setup checklist (EasyModeKorea, checked {d})",
         "how": "How we check: each answer is checked against official notices and recent reports. \"Mixed reports\" means sources disagree, so we show a backup route too. Tap \"It worked\" or \"It failed\" to help keep answers current.",
         "hosts": "Run a guesthouse or rental in Korea? <a href=\"{base}hosts.html\">Send this guide to your guests</a> (숙소 사장님용 안내).",
         "indep": "Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.",
@@ -124,7 +124,7 @@ LANGS["en"] = {
 LANGS["ja"] = {
     "html_lang": "ja", "dir": "ja/", "name": "日本語",
     "ui": {
-        "title": "Works in Korea", "kr": "韓国で使える方法",
+        "title": "EasyModeKorea", "kr": "韓国で使える方法",
         "meta_desc": "スマホの状況を選ぶだけで、韓国でタクシー・鉄道・地下鉄・飲食店予約・デリバリーが今どう使えるかを、確認日つきで表示します。",
         "lede": "韓国のアプリの多くは、海外の電話番号やカードを受け付けません。あなたの状況を選ぶと、今使える方法と、各回答を最後に確認した日付がわかります。",
         "setup": "あなたの状況", "phone_q": "韓国で使う電話番号", "device_q": "スマホ",
@@ -138,7 +138,7 @@ LANGS["ja"] = {
         "thanks": "ありがとうございます。報告は回答の更新に使います。",
         "cl_title": "出発前にやること", "cl_lead": "上で選んだ状況から作りました。設定は空港より自宅のWi-Fiで済ませるのがおすすめです。",
         "copy": "チェックリストをコピー", "copied": "コピーしました。", "copy_fail": "ここではコピーできません。リストを選択して手動でコピーしてください。",
-        "cl_head": "韓国旅行の準備チェックリスト(Works in Korea、{d}確認)",
+        "cl_head": "韓国旅行の準備チェックリスト(EasyModeKorea、{d}確認)",
         "how": "確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。",
         "hosts": "韓国で宿を運営していますか? <a href=\"{base}hosts.html\">このガイドをゲストに送る</a>(韓国語)。",
         "indep": "独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。",
@@ -209,7 +209,7 @@ LANGS["ja"] = {
 LANGS["zh-tw"] = {
     "html_lang": "zh-Hant-TW", "dir": "zh-tw/", "name": "繁體中文",
     "ui": {
-        "title": "Works in Korea", "kr": "在韓國行得通的方法",
+        "title": "EasyModeKorea", "kr": "在韓國行得通的方法",
         "meta_desc": "選擇你的手機狀況,就能看到在韓國叫計程車、搭火車與地鐵、訂餐廳、叫外送現在怎麼做,每個答案都標示確認日期。",
         "lede": "很多韓國App不接受國外電話號碼和信用卡。選擇你的狀況,就能看到現在可行的方法,以及每個答案最後確認的日期。",
         "setup": "你的狀況", "phone_q": "你在韓國用的電話號碼", "device_q": "你的手機",
@@ -223,7 +223,7 @@ LANGS["zh-tw"] = {
         "thanks": "謝謝。你的回報會幫我們更新這個答案。",
         "cl_title": "出發前要做的事", "cl_lead": "根據你上面選的狀況整理。設定步驟在家裡的Wi-Fi做,會比在機場順利。",
         "copy": "複製我的清單", "copied": "已複製。", "copy_fail": "這裡無法複製。請選取清單後手動複製。",
-        "cl_head": "我的韓國旅行準備清單(Works in Korea,{d}確認)",
+        "cl_head": "我的韓國旅行準備清單(EasyModeKorea,{d}確認)",
         "how": "確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。",
         "hosts": "在韓國經營民宿或旅館嗎?<a href=\"{base}hosts.html\">把這份指南傳給你的房客</a>(韓文頁面)。",
         "indep": "獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。",
