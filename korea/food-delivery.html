@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Food delivery in Korea without a Korean number: Baemin and backups (2026)", "dateModified": "2026-11-17", "inLanguage": "en", "url": "https://eddpositive.github.io/korea/food-delivery.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,18 +222,18 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="Language"><a href="food-delivery.html" hreflang="en" aria-current="page">English</a><a href="ja/food-delivery.html" hreflang="ja">日本語</a><a href="zh-tw/food-delivery.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>Food delivery in Korea without a Korean number: Baemin and backups (2026)</h1><p class="lede">Baemin, Korea&#x27;s biggest delivery app, added English in 2026. Reports still disagree on whether a foreign number and card get through, so keep a backup.</p>
+  <h1>Food delivery</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">Checked 17 Nov 2026 · <a href="changes.html">What changed</a></p>
   <div class="actions"><a class="btn" href="./#task-delivery">Check your own setup</a><button class="btn alt" type="button" data-show="배달 주문 좀 도와주실 수 있나요?" data-lbl="Show staff" data-mean="Means: Could you help me order delivery? (for your host or front desk)">Show staff: 배달 주문 좀 도와주실 수 있나요?</button></div>
   <main class="cards"><article class="card mixed" data-p="visitor"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a home number or data-only eSIM</h2><span class="pill mixed">Mixed reports</span></div>
 <p class="verdict">Baemin added English in February 2026, but reports disagree on whether a foreign number and card get through.</p><ol class="steps"><li>Try Baemin first: set your phone to English and check out.</li><li>If checkout fails, use Shuttle, an English delivery app that takes foreign cards.</li></ol><p class="fallback"><b>If that fails</b>Your hotel front desk can often order for you.</p></article><article class="card mixed" data-p="krsim"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean prepaid 010 number</h2><span class="pill mixed">Mixed reports</span></div>
 <p class="verdict">Baemin added English in February 2026, but reports disagree on whether a foreign number and card get through.</p><ol class="steps"><li>Try Baemin first: set your phone to English and check out.</li><li>If checkout fails, use Shuttle, an English delivery app that takes foreign cards.</li></ol><p class="fallback"><b>If that fails</b>Your hotel front desk can often order for you.</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean number in your name (ARC)</h2><span class="pill ok">Works</span></div>
 <p class="verdict">Baemin, Coupang Eats and Yogiyo all work with a verified Korean number.</p><ol class="steps"><li>Sign up with your number and add a Korean card or pay app.</li></ol><p class="fallback"><b>If that fails</b>Shuttle for English-only menus.</p></article><button class="linkbtn" type="button" id="show-all" hidden>Show answers for other setups</button></main>
-  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li>Seoul said in August 2026 that visitors without a Korean number can order delivery at Han River parks.</li><li><a href="https://biz.heraldcorp.com/article/10827038" rel="noopener" target="_blank">Herald: delivery without a Korean number (Aug 2026)</a></li><li><a href="https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/" rel="noopener" target="_blank">Baemin English launch notes</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="tmoney-subway-bus.html">Subway &amp; bus</a><a href="ktx-train-booking.html">KTX trains</a><a href="restaurant-reservations.html">Restaurant booking</a><a href="translation.html">Translation</a><a href="./#first-24">First 24 hours</a></nav>
-  <footer><div>Made in Seoul. Every answer is checked against official notices and traveler reports, and every check is dated. No app pays to be listed.</div><div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div><div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div></footer>
+  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li>Checked 17 Nov 2026</li><li>Seoul said in August 2026 that visitors without a Korean number can order delivery at Han River parks.</li><li><a href="https://biz.heraldcorp.com/article/10827038" rel="noopener" target="_blank">Herald: delivery without a Korean number (Aug 2026)</a></li><li><a href="https://koreadecoded.duckdns.org/food-delivery-korea-tourists-baemin-shuttle/" rel="noopener" target="_blank">Baemin English launch notes</a></li></ul></div></details>
+  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="tmoney-subway-bus.html">Subway &amp; bus</a><a href="ktx-train-booking.html">KTX trains</a><a href="restaurant-reservations.html">Restaurant booking</a><a href="translation.html">Translation</a></nav>
+  <details class="about"><summary>About this guide</summary><div class="in">
+<p>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</p><p>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</p><p><a href="changes.html">What changed</a> · Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

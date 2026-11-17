@@ -217,3 +217,6 @@ KEYWORDS = {
     "delivery": "delivery food baemin coupang eats shuttle order chicken デリバリー 出前 外送 外賣",
     "translate": "translate translation papago menu sign korean language 翻訳 メニュー 翻譯 菜單",
 }
+
+for _l, _t in {"en": "About this guide", "ja": "このガイドについて", "zh-tw": "關於這份指南"}.items():
+    X[_l]["about"] = _t

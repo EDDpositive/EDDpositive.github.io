@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "海外カードでT-money: 韓国の地下鉄・バスの払い方(2026)", "dateModified": "2026-11-17", "inLanguage": "ja", "url": "https://eddpositive.github.io/korea/ja/tmoney-subway-bus.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,10 +222,9 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="言語"><a href="../tmoney-subway-bus.html" hreflang="en">English</a><a href="../ja/tmoney-subway-bus.html" hreflang="ja" aria-current="page">日本語</a><a href="../zh-tw/tmoney-subway-bus.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>海外カードでT-money: 韓国の地下鉄・バスの払い方(2026)</h1><p class="lede">韓国の地下鉄とバスは交通カードで乗ります。海外カードでのチャージはiPhoneで一部できるようになりました。現金なら必ずチャージできます。</p>
+  <h1>地下鉄・バス</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">確認日 2026年11月17日 · <a href="changes.html">変更履歴</a></p>
   <div class="actions"><a class="btn" href="./#task-transit">自分の状況で確認する</a><button class="btn alt" type="button" data-show="티머니 충전해 주세요. 만 원이요." data-lbl="スタッフに見せる" data-mean="意味: T-moneyをチャージしてください。1万ウォンです。">スタッフに見せる: 티머니 충전해 주세요. 만 원이요.</button></div>
   <main class="cards"><article class="card warn" data-p="visitor" data-d="ios"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自国の番号またはデータ専用eSIMの場合 · iPhone</h2><span class="pill warn">回避策あり</span></div>
 <p class="verdict">iPhoneでは、モバイルT-moneyで一部の海外カードからチャージできるようになりました。すべてのカードブランドには対応していません。</p><ol class="steps"><li>モバイルT-moneyを入れて交通カードを追加する。</li><li>自分のカードでチャージを試す。対応していなければ下の予備の方法を使う。</li></ol><p class="fallback"><b>うまくいかない場合</b>コンビニでT-moneyカードを買い、レジや駅の機械で現金チャージする。</p></article><article class="card warn" data-p="visitor" data-d="android"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自国の番号またはデータ専用eSIMの場合 · Android</h2><span class="pill warn">回避策あり</span></div>
@@ -216,9 +232,10 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <p class="verdict">iPhoneでは、モバイルT-moneyで一部の海外カードからチャージできるようになりました。すべてのカードブランドには対応していません。</p><ol class="steps"><li>モバイルT-moneyを入れて交通カードを追加する。</li><li>自分のカードでチャージを試す。対応していなければ下の予備の方法を使う。</li></ol><p class="fallback"><b>うまくいかない場合</b>コンビニでT-moneyカードを買い、レジや駅の機械で現金チャージする。</p></article><article class="card warn" data-p="krsim" data-d="android"><div class="actions" style="justify-content:space-between;align-items:center"><h2>韓国プリペイドの010番号の場合 · Android</h2><span class="pill warn">回避策あり</span></div>
 <p class="verdict">前回の確認時点では、AndroidのT-moneyアプリで海外カードからのチャージはできませんでした。</p><ol class="steps"><li>コンビニでT-moneyカードを買う。</li><li>レジや駅の機械で現金チャージする。</li></ol><p class="fallback"><b>うまくいかない場合</b>T-moneyによると、別アプリの「Mobile Korea Tour Card」は海外カードに対応しています。</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自分名義の韓国の番号(外国人登録証あり)の場合</h2><span class="pill ok">使える</span></div>
 <p class="verdict">韓国のカードがあれば、モバイルでもカードでもT-moneyは普通に使えます。</p><ol class="steps"><li>ウォレットアプリにT-moneyを追加するか、交通機能つきの韓国のカードを使う。</li></ol><p class="fallback"><b>うまくいかない場合</b>カードのT-moneyに現金チャージする方法はいつでも使えます。</p></article><button class="linkbtn" type="button" id="show-all" hidden>ほかの状況の回答を見る</button></main>
-  <details class="panel"><summary>出典とメモ</summary><div class="in notes"><ul><li>ソウル市は2026年3月、Apple Pay内で海外カードからチャージできるようにする件はまだ協議中だと説明しました。</li><li><a href="https://biz.sbs.co.kr/amp/article/20000298518" rel="noopener" target="_blank">SBS Biz: foreign-card top-up for T-money (Mar 2026)</a></li><li><a href="https://mediahub.seoul.go.kr/archives/2017356" rel="noopener" target="_blank">Seoul city clarification (Mar 2026)</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">電話・データ</a><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a><a href="./#first-24">最初の24時間</a></nav>
-  <footer><div>ソウルで制作。各回答は公式発表と旅行者の報告で確認し、確認日を記録しています。掲載料は受け取っていません。</div><div>韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</div><div>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</div></footer>
+  <details class="panel"><summary>出典とメモ</summary><div class="in notes"><ul><li>確認日 2026年11月17日</li><li>ソウル市は2026年3月、Apple Pay内で海外カードからチャージできるようにする件はまだ協議中だと説明しました。</li><li><a href="https://biz.sbs.co.kr/amp/article/20000298518" rel="noopener" target="_blank">SBS Biz: foreign-card top-up for T-money (Mar 2026)</a></li><li><a href="https://mediahub.seoul.go.kr/archives/2017356" rel="noopener" target="_blank">Seoul city clarification (Mar 2026)</a></li></ul></div></details>
+  <nav class="topics"><a href="mobile-data-sim.html">電話・データ</a><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a></nav>
+  <details class="about"><summary>このガイドについて</summary><div class="in">
+<p>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</p><p>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</p><p><a href="changes.html">変更履歴</a> · 韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "T-money with a foreign card: paying for the subway and bus in Korea (2026)", "dateModified": "2026-11-17", "inLanguage": "en", "url": "https://eddpositive.github.io/korea/tmoney-subway-bus.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,10 +222,9 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="Language"><a href="tmoney-subway-bus.html" hreflang="en" aria-current="page">English</a><a href="ja/tmoney-subway-bus.html" hreflang="ja">日本語</a><a href="zh-tw/tmoney-subway-bus.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>T-money with a foreign card: paying for the subway and bus in Korea (2026)</h1><p class="lede">Korean subways and buses run on transit cards. Topping one up with a foreign card is now partly possible on iPhone. Cash always works.</p>
+  <h1>Subway &amp; bus</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">Checked 17 Nov 2026 · <a href="changes.html">What changed</a></p>
   <div class="actions"><a class="btn" href="./#task-transit">Check your own setup</a><button class="btn alt" type="button" data-show="티머니 충전해 주세요. 만 원이요." data-lbl="Show staff" data-mean="Means: Please top up my T-money. 10,000 won.">Show staff: 티머니 충전해 주세요. 만 원이요.</button></div>
   <main class="cards"><article class="card warn" data-p="visitor" data-d="ios"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a home number or data-only eSIM · iPhone</h2><span class="pill warn">Works with a workaround</span></div>
 <p class="verdict">On iPhone, Mobile T-money can now top up with some foreign cards. Not every card brand is supported.</p><ol class="steps"><li>Install Mobile T-money and add a transit card.</li><li>Try topping up with your card. If your card brand isn&#x27;t accepted, use the backup below.</li></ol><p class="fallback"><b>If that fails</b>Buy a physical T-money card at a convenience store and top it up with cash at the counter or station machines.</p></article><article class="card warn" data-p="visitor" data-d="android"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a home number or data-only eSIM · Android</h2><span class="pill warn">Works with a workaround</span></div>
@@ -216,9 +232,10 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <p class="verdict">On iPhone, Mobile T-money can now top up with some foreign cards. Not every card brand is supported.</p><ol class="steps"><li>Install Mobile T-money and add a transit card.</li><li>Try topping up with your card. If your card brand isn&#x27;t accepted, use the backup below.</li></ol><p class="fallback"><b>If that fails</b>Buy a physical T-money card at a convenience store and top it up with cash at the counter or station machines.</p></article><article class="card warn" data-p="krsim" data-d="android"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean prepaid 010 number · Android</h2><span class="pill warn">Works with a workaround</span></div>
 <p class="verdict">Foreign-card top-up in the Android T-money app was not available at our last check.</p><ol class="steps"><li>Buy a physical T-money card at a convenience store.</li><li>Top up with cash at the counter or at station machines.</li></ol><p class="fallback"><b>If that fails</b>T-money says a separate app, Mobile Korea Tour Card, supports foreign cards.</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean number in your name (ARC)</h2><span class="pill ok">Works</span></div>
 <p class="verdict">With a Korean card, mobile or physical T-money works normally.</p><ol class="steps"><li>Add T-money in your wallet app or use a transit-enabled Korean card.</li></ol><p class="fallback"><b>If that fails</b>Physical T-money with cash always works.</p></article><button class="linkbtn" type="button" id="show-all" hidden>Show answers for other setups</button></main>
-  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li>Seoul city said in March 2026 that adding foreign-card top-up inside Apple Pay is still under discussion.</li><li><a href="https://biz.sbs.co.kr/amp/article/20000298518" rel="noopener" target="_blank">SBS Biz: foreign-card top-up for T-money (Mar 2026)</a></li><li><a href="https://mediahub.seoul.go.kr/archives/2017356" rel="noopener" target="_blank">Seoul city clarification (Mar 2026)</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="ktx-train-booking.html">KTX trains</a><a href="restaurant-reservations.html">Restaurant booking</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translation</a><a href="./#first-24">First 24 hours</a></nav>
-  <footer><div>Made in Seoul. Every answer is checked against official notices and traveler reports, and every check is dated. No app pays to be listed.</div><div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div><div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div></footer>
+  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li>Checked 17 Nov 2026</li><li>Seoul city said in March 2026 that adding foreign-card top-up inside Apple Pay is still under discussion.</li><li><a href="https://biz.sbs.co.kr/amp/article/20000298518" rel="noopener" target="_blank">SBS Biz: foreign-card top-up for T-money (Mar 2026)</a></li><li><a href="https://mediahub.seoul.go.kr/archives/2017356" rel="noopener" target="_blank">Seoul city clarification (Mar 2026)</a></li></ul></div></details>
+  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="ktx-train-booking.html">KTX trains</a><a href="restaurant-reservations.html">Restaurant booking</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translation</a></nav>
+  <details class="about"><summary>About this guide</summary><div class="in">
+<p>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</p><p>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</p><p><a href="changes.html">What changed</a> · Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

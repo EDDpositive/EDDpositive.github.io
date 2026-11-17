@@ -198,18 +198,34 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="Language"><a href="changes.html" hreflang="en" aria-current="page">English</a><a href="ja/changes.html" hreflang="ja">日本語</a><a href="zh-tw/changes.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>What changed in 2026</h1><p class="lede">Korean apps change often, and old guides don&#x27;t update. This is our public log of changes we&#x27;ve applied.</p>
+  <h1>What changed in 2026</h1>
 </div></header>
 <div class="wrap">
   <section class="panel" style="margin-top:18px"><div class="in timeline" style="padding-top:16px"><ol><li><b>2026-10-01</b>KTX tickets now open two months ahead.</li><li><b>2026-09-01</b>SRT was folded into KORAIL. All high-speed trains are now sold as KTX.</li><li><b>2026-08</b>The KORAIL+ app replaced Korail Talk.</li><li><b>2026-08</b>Seoul: visitors without a Korean number can order delivery at Han River parks.</li><li><b>2026-06-04</b>Naver added passport verification, so visitors can book and pay on Naver Map.</li><li><b>2026-03</b>Mobile T-money on iPhone started accepting some foreign cards for top-up.</li><li><b>2026-02-03</b>Baemin added English, Japanese and Chinese.</li><li><b>2026-02</b>The government conditionally approved Google&#x27;s map-data export. Better Google routing is not confirmed yet.</li></ol></div></section>
   <div class="actions"><a class="btn" href="./">Check your own setup</a></div>
-  <footer><div>Made in Seoul. Every answer is checked against official notices and traveler reports, and every check is dated. No app pays to be listed.</div></footer>
 </div>
 </body>
 </html>

@@ -52,12 +52,16 @@ def lang_links(cur, rel_paths, prefix):
 
 def hero(lang, alt, up, h1, lede, home="./", trust=True):
     x = X[lang]
-    mode = '<p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p>'
-    tr = f'<p class="trust">{e(x["trust"])}</p>' if trust else ""
     return f"""<header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="{home}">EasyMode<b>Korea</b></a>{lang_links(lang, alt, up)}</div>
-  {mode}<h1>{e(h1)}</h1><p class="lede">{e(lede)}</p>{tr}
+  {f'<h1>{e(h1)}</h1>' if h1 else ''}
 </div></header>"""
+
+
+def about(lang, up):
+    U = LANGS[lang]["ui"]; x = X[lang]
+    return f"""<details class="about"><summary>{e(x['about'])}</summary><div class="in">
+<p>{e(U['how'])}</p><p>{e(U['indep'])}</p><p><a href="changes.html">{e(x['nav_changes'])}</a> · {U['hosts'].format(base=up)}</p></div></details>"""
 
 
 def task_list(lang):
@@ -120,7 +124,8 @@ def build_tool(lang):
     q2 = "".join(f'<button type="button" class="opt-big" data-d="{v}"><b>{e(U[v])}</b></button>' for v in ("ios", "android"))
     steps = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in x["first"])
     body = f"""
-{hero(lang, alt, up, x['hook'], x['lede'])}
+{hero(lang, alt, up, '', '')}
+<h1 class="sr">{e(x['hook'])}</h1>
 <div class="wrap pre">
   <div class="banner" id="lang-suggest" hidden></div>
   <div class="banner" id="install" hidden><span>{e(ux['install'])}</span><button class="btn alt" type="button" id="install-btn">{e(ux['install_btn'])}</button></div>
@@ -132,8 +137,6 @@ def build_tool(lang):
 <div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">{e(ux['change'])}</button></div></div>
 <div class="wrap" id="main" hidden>
   <section class="stay" id="stay" hidden aria-live="polite"></section>
-  <p class="greet">{e(ux['greet'])}</p>
-  <div class="score" id="score" aria-live="polite"></div>
   <label class="search"><span class="sr">{e(ux['search'])}</span><input id="q" type="search" placeholder="{e(ux['search'])}" autocomplete="off"></label>
   <p class="hint" id="nores" hidden>{e(ux['nores'])}</p>
   <main class="rows" id="rows"></main>
@@ -143,8 +146,7 @@ def build_tool(lang):
     <div class="actions"><button class="btn" type="button" id="copy-btn">{e(U['copy'])}</button><span class="copied" id="copied" role="status"></span></div>
   </div></details>
   <details class="panel" id="first-24"><summary>{e(x['first_title'])}</summary><div class="in timeline"><p class="hint">{e(x['first_lead'])}</p><ol>{steps}</ol></div></details>
-  <nav class="topics">{topics}<a href="changes.html">{e(x['nav_changes'])}</a></nav>
-  <footer><div>{e(U['how'])}</div><div>{U['hosts'].format(base=up)}</div><div>{e(U['indep'])}</div></footer>
+  {about(lang, up)}
 </div>
 {SHOW_HTML(lang)}
 <script>
@@ -168,7 +170,7 @@ function openOnb() { document.getElementById("onb").hidden = false; document.get
 function finish() {
   store("wik-setup", P + "|" + DEV); document.body.classList.add("ret");
   document.getElementById("onb").hidden = true; document.getElementById("main").hidden = false; document.getElementById("mybar").hidden = false;
-  document.getElementById("mysetup").textContent = UX.setup_is + ": " + S.prof[P] + " · " + U[DEV];
+  document.getElementById("mysetup").textContent = S.prof[P] + " · " + U[DEV];
   render(); count("setup/" + D.lang + "/" + P + "/" + DEV, "setup");
 }
 document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { P = b.dataset.p; if (P === "arc") { DEV = "ios"; finish(); } else { setStep(2); document.querySelector("#onb2 .opt-big").focus(); } }));
@@ -184,7 +186,7 @@ function render() {
     const row = el("details", { class: "row " + v.s, id: "task-" + t.id, "data-kw": t.kw });
     if (open.has(row.id)) row.open = true;
     const sum = el("summary");
-    const txt = el("span", { class: "txt" }, [el("span", { class: "top" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]), el("span", { class: "sub", text: v.verdict })]);
+    const txt = el("span", { class: "txt" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]);
     sum.append(el("span", { class: "ic", html: t.icon }), txt);
     row.append(sum);
     const body = el("div", { class: "body" });
@@ -193,12 +195,12 @@ function render() {
     const fb = el("p", { class: "fallback" }); fb.append(el("b", { text: U.fails.replace(/[:：]\s*$/, "") }), v.fallback); body.append(fb);
     const act = el("div", { class: "actions" });
     for (const [ko, m] of t.phrases) { const b = el("button", { type: "button", class: "btn alt", text: S.show + ": " + ko }); b.addEventListener("click", () => show(S.show, ko, "", XS.means + ": " + m)); act.append(b); }
-    act.append(el("a", { class: "btn ghost", href: t.slug + ".html", text: S.guide + " →" }));
-    body.append(act);
+    if (act.children.length) body.append(act);
     const det = el("details"); det.append(el("summary", { text: S.details })); const ul = el("ul");
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
     for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
     det.append(ul);
+    const gl = el("p"); gl.append(el("a", { href: t.slug + ".html", text: S.guide + " →" })); det.append(gl);
     const key = "wik-report-" + t.id + "-" + P, rep = el("div", { class: "report" }), thx = el("span", { role: "status" });
     for (const [val, txt2] of [["yes", U.worked], ["no", U.failed]]) {
       const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt2 });
@@ -209,11 +211,10 @@ function render() {
       rep.append(b);
     }
     rep.append(thx);
-    body.append(el("div", { class: "foot" }, [el("span", { text: U.checked + " " + D.checked }), rep, det]));
+    ul.prepend(el("li", { text: U.checked + " " + D.checked })); det.append(rep);
+    body.append(det);
     row.append(body); rows.append(row);
   }
-  const sc = document.getElementById("score"); sc.replaceChildren();
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sc.append(el("span", { class: "pill " + k, text: n[k] + " · " + UX.tone[k] }));
   checklist(); filter();
 }
 function checklist() {
@@ -230,7 +231,7 @@ function checklist() {
   });
   progress(done.length, items.length);
 }
-function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = UX.ready.replace("{d}", d).replace("{n}", n); }
+function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
 function filter() {
   const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
   document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });
@@ -325,14 +326,13 @@ def build_topic(lang, t):
     srcs = "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(n)}</a></li>' for n, u in t["sources"])
     others = "".join(f'<a href="{o["slug"]}.html">{e(o["short"])}</a>' for o in task_list(lang) if o["id"] != t["id"])
     body = f"""
-{hero(lang, alt, up, t['seo'], t['intro'], trust=False)}
+{hero(lang, alt, up, t['short'], '')}
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">{e(U['checked'])} {e(CHECKED[lang])} · <a href="changes.html">{e(x['nav_changes'])}</a></p>
   <div class="actions"><a class="btn" href="./#task-{t['id']}">{e(U['open_tool'])}</a>{phrases}</div>
   <main class="cards">{''.join(blocks)}<button class="linkbtn" type="button" id="show-all" hidden>{e(x['others'])}</button></main>
-  <details class="panel"><summary>{e(S['details'])}</summary><div class="in notes"><ul>{notes}{srcs}</ul></div></details>
-  <nav class="topics">{others}<a href="./#first-24">{e(x['nav_first'])}</a></nav>
-  <footer><div>{e(x['trust'])}</div><div>{U['hosts'].format(base=up)}</div><div>{e(U['indep'])}</div></footer>
+  <details class="panel"><summary>{e(S['details'])}</summary><div class="in notes"><ul><li>{e(U['checked'])} {e(CHECKED[lang])}</li>{notes}{srcs}</ul></div></details>
+  <nav class="topics">{others}</nav>
+  {about(lang, up)}
 </div>
 {SHOW_HTML(lang)}
 <script>{COMMON_JS}{TOPIC_JS}</script>
@@ -351,11 +351,10 @@ def build_changes(lang):
     alt = {k: f"{LANGS[k]['dir']}changes.html" for k in LANGS}
     rows = "".join(f'<li><b>{e(dt)}</b>{e(tx)}</li>' for dt, tx in x["changes"])
     body = f"""
-{hero(lang, alt, up, x['changes_title'], x['changes_lead'], trust=False)}
+{hero(lang, alt, up, x['changes_title'], '')}
 <div class="wrap">
   <section class="panel" style="margin-top:18px"><div class="in timeline" style="padding-top:16px"><ol>{rows}</ol></div></section>
   <div class="actions"><a class="btn" href="./">{e(L['ui']['open_tool'])}</a></div>
-  <footer><div>{e(x['trust'])}</div></footer>
 </div>
 </body>
 </html>

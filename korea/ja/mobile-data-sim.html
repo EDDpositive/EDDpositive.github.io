@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "旅行者の韓国の電話番号: eSIMでできること・できないこと(2026)", "dateModified": "2026-11-17", "inLanguage": "ja", "url": "https://eddpositive.github.io/korea/ja/mobile-data-sim.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,18 +222,18 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="言語"><a href="../mobile-data-sim.html" hreflang="en">English</a><a href="../ja/mobile-data-sim.html" hreflang="ja" aria-current="page">日本語</a><a href="../zh-tw/mobile-data-sim.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>旅行者の韓国の電話番号: eSIMでできること・できないこと(2026)</h1><p class="lede">多くの旅行者はデータ用eSIMを使います。地図やメッセージには十分ですが、韓国のアプリは韓国の番号や本人認証を求めることがよくあります。状況ごとにできることをまとめました。</p>
+  <h1>電話・データ</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">確認日 2026年11月17日 · <a href="changes.html">変更履歴</a></p>
   <div class="actions"><a class="btn" href="./#task-data">自分の状況で確認する</a><button class="btn alt" type="button" data-show="와이파이 비밀번호가 뭐예요?" data-lbl="スタッフに見せる" data-mean="意味: Wi-Fiのパスワードは何ですか?">スタッフに見せる: 와이파이 비밀번호가 뭐예요?</button></div>
   <main class="cards"><article class="card warn" data-p="visitor"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自国の番号またはデータ専用eSIMの場合</h2><span class="pill warn">回避策あり</span></div>
 <p class="verdict">データはどこでも使えます。韓国のSMS認証コードは届きません。</p><ol class="steps"><li>出発前にデータ用の韓国eSIMを買う。</li><li>韓国のSMS認証を受けたいなら010番号つきのプランを選ぶ。</li></ol><p class="fallback"><b>うまくいかない場合</b>韓国の番号があっても、外国人登録証がなければ本人認証(본인인증)はほぼ通りません。下の旅行者向けアプリを前提に計画してください。</p></article><article class="card warn" data-p="krsim"><div class="actions" style="justify-content:space-between;align-items:center"><h2>韓国プリペイドの010番号の場合</h2><span class="pill warn">回避策あり</span></div>
 <p class="verdict">韓国のSMS認証は使えます。本人認証(본인인증)はたいてい通りません。</p><ol class="steps"><li>SMSでの登録には010番号を使う。</li><li>外国人登録証がないとPASS型の本人認証は通らないと考えておく。</li></ol><p class="fallback"><b>うまくいかない場合</b>Naverのようにパスポート認証があるサービスはそれを使う。</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自分名義の韓国の番号(外国人登録証あり)の場合</h2><span class="pill ok">使える</span></div>
 <p class="verdict">自分名義の番号なら、ほとんどの本人認証が通ります。</p><ol class="steps"><li>携帯会社でPASSの本人認証を設定する。</li><li>そのあとは多くの韓国アプリが使えるようになります。</li></ol><p class="fallback"><b>うまくいかない場合</b>認証に失敗したら、番号が外国人登録証と紐づいているか携帯会社に確認する。</p></article><button class="linkbtn" type="button" id="show-all" hidden>ほかの状況の回答を見る</button></main>
-  <details class="panel"><summary>出典とメモ</summary><div class="in notes"><ul><li>韓国のアプリは4つの条件で機能を制限します: 外国人登録証、自分名義の韓国の番号、韓国の決済手段、本人認証。</li><li><a href="https://seoulstart.com/guides/digital-korea-guide" rel="noopener" target="_blank">Seoulstart: the four keys</a></li><li><a href="https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication" rel="noopener" target="_blank">Alchera: why a Korean SIM alone fails identity checks</a></li></ul></div></details>
-  <nav class="topics"><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="tmoney-subway-bus.html">地下鉄・バス</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a><a href="./#first-24">最初の24時間</a></nav>
-  <footer><div>ソウルで制作。各回答は公式発表と旅行者の報告で確認し、確認日を記録しています。掲載料は受け取っていません。</div><div>韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</div><div>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</div></footer>
+  <details class="panel"><summary>出典とメモ</summary><div class="in notes"><ul><li>確認日 2026年11月17日</li><li>韓国のアプリは4つの条件で機能を制限します: 外国人登録証、自分名義の韓国の番号、韓国の決済手段、本人認証。</li><li><a href="https://seoulstart.com/guides/digital-korea-guide" rel="noopener" target="_blank">Seoulstart: the four keys</a></li><li><a href="https://www.alchera.ai/resource/blog/ekyc-short-term-resident-foreigner-passport-authentication" rel="noopener" target="_blank">Alchera: why a Korean SIM alone fails identity checks</a></li></ul></div></details>
+  <nav class="topics"><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="tmoney-subway-bus.html">地下鉄・バス</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a></nav>
+  <details class="about"><summary>このガイドについて</summary><div class="in">
+<p>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</p><p>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</p><p><a href="changes.html">変更履歴</a> · 韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

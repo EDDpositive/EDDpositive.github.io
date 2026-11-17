@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Book Korean restaurants without a Korean number: CatchTable Global and Naver (2026)", "dateModified": "2026-11-17", "inLanguage": "en", "url": "https://eddpositive.github.io/korea/restaurant-reservations.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,18 +222,18 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="Language"><a href="restaurant-reservations.html" hreflang="en" aria-current="page">English</a><a href="ja/restaurant-reservations.html" hreflang="ja">日本語</a><a href="zh-tw/restaurant-reservations.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>Book Korean restaurants without a Korean number: CatchTable Global and Naver (2026)</h1><p class="lede">Popular Korean restaurants run bookings and waitlists through apps that used to need a Korean number. Two routes now work for visitors.</p>
+  <h1>Restaurant booking</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">Checked 17 Nov 2026 · <a href="changes.html">What changed</a></p>
   <div class="actions"><a class="btn" href="./#task-food-booking">Check your own setup</a><button class="btn alt" type="button" data-show="한국 번호가 없는데 대기 명단에 올려 주실 수 있나요?" data-lbl="Show staff" data-mean="Means: I don&#x27;t have a Korean number. Could you add me to the waitlist?">Show staff: 한국 번호가 없는데 대기 명단에 올려 주실 수 있나요?</button></div>
   <main class="cards"><article class="card ok" data-p="visitor"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a home number or data-only eSIM</h2><span class="pill ok">Works</span></div>
 <p class="verdict">CatchTable Global and Naver passport verification both work without a Korean number.</p><ol class="steps"><li>CatchTable Global: sign up by email, pay deposits with a foreign card.</li><li>Naver Map bookings: verify with your passport (available since 4 Jun 2026).</li></ol><p class="fallback"><b>If that fails</b>Not every restaurant is on these apps. Ask staff to add you to the waitlist in person.</p></article><article class="card ok" data-p="krsim"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean prepaid 010 number</h2><span class="pill ok">Works</span></div>
 <p class="verdict">CatchTable Global and Naver passport verification both work without a Korean number.</p><ol class="steps"><li>CatchTable Global: sign up by email, pay deposits with a foreign card.</li><li>Naver Map bookings: verify with your passport (available since 4 Jun 2026).</li></ol><p class="fallback"><b>If that fails</b>Not every restaurant is on these apps. Ask staff to add you to the waitlist in person.</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>With a Korean number in your name (ARC)</h2><span class="pill ok">Works</span></div>
 <p class="verdict">All booking apps work, including the local CatchTable app and Naver.</p><ol class="steps"><li>Naver Map or CatchTable with your verified number.</li></ol><p class="fallback"><b>If that fails</b>CatchTable Global if the local app gives you trouble.</p></article><button class="linkbtn" type="button" id="show-all" hidden>Show answers for other setups</button></main>
-  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li><a href="https://www.navercorp.com/media/pressReleasesDetail?seq=10034359" rel="noopener" target="_blank">NAVER: passport verification for visitors</a></li><li><a href="https://apps.apple.com/us/app/catch-table/id1639046576" rel="noopener" target="_blank">CatchTable Global on the App Store</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="tmoney-subway-bus.html">Subway &amp; bus</a><a href="ktx-train-booking.html">KTX trains</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translation</a><a href="./#first-24">First 24 hours</a></nav>
-  <footer><div>Made in Seoul. Every answer is checked against official notices and traveler reports, and every check is dated. No app pays to be listed.</div><div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div><div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div></footer>
+  <details class="panel"><summary>Sources and notes</summary><div class="in notes"><ul><li>Checked 17 Nov 2026</li><li><a href="https://www.navercorp.com/media/pressReleasesDetail?seq=10034359" rel="noopener" target="_blank">NAVER: passport verification for visitors</a></li><li><a href="https://apps.apple.com/us/app/catch-table/id1639046576" rel="noopener" target="_blank">CatchTable Global on the App Store</a></li></ul></div></details>
+  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="tmoney-subway-bus.html">Subway &amp; bus</a><a href="ktx-train-booking.html">KTX trains</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translation</a></nav>
+  <details class="about"><summary>About this guide</summary><div class="in">
+<p>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</p><p>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</p><p><a href="changes.html">What changed</a> · Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

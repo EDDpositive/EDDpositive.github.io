@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="manifest" href="../manifest.webmanifest"><link rel="apple-touch-icon" href="../icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
@@ -205,8 +222,9 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="言語"><a href="../" hreflang="en">English</a><a href="../ja/" hreflang="ja" aria-current="page">日本語</a><a href="../zh-tw/" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>韓国のアプリはハードモード? イージーモードに切り替えよう。</h1><p class="lede">韓国のアプリの多くは韓国の電話番号を求めます。状況を一度選ぶだけで、このサイトのすべての回答があなた向けになり、最後に確認した日付もわかります。</p><p class="trust">ソウルで制作。各回答は公式発表と旅行者の報告で確認し、確認日を記録しています。掲載料は受け取っていません。</p>
+  
 </div></header>
+<h1 class="sr">韓国のアプリはハードモード? イージーモードに切り替えよう。</h1>
 <div class="wrap pre">
   <div class="banner" id="lang-suggest" hidden></div>
   <div class="banner" id="install" hidden><span>EasyModeKoreaをホーム画面に追加。データがなくても開けます。</span><button class="btn alt" type="button" id="install-btn">追加</button></div>
@@ -218,8 +236,6 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">変更</button></div></div>
 <div class="wrap" id="main" hidden>
   <section class="stay" id="stay" hidden aria-live="polite"></section>
-  <p class="greet">あなたのスマホ向け、韓国イージーモードです。</p>
-  <div class="score" id="score" aria-live="polite"></div>
   <label class="search"><span class="sr">何が必要ですか?例: タクシー、地下鉄、Wi-Fi</span><input id="q" type="search" placeholder="何が必要ですか?例: タクシー、地下鉄、Wi-Fi" autocomplete="off"></label>
   <p class="hint" id="nores" hidden>見つかりませんでした。別の言葉で探すか、下の一覧から選んでください。</p>
   <main class="rows" id="rows"></main>
@@ -229,8 +245,8 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
     <div class="actions"><button class="btn" type="button" id="copy-btn">チェックリストをコピー</button><span class="copied" id="copied" role="status"></span></div>
   </div></details>
   <details class="panel" id="first-24"><summary>韓国での最初の24時間、この順番で</summary><div class="in timeline"><p class="hint">旅のつまずきは最初の数時間に集中します。空港、タクシー、チェックイン。この順番で進めましょう。</p><ol><li><b>出発前</b>到着前3日以内にe-Arrival Cardをオンラインで提出(e-arrivalcard.go.kr)。自分の国籍にK-ETAが必要か確認(k-eta.go.kr)。</li><li><b>出発前</b>チェックリストのアプリを入れ、自宅のWi-Fiで設定しておく。</li><li><b>着陸したら</b>機内でeSIMのデータをオンにして、入国審査のときから地図やメッセージを使えるようにする。</li><li><b>空港で</b>空港のコンビニでT-moneyカードを買い、現金でチャージ。iPhoneならモバイルT-moneyも使えます。</li><li><b>市内へ</b>空港鉄道(AREX)か空港バスに乗るか、k.ride・Uberでタクシーを呼ぶ。</li><li><b>宿に着いたら</b>宿の住所カードを運転手に見せる。宿からリンクが届いていれば、このページの一番上にあります。</li><li><b>最初の夜</b>Naverをパスポートで認証し、CatchTable Globalを設定して夕食の予約に備える。</li></ol></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">電話・データ</a><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="tmoney-subway-bus.html">地下鉄・バス</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a><a href="changes.html">変更履歴</a></nav>
-  <footer><div>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</div><div>韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</div><div>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</div></footer>
+  <details class="about"><summary>このガイドについて</summary><div class="in">
+<p>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</p><p>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</p><p><a href="changes.html">変更履歴</a> · 韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>
@@ -266,7 +282,7 @@ function openOnb() { document.getElementById("onb").hidden = false; document.get
 function finish() {
   store("wik-setup", P + "|" + DEV); document.body.classList.add("ret");
   document.getElementById("onb").hidden = true; document.getElementById("main").hidden = false; document.getElementById("mybar").hidden = false;
-  document.getElementById("mysetup").textContent = UX.setup_is + ": " + S.prof[P] + " · " + U[DEV];
+  document.getElementById("mysetup").textContent = S.prof[P] + " · " + U[DEV];
   render(); count("setup/" + D.lang + "/" + P + "/" + DEV, "setup");
 }
 document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { P = b.dataset.p; if (P === "arc") { DEV = "ios"; finish(); } else { setStep(2); document.querySelector("#onb2 .opt-big").focus(); } }));
@@ -282,7 +298,7 @@ function render() {
     const row = el("details", { class: "row " + v.s, id: "task-" + t.id, "data-kw": t.kw });
     if (open.has(row.id)) row.open = true;
     const sum = el("summary");
-    const txt = el("span", { class: "txt" }, [el("span", { class: "top" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]), el("span", { class: "sub", text: v.verdict })]);
+    const txt = el("span", { class: "txt" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]);
     sum.append(el("span", { class: "ic", html: t.icon }), txt);
     row.append(sum);
     const body = el("div", { class: "body" });
@@ -291,12 +307,12 @@ function render() {
     const fb = el("p", { class: "fallback" }); fb.append(el("b", { text: U.fails.replace(/[:：]\s*$/, "") }), v.fallback); body.append(fb);
     const act = el("div", { class: "actions" });
     for (const [ko, m] of t.phrases) { const b = el("button", { type: "button", class: "btn alt", text: S.show + ": " + ko }); b.addEventListener("click", () => show(S.show, ko, "", XS.means + ": " + m)); act.append(b); }
-    act.append(el("a", { class: "btn ghost", href: t.slug + ".html", text: S.guide + " →" }));
-    body.append(act);
+    if (act.children.length) body.append(act);
     const det = el("details"); det.append(el("summary", { text: S.details })); const ul = el("ul");
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
     for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
     det.append(ul);
+    const gl = el("p"); gl.append(el("a", { href: t.slug + ".html", text: S.guide + " →" })); det.append(gl);
     const key = "wik-report-" + t.id + "-" + P, rep = el("div", { class: "report" }), thx = el("span", { role: "status" });
     for (const [val, txt2] of [["yes", U.worked], ["no", U.failed]]) {
       const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt2 });
@@ -307,11 +323,10 @@ function render() {
       rep.append(b);
     }
     rep.append(thx);
-    body.append(el("div", { class: "foot" }, [el("span", { text: U.checked + " " + D.checked }), rep, det]));
+    ul.prepend(el("li", { text: U.checked + " " + D.checked })); det.append(rep);
+    body.append(det);
     row.append(body); rows.append(row);
   }
-  const sc = document.getElementById("score"); sc.replaceChildren();
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sc.append(el("span", { class: "pill " + k, text: n[k] + " · " + UX.tone[k] }));
   checklist(); filter();
 }
 function checklist() {
@@ -328,7 +343,7 @@ function checklist() {
   });
   progress(done.length, items.length);
 }
-function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = UX.ready.replace("{d}", d).replace("{n}", n); }
+function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
 function filter() {
   const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
   document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });

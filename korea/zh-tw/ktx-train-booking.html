@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "2026年改制後,外國人怎麼訂KTX車票", "dateModified": "2026-11-17", "inLanguage": "zh-Hant-TW", "url": "https://eddpositive.github.io/korea/zh-tw/ktx-train-booking.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea"}}</script>
@@ -205,16 +222,16 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="語言"><a href="../ktx-train-booking.html" hreflang="en">English</a><a href="../ja/ktx-train-booking.html" hreflang="ja">日本語</a><a href="../zh-tw/ktx-train-booking.html" hreflang="zh-Hant-TW" aria-current="page">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>2026年改制後,外國人怎麼訂KTX車票</h1><p class="lede">2026年韓國的鐵路訂票改了很多:新App、SRT併入KTX、可提前訂票的期間變長。以下是現在的訂票方式。</p>
+  <h1>KTX火車</h1>
 </div></header>
 <div class="wrap">
-  <p class="hint" style="margin-top:16px">確認日 2026年11月17日 · <a href="changes.html">更新紀錄</a></p>
   <div class="actions"><a class="btn" href="./#task-ktx">用自己的狀況確認</a><button class="btn alt" type="button" data-show="이 표 몇 번 타는 곳이에요?" data-lbl="給店員看" data-mean="意思: 這張票在第幾月台搭車?">給店員看: 이 표 몇 번 타는 곳이에요?</button></div>
   <main class="cards"><article class="card ok"><div class="actions" style="justify-content:space-between;align-items:center"><h2>可以用</h2><span class="pill ok">可以用</span></div>
 <p class="verdict">在KORAIL英文網站用國外信用卡訂票最可靠。</p><ol class="steps"><li>在KORAIL英文訂票網站用護照資料訂票。</li><li>自2026年10月1日起,可提前兩個月訂票。週末和連假請提早訂。</li></ol><p class="fallback"><b>如果不行</b>線上刷卡失敗時,試試KORAIL+ App、Klook等代售平台,或車站櫃台。</p></article><button class="linkbtn" type="button" id="show-all" hidden>查看其他狀況的答案</button></main>
-  <details class="panel"><summary>資料來源與備註</summary><div class="in notes"><ul><li>KORAIL+ App在2026年8月取代了Korail Talk。</li><li>SRT在2026年9月1日併入KORAIL,所有高鐵列車現在都以KTX名義販售。叫你另外訂SRT的指南已經過時。</li><li><a href="https://www.seoultourism.org/?p=1823" rel="noopener" target="_blank">Seoul tourism: 2026 KTX changes</a></li><li><a href="https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/" rel="noopener" target="_blank">Two-month booking window</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">電話與上網</a><a href="maps.html">地圖</a><a href="taxi.html">計程車</a><a href="tmoney-subway-bus.html">地鐵與公車</a><a href="restaurant-reservations.html">餐廳訂位</a><a href="food-delivery.html">叫外送</a><a href="translation.html">翻譯</a><a href="./#first-24">最初24小時</a></nav>
-  <footer><div>在首爾製作。每個答案都對照官方公告與旅客回報確認,並標示確認日期。我們不收任何App的上架費。</div><div>在韓國經營民宿或旅館嗎?<a href="../hosts.html">把這份指南傳給你的房客</a>(韓文頁面)。</div><div>獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。</div></footer>
+  <details class="panel"><summary>資料來源與備註</summary><div class="in notes"><ul><li>確認日 2026年11月17日</li><li>KORAIL+ App在2026年8月取代了Korail Talk。</li><li>SRT在2026年9月1日併入KORAIL,所有高鐵列車現在都以KTX名義販售。叫你另外訂SRT的指南已經過時。</li><li><a href="https://www.seoultourism.org/?p=1823" rel="noopener" target="_blank">Seoul tourism: 2026 KTX changes</a></li><li><a href="https://blog.namanecard.com/en/ktx-booking-window-two-months-2026/" rel="noopener" target="_blank">Two-month booking window</a></li></ul></div></details>
+  <nav class="topics"><a href="mobile-data-sim.html">電話與上網</a><a href="maps.html">地圖</a><a href="taxi.html">計程車</a><a href="tmoney-subway-bus.html">地鐵與公車</a><a href="restaurant-reservations.html">餐廳訂位</a><a href="food-delivery.html">叫外送</a><a href="translation.html">翻譯</a></nav>
+  <details class="about"><summary>關於這份指南</summary><div class="in">
+<p>確認方式:每個答案都對照官方公告與近期回報確認。「說法不一」代表各來源說法不同,所以我們也列出備用方法。按「成功了」或「沒成功」可以幫助我們更新答案。</p><p>獨立指南,與文中列出的App或公司沒有合作關係。規定常有變動,使用前請在App中確認。</p><p><a href="changes.html">更新紀錄</a> · 在韓國經營民宿或旅館嗎?<a href="../hosts.html">把這份指南傳給你的房客</a>(韓文頁面)。</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>

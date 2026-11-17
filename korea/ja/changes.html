@@ -198,18 +198,34 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="言語"><a href="../changes.html" hreflang="en">English</a><a href="../ja/changes.html" hreflang="ja" aria-current="page">日本語</a><a href="../zh-tw/changes.html" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>2026年の変更点</h1><p class="lede">韓国のアプリはよく変わり、古いガイドは更新されません。私たちが反映した変更を公開しています。</p>
+  <h1>2026年の変更点</h1>
 </div></header>
 <div class="wrap">
   <section class="panel" style="margin-top:18px"><div class="in timeline" style="padding-top:16px"><ol><li><b>2026-10-01</b>KTXの予約が2か月前から可能に。</li><li><b>2026-09-01</b>SRTがKORAILに統合され、高速列車はすべてKTXとして販売。</li><li><b>2026-08</b>KORAIL+アプリがKorail Talkに代わる。</li><li><b>2026-08</b>ソウル市: 韓国の番号がない旅行者も漢江公園でデリバリー注文が可能に。</li><li><b>2026-06-04</b>Naverがパスポート認証を導入し、旅行者もNaver Mapで予約・決済が可能に。</li><li><b>2026-03</b>iPhoneのモバイルT-moneyで一部の海外カードからチャージが可能に。</li><li><b>2026-02-03</b>Baeminが英語・日本語・中国語に対応。</li><li><b>2026-02</b>政府がGoogleの地図データ持ち出しを条件付きで承認。経路案内の改善は未確認。</li></ol></div></section>
   <div class="actions"><a class="btn" href="./">自分の状況で確認する</a></div>
-  <footer><div>ソウルで制作。各回答は公式発表と旅行者の報告で確認し、確認日を記録しています。掲載料は受け取っていません。</div></footer>
 </div>
 </body>
 </html>

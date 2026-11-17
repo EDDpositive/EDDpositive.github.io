@@ -198,6 +198,23 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .ret .hero .lede, .ret .hero .trust, .ret .hero .mode { display: none; }
 .ret .hero h1 { font-size: 22px; margin: 6px 0 0; }
 .pre:not(:has(> :not([hidden]))) { display: none; }
+/* Calm layout: one line per row, details folded away */
+.row summary .txt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+.row summary .name { font: 700 18px var(--body); }
+.row summary { padding: 16px; }
+.row .body { padding: 4px 18px 18px; line-height: 1.6; }
+.row .body .verdict { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+.row .body > details { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.row .body > details > summary { cursor: pointer; padding: 6px 0; }
+.row .body .report { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.rows { display: grid; gap: 10px; }
+.about { margin: 28px 0 40px; font-size: 14px; color: var(--muted); }
+.about summary { cursor: pointer; padding: 8px 0; }
+.about p { line-height: 1.6; }
+.hero { padding-bottom: 14px; }
+.hero h1 { font-size: 26px; margin: 10px 0 0; }
+.row { scroll-margin-top: 64px; }
+.row summary { align-items: center; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
@@ -205,8 +222,9 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <body>
 <header class="hero"><div class="wrap">
   <div class="toprow"><a class="logo" href="./">EasyMode<b>Korea</b></a><nav class="langs" aria-label="Language"><a href="" hreflang="en" aria-current="page">English</a><a href="ja/" hreflang="ja">日本語</a><a href="zh-tw/" hreflang="zh-Hant-TW">繁體中文</a></nav></div>
-  <p class="mode" aria-hidden="true"><s>Hard mode</s><span class="arrow">→</span><span class="easy">Easy mode</span></p><h1>Korea&#x27;s apps on Hard Mode? Switch to Easy Mode.</h1><p class="lede">Most Korean apps ask for a Korean phone number. Pick your setup once, and every answer here shows what works for you, with the date we last checked it.</p><p class="trust">Made in Seoul. Every answer is checked against official notices and traveler reports, and every check is dated. No app pays to be listed.</p>
+  
 </div></header>
+<h1 class="sr">Korea&#x27;s apps on Hard Mode? Switch to Easy Mode.</h1>
 <div class="wrap pre">
   <div class="banner" id="lang-suggest" hidden></div>
   <div class="banner" id="install" hidden><span>Add EasyModeKorea to your home screen. It opens even without data.</span><button class="btn alt" type="button" id="install-btn">Install</button></div>
@@ -218,8 +236,6 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">Change</button></div></div>
 <div class="wrap" id="main" hidden>
   <section class="stay" id="stay" hidden aria-live="polite"></section>
-  <p class="greet">Here&#x27;s Korea in Easy Mode, for your phone.</p>
-  <div class="score" id="score" aria-live="polite"></div>
   <label class="search"><span class="sr">What do you need? Try taxi, subway, Wi-Fi</span><input id="q" type="search" placeholder="What do you need? Try taxi, subway, Wi-Fi" autocomplete="off"></label>
   <p class="hint" id="nores" hidden>Nothing matched. Try another word, or browse the list below.</p>
   <main class="rows" id="rows"></main>
@@ -229,8 +245,8 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
     <div class="actions"><button class="btn" type="button" id="copy-btn">Copy my checklist</button><span class="copied" id="copied" role="status"></span></div>
   </div></details>
   <details class="panel" id="first-24"><summary>Your first 24 hours in Korea, in order</summary><div class="in timeline"><p class="hint">The trip goes wrong in the first few hours: at the airport, in the taxi, at check-in. Do these in order.</p><ol><li><b>Before you fly</b>Submit the e-Arrival Card online in the 3 days before you land (e-arrivalcard.go.kr). Check whether your nationality needs a K-ETA (k-eta.go.kr).</li><li><b>Before you fly</b>Install the apps on your checklist and set them up on home Wi-Fi.</li><li><b>On landing</b>Switch on your eSIM data before you leave the plane, so maps and messages work at immigration.</li><li><b>At the airport</b>Buy a T-money card at an airport convenience store and top it up with cash. On iPhone, Mobile T-money is an option.</li><li><b>Into the city</b>Take the airport railroad (AREX) or an airport bus, or call a taxi with k.ride or Uber.</li><li><b>At your stay</b>Show your host&#x27;s address card to the driver. If your host sent you a link, it&#x27;s at the top of this page.</li><li><b>First evening</b>Verify Naver with your passport and set up CatchTable Global, so dinner bookings work.</li></ol></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">Phone &amp; data</a><a href="maps.html">Maps</a><a href="taxi.html">Taxi</a><a href="tmoney-subway-bus.html">Subway &amp; bus</a><a href="ktx-train-booking.html">KTX trains</a><a href="restaurant-reservations.html">Restaurant booking</a><a href="food-delivery.html">Food delivery</a><a href="translation.html">Translation</a><a href="changes.html">What changed</a></nav>
-  <footer><div>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</div><div>Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</div><div>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</div></footer>
+  <details class="about"><summary>About this guide</summary><div class="in">
+<p>How we check: each answer is checked against official notices and recent reports. &quot;Mixed reports&quot; means sources disagree, so we show a backup route too. Tap &quot;It worked&quot; or &quot;It failed&quot; to help keep answers current.</p><p>Independent guide. Not affiliated with any app or company listed. Rules change often; confirm in the app before you rely on it.</p><p><a href="changes.html">What changed</a> · Run a guesthouse or rental in Korea? <a href="hosts.html">Send this guide to your guests</a> (숙소 사장님용 안내).</p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>
@@ -266,7 +282,7 @@ function openOnb() { document.getElementById("onb").hidden = false; document.get
 function finish() {
   store("wik-setup", P + "|" + DEV); document.body.classList.add("ret");
   document.getElementById("onb").hidden = true; document.getElementById("main").hidden = false; document.getElementById("mybar").hidden = false;
-  document.getElementById("mysetup").textContent = UX.setup_is + ": " + S.prof[P] + " · " + U[DEV];
+  document.getElementById("mysetup").textContent = S.prof[P] + " · " + U[DEV];
   render(); count("setup/" + D.lang + "/" + P + "/" + DEV, "setup");
 }
 document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { P = b.dataset.p; if (P === "arc") { DEV = "ios"; finish(); } else { setStep(2); document.querySelector("#onb2 .opt-big").focus(); } }));
@@ -282,7 +298,7 @@ function render() {
     const row = el("details", { class: "row " + v.s, id: "task-" + t.id, "data-kw": t.kw });
     if (open.has(row.id)) row.open = true;
     const sum = el("summary");
-    const txt = el("span", { class: "txt" }, [el("span", { class: "top" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]), el("span", { class: "sub", text: v.verdict })]);
+    const txt = el("span", { class: "txt" }, [el("span", { class: "name", text: t.short }), el("span", { class: "pill " + v.s, text: UX.tone[v.s] })]);
     sum.append(el("span", { class: "ic", html: t.icon }), txt);
     row.append(sum);
     const body = el("div", { class: "body" });
@@ -291,12 +307,12 @@ function render() {
     const fb = el("p", { class: "fallback" }); fb.append(el("b", { text: U.fails.replace(/[:：]\s*$/, "") }), v.fallback); body.append(fb);
     const act = el("div", { class: "actions" });
     for (const [ko, m] of t.phrases) { const b = el("button", { type: "button", class: "btn alt", text: S.show + ": " + ko }); b.addEventListener("click", () => show(S.show, ko, "", XS.means + ": " + m)); act.append(b); }
-    act.append(el("a", { class: "btn ghost", href: t.slug + ".html", text: S.guide + " →" }));
-    body.append(act);
+    if (act.children.length) body.append(act);
     const det = el("details"); det.append(el("summary", { text: S.details })); const ul = el("ul");
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
     for (const [nm, url] of t.sources) { const li = el("li"); li.append(el("a", { href: url, rel: "noopener", target: "_blank", text: nm })); ul.append(li); }
     det.append(ul);
+    const gl = el("p"); gl.append(el("a", { href: t.slug + ".html", text: S.guide + " →" })); det.append(gl);
     const key = "wik-report-" + t.id + "-" + P, rep = el("div", { class: "report" }), thx = el("span", { role: "status" });
     for (const [val, txt2] of [["yes", U.worked], ["no", U.failed]]) {
       const b = el("button", { type: "button", "aria-pressed": String(store(key) === val), text: txt2 });
@@ -307,11 +323,10 @@ function render() {
       rep.append(b);
     }
     rep.append(thx);
-    body.append(el("div", { class: "foot" }, [el("span", { text: U.checked + " " + D.checked }), rep, det]));
+    ul.prepend(el("li", { text: U.checked + " " + D.checked })); det.append(rep);
+    body.append(det);
     row.append(body); rows.append(row);
   }
-  const sc = document.getElementById("score"); sc.replaceChildren();
-  for (const k of ["ok", "warn", "mixed", "bad"]) if (n[k]) sc.append(el("span", { class: "pill " + k, text: n[k] + " · " + UX.tone[k] }));
   checklist(); filter();
 }
 function checklist() {
@@ -328,7 +343,7 @@ function checklist() {
   });
   progress(done.length, items.length);
 }
-function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = UX.ready.replace("{d}", d).replace("{n}", n); }
+function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
 function filter() {
   const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
   document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });
