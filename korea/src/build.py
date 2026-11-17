@@ -128,19 +128,19 @@ def build_tool(lang):
 <h1 class="sr">{e(x['hook'])}</h1>
 <div class="wrap pre">
   <div class="banner" id="lang-suggest" hidden></div>
+  <section class="stay" id="stay" hidden aria-live="polite"></section>
   <div class="banner" id="install" hidden><span>{e(ux['install'])}</span><button class="btn alt" type="button" id="install-btn">{e(ux['install_btn'])}</button></div>
   <section class="onb" id="onb" aria-live="polite">
-    <div id="onb1"><h2>{e(ux['q1'])}</h2><div class="opts-big">{q1}</div></div>
+    <div id="onb1"><h2>{e(ux['q1'])}</h2><p class="why">{e(ux['why'])}</p><div class="opts-big">{q1}</div></div>
     <div id="onb2" hidden><h2>{e(ux['q2'])}</h2><div class="opts-big two">{q2}</div><button type="button" class="linkbtn" id="onb-back">← {e(ux['back'])}</button></div>
   </section>
 </div>
 <div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">{e(ux['change'])}</button></div></div>
 <div class="wrap" id="main" hidden>
-  <section class="stay" id="stay" hidden aria-live="polite"></section>
   <label class="search"><span class="sr">{e(ux['search'])}</span><input id="q" type="search" placeholder="{e(ux['search'])}" autocomplete="off"></label>
-  <p class="hint" id="nores" hidden>{e(ux['nores'])}</p>
+  <p class="hint" id="nores" hidden>{e(ux['nores'])} <button type="button" class="linkbtn" id="clear">{e(ux['clear'])}</button></p>
   <main class="rows" id="rows"></main>
-  <details class="panel" open id="cl"><summary>{e(U['cl_title'])}</summary><div class="in">
+  <details class="panel" id="cl"><summary>{e(U['cl_title'])} <span class="count" id="pcount"></span></summary><div class="in">
     <div class="progress"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
     <ul class="checks" id="checklist"></ul>
     <div class="actions"><button class="btn" type="button" id="copy-btn">{e(U['copy'])}</button><span class="copied" id="copied" role="status"></span></div>
@@ -194,7 +194,7 @@ function render() {
     body.append(el("ol", { class: "steps" }, v.route.map(r => el("li", { text: r }))));
     const fb = el("p", { class: "fallback" }); fb.append(el("b", { text: U.fails.replace(/[:：]\s*$/, "") }), v.fallback); body.append(fb);
     const act = el("div", { class: "actions" });
-    for (const [ko, m] of t.phrases) { const b = el("button", { type: "button", class: "btn alt", text: S.show + ": " + ko }); b.addEventListener("click", () => show(S.show, ko, "", XS.means + ": " + m)); act.append(b); }
+    for (const [ko, m] of t.phrases) { const b = el("button", { type: "button", class: "btn alt", text: "🗣 " + m }); b.addEventListener("click", () => show(S.show, ko, "", XS.means + ": " + m)); act.append(b); }
     if (act.children.length) body.append(act);
     const det = el("details"); det.append(el("summary", { text: S.details })); const ul = el("ul");
     for (const x of (t.notes || [])) ul.append(el("li", { text: x }));
@@ -231,7 +231,7 @@ function checklist() {
   });
   progress(done.length, items.length);
 }
-function progress(d, n) { document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
+function progress(d, n) { document.getElementById("pcount").textContent = d + "/" + n; document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
 function filter() {
   const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
   document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });
@@ -239,6 +239,7 @@ function filter() {
   if (q && shown === 1) { const r = [...document.querySelectorAll(".row")].find(x => !x.hidden); r.open = true; }
 }
 document.getElementById("q").addEventListener("input", filter);
+document.getElementById("clear").addEventListener("click", () => { const q = document.getElementById("q"); q.value = ""; filter(); q.focus(); });
 document.getElementById("copy-btn").addEventListener("click", async () => {
   const txt = U.cl_head + "\n" + [...document.querySelectorAll("#checklist label")].map(l => "- " + l.textContent).join("\n") + "\n" + location.origin + location.pathname;
   try { await navigator.clipboard.writeText(txt); document.getElementById("copied").textContent = "✓"; } catch (e) {}
@@ -321,7 +322,7 @@ def build_topic(lang, t):
             attrs = (f' data-p="{p}"' if p else "") + (f' data-d="{dv}"' if dv else "")
             blocks.append(f"""<article class="card {v['s']}"{attrs}><div class="actions" style="justify-content:space-between;align-items:center"><h2>{e(heading)}</h2><span class="pill {v['s']}">{e(U['labels'][v['s']])}</span></div>
 <p class="verdict">{e(v['verdict'])}</p><ol class="steps">{route}</ol><p class="fallback"><b>{e(fail_lbl)}</b>{e(v['fallback'])}</p></article>""")
-    phrases = "".join(f'<button class="btn alt" type="button" data-show="{e(ko)}" data-lbl="{e(S["show"])}" data-mean="{e(x["means"])}: {e(m)}">{e(S["show"])}: {e(ko)}</button>' for ko, m in t["phrases"])
+    phrases = "".join(f'<button class="btn alt" type="button" data-show="{e(ko)}" data-lbl="{e(S["show"])}" data-mean="{e(x["means"])}: {e(m)}">🗣 {e(m)}</button>' for ko, m in t["phrases"])
     notes = "".join(f"<li>{e(n)}</li>" for n in t.get("notes", []))
     srcs = "".join(f'<li><a href="{e(u)}" rel="noopener" target="_blank">{e(n)}</a></li>' for n, u in t["sources"])
     others = "".join(f'<a href="{o["slug"]}.html">{e(o["short"])}</a>' for o in task_list(lang) if o["id"] != t["id"])

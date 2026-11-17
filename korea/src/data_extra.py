@@ -172,7 +172,7 @@ UX = {
         "greet": "Here's Korea in Easy Mode, for your phone.",
         "setup_is": "Your setup", "change": "Change",
         "tone": {"ok": "Good to go", "warn": "One extra step", "mixed": "Reports differ", "bad": "Blocked"},
-        "search": "What do you need? Try taxi, subway, Wi-Fi", "nores": "Nothing matched. Try another word, or browse the list below.",
+        "search": "Search: taxi, subway, Wi-Fi", "nores": "Nothing matched. Try another word.",
         "ready": "{d} of {n} done before you fly",
         "suggest": "This page is also in {l}.", "switch": "Switch", "dismiss": "No thanks",
         "install": "Add EasyModeKorea to your home screen. It opens even without data.", "install_btn": "Install",
@@ -185,7 +185,7 @@ UX = {
         "greet": "あなたのスマホ向け、韓国イージーモードです。",
         "setup_is": "あなたの状況", "change": "変更",
         "tone": {"ok": "そのまま使える", "warn": "ひと手間あり", "mixed": "情報が割れている", "bad": "使えない"},
-        "search": "何が必要ですか?例: タクシー、地下鉄、Wi-Fi", "nores": "見つかりませんでした。別の言葉で探すか、下の一覧から選んでください。",
+        "search": "検索: タクシー、地下鉄、Wi-Fi", "nores": "見つかりませんでした。別の言葉で試してください。",
         "ready": "出発前の準備 {d}/{n} 完了",
         "suggest": "このページは{l}でも読めます。", "switch": "切り替える", "dismiss": "このままでいい",
         "install": "EasyModeKoreaをホーム画面に追加。データがなくても開けます。", "install_btn": "追加",
@@ -198,7 +198,7 @@ UX = {
         "greet": "這是為你的手機準備的韓國簡單模式。",
         "setup_is": "你的狀況", "change": "更改",
         "tone": {"ok": "直接能用", "warn": "多一個步驟", "mixed": "說法不一", "bad": "無法使用"},
-        "search": "需要什麼?例如:計程車、地鐵、Wi-Fi", "nores": "找不到。換個詞試試,或從下面清單選。",
+        "search": "搜尋:計程車、地鐵、Wi-Fi", "nores": "找不到。換個詞試試。",
         "ready": "出發前準備完成 {d}/{n}",
         "suggest": "這個頁面也有{l}版。", "switch": "切換", "dismiss": "不用了",
         "install": "把EasyModeKorea加到主畫面,沒有網路也能開。", "install_btn": "加入",
@@ -220,3 +220,6 @@ KEYWORDS = {
 
 for _l, _t in {"en": "About this guide", "ja": "このガイドについて", "zh-tw": "關於這份指南"}.items():
     X[_l]["about"] = _t
+
+for _l, _t in {"en": ("We'll show which Korean apps work for you.", "Clear"), "ja": ("あなたに使える韓国アプリを表示します。", "クリア"), "zh-tw": ("我們會告訴你哪些韓國App能用。", "清除")}.items():
+    UX[_l]["why"], UX[_l]["clear"] = _t
