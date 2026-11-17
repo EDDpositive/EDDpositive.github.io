@@ -6,6 +6,7 @@ Answers depend on the visitor's setup: no Korean number, a Korean prepaid SIM (0
 
 ## Guides
 - [Do I need a Korean phone number?](mobile-data-sim.html)
+- [Incheon Airport to Seoul](incheon-airport-to-seoul.html)
 - [Does Google Maps work in Korea?](maps.html)
 - [Taxi without a Korean number](taxi.html)
 - [T-money top-up with a foreign card](tmoney-subway-bus.html)

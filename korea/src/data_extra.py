@@ -135,20 +135,21 @@ PHRASES = {
     "ktx": [["이 표 몇 번 타는 곳이에요?", {"en": "Which platform is this ticket for?", "ja": "この切符は何番乗り場ですか?", "zh-tw": "這張票在第幾月台搭車?"}]],
     "food-booking": [["한국 번호가 없는데 대기 명단에 올려 주실 수 있나요?", {"en": "I don't have a Korean number. Could you add me to the waitlist?", "ja": "韓国の番号がないのですが、順番待ちに入れてもらえますか?", "zh-tw": "我沒有韓國號碼,可以幫我登記候位嗎?"}]],
     "delivery": [["배달 주문 좀 도와주실 수 있나요?", {"en": "Could you help me order delivery? (for your host or front desk)", "ja": "デリバリーの注文を手伝ってもらえますか?(宿やフロントに)", "zh-tw": "可以幫我叫外送嗎?(請房東或櫃台幫忙)"}]],
+    "airport": [["공항철도 타는 곳이 어디예요?", {"en": "Where do I catch the airport train (AREX)?", "ja": "空港鉄道の乗り場はどこですか?", "zh-tw": "機場鐵路在哪裡搭?"}]],
     "translate": [["영어 메뉴 있어요?", {"en": "Do you have an English menu?", "ja": "英語のメニューはありますか?", "zh-tw": "有英文菜單嗎?"}]],
 }
 
 # Short tile labels, short setup labels and section labels for the compact layout.
 SHORT = {
-    "en": {"tasks": {"data": "Phone & data", "maps": "Maps", "taxi": "Taxi", "transit": "Subway & bus", "ktx": "KTX trains", "food-booking": "Restaurant booking", "delivery": "Food delivery", "translate": "Translation"},
+    "en": {"tasks": {"data": "Phone & data", "airport": "Airport to city", "maps": "Maps", "taxi": "Taxi", "transit": "Subway & bus", "ktx": "KTX trains", "food-booking": "Restaurant booking", "delivery": "Food delivery", "translate": "Translation"},
            "prof": {"visitor": "No Korean number", "krsim": "Korean SIM (010)", "arc": "Resident (ARC)"},
            "show": "Show staff", "show_driver": "Show driver", "close": "Close", "guide": "Full guide",
            "tap": "Tap any row to see how", "before": "Before you fly", "details": "Sources and notes", "setup_q": "Your setup"},
-    "ja": {"tasks": {"data": "電話・データ", "maps": "地図", "taxi": "タクシー", "transit": "地下鉄・バス", "ktx": "KTX", "food-booking": "飲食店の予約", "delivery": "デリバリー", "translate": "翻訳"},
+    "ja": {"tasks": {"data": "電話・データ", "airport": "空港から市内", "maps": "地図", "taxi": "タクシー", "transit": "地下鉄・バス", "ktx": "KTX", "food-booking": "飲食店の予約", "delivery": "デリバリー", "translate": "翻訳"},
            "prof": {"visitor": "韓国の番号なし", "krsim": "韓国SIM(010)", "arc": "在住(登録証あり)"},
            "show": "スタッフに見せる", "show_driver": "運転手に見せる", "close": "閉じる", "guide": "詳しいガイド",
            "tap": "項目をタップすると方法が出ます", "before": "出発前", "details": "出典とメモ", "setup_q": "あなたの状況"},
-    "zh-tw": {"tasks": {"data": "電話與上網", "maps": "地圖", "taxi": "計程車", "transit": "地鐵與公車", "ktx": "KTX火車", "food-booking": "餐廳訂位", "delivery": "叫外送", "translate": "翻譯"},
+    "zh-tw": {"tasks": {"data": "電話與上網", "airport": "機場到市區", "maps": "地圖", "taxi": "計程車", "transit": "地鐵與公車", "ktx": "KTX火車", "food-booking": "餐廳訂位", "delivery": "叫外送", "translate": "翻譯"},
               "prof": {"visitor": "沒有韓國號碼", "krsim": "韓國SIM(010)", "arc": "居民(有登錄證)"},
               "show": "給店員看", "show_driver": "給司機看", "close": "關閉", "guide": "完整指南",
               "tap": "點一下就能看做法", "before": "出發前", "details": "資料來源與備註", "setup_q": "你的狀況"},
@@ -163,6 +164,7 @@ ICONS = {
     "ktx": '<path d="M5 15V9a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M5 11h14"/><path d="M8 21l2-4M16 21l-2-4"/>',
     "food-booking": '<path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v6M7 3v6"/><path d="M17 21V3c-2 1.5-3 4-3 7v3h3"/>',
     "delivery": '<path d="M4 7h12v10H4z"/><path d="M16 10h3l2 3v4h-5"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/>',
+    "airport": '<path d="M2.5 19h19"/><path d="M3 13.5l3.5 1 3-1.5-5-6 2-.8 7.5 4.6 4.6-2.3a1.8 1.8 0 0 1 1.6 3.2L8 18"/>',
     "translate": '<path d="M3 5h9M7.5 3v2M5 5c.8 3 2.8 5.3 6 6.5M10 5c-.8 3-2.8 5.3-6 6.5"/><path d="M13 21l4-9 4 9M14.5 18h5"/>',
 }
 
@@ -218,6 +220,7 @@ KEYWORDS = {
     "ktx": "ktx train korail srt rail busan station 鉄道 電車 列車 火車 高鐵 釜山",
     "food-booking": "restaurant reservation booking waitlist catchtable naver queue レストラン 予約 順番待ち 餐廳 訂位 候位",
     "delivery": "delivery food baemin coupang eats shuttle order chicken デリバリー 出前 外送 外賣",
+    "airport": "airport incheon icn gimpo arex train bus limousine seoul station arrival 空港 仁川 リムジン 機場 仁川 巴士 機場巴士",
     "translate": "translate translation papago menu sign korean language 翻訳 メニュー 翻譯 菜單",
 }
 
@@ -315,13 +318,34 @@ PLAN = {
 # The question people actually type, per task. Shown as the topic page's
 # first heading and sent as FAQPage data so search and AI answers can quote it.
 QUESTION = {
-    "en": {"data": "Do I need a Korean phone number in Korea?", "maps": "Does Google Maps work in Korea?", "taxi": "Can I call a taxi in Korea without a Korean number?",
+    "en": {"data": "Do I need a Korean phone number in Korea?", "airport": "How do I get from Incheon Airport to Seoul?", "maps": "Does Google Maps work in Korea?", "taxi": "Can I call a taxi in Korea without a Korean number?",
            "transit": "Can I top up T-money with a foreign card?", "ktx": "How do I book a KTX train as a foreigner?", "food-booking": "Can I book restaurants in Korea without a Korean number?",
            "delivery": "Can I order food delivery in Korea as a tourist?", "translate": "What is the best translation app for Korea?"},
-    "ja": {"data": "韓国で韓国の電話番号は必要?", "maps": "韓国でGoogleマップは使える?", "taxi": "韓国の番号なしでタクシーを呼べる?",
+    "ja": {"data": "韓国で韓国の電話番号は必要?", "airport": "仁川空港からソウル市内への行き方は?", "maps": "韓国でGoogleマップは使える?", "taxi": "韓国の番号なしでタクシーを呼べる?",
            "transit": "T-moneyに海外カードでチャージできる?", "ktx": "外国人がKTXを予約するには?", "food-booking": "韓国の番号なしでレストランを予約できる?",
            "delivery": "旅行者でも韓国でデリバリーを頼める?", "translate": "韓国旅行におすすめの翻訳アプリは?"},
-    "zh-tw": {"data": "在韓國需要韓國電話號碼嗎?", "maps": "Google地圖在韓國能用嗎?", "taxi": "沒有韓國號碼能在韓國叫計程車嗎?",
+    "zh-tw": {"data": "在韓國需要韓國電話號碼嗎?", "airport": "仁川機場怎麼到首爾市區?", "maps": "Google地圖在韓國能用嗎?", "taxi": "沒有韓國號碼能在韓國叫計程車嗎?",
               "transit": "T-money可以用國外信用卡儲值嗎?", "ktx": "外國人怎麼訂KTX?", "food-booking": "沒有韓國號碼能在韓國訂餐廳嗎?",
               "delivery": "觀光客能在韓國叫外送嗎?", "translate": "去韓國用哪個翻譯App最好?"},
 }
+
+
+# Help: emergency numbers and survival phrases. Numbers checked against Korea
+# Tourism Organization and city sites (1330 is 24h in EN/JA/ZH).
+HELP = {
+    "en": {"btn": "Help", "title": "Help", "calls": "Call", "phrases": "Show someone",
+           "nums": [["112", "Police"], ["119", "Fire and ambulance"], ["1330", "Travel helpline, 24h in English. From a foreign SIM: +82-2-1330"]]},
+    "ja": {"btn": "ヘルプ", "title": "ヘルプ", "calls": "電話する", "phrases": "見せて伝える",
+           "nums": [["112", "警察"], ["119", "消防・救急"], ["1330", "観光案内ダイヤル(日本語24時間)。海外のSIMからは +82-2-1330"]]},
+    "zh-tw": {"btn": "求助", "title": "求助", "calls": "打電話", "phrases": "給對方看",
+              "nums": [["112", "警察"], ["119", "消防與救護車"], ["1330", "觀光諮詢熱線(中文24小時)。用國外SIM請撥 +82-2-1330"]]},
+}
+HELP_PHRASES = [
+    ["도와주세요.", {"en": "Please help me.", "ja": "助けてください。", "zh-tw": "請幫幫我。"}],
+    ["병원에 가야 해요.", {"en": "I need to go to a hospital.", "ja": "病院に行かなければなりません。", "zh-tw": "我需要去醫院。"}],
+    ["가까운 약국이 어디예요?", {"en": "Where is the nearest pharmacy?", "ja": "近くの薬局はどこですか?", "zh-tw": "最近的藥局在哪裡?"}],
+    ["화장실이 어디예요?", {"en": "Where is the restroom?", "ja": "トイレはどこですか?", "zh-tw": "洗手間在哪裡?"}],
+    ["견과류 알레르기가 있어요.", {"en": "I'm allergic to nuts.", "ja": "ナッツアレルギーがあります。", "zh-tw": "我對堅果過敏。"}],
+    ["매운 음식을 못 먹어요.", {"en": "I can't eat spicy food.", "ja": "辛い料理が食べられません。", "zh-tw": "我不能吃辣。"}],
+    ["길을 잃었어요.", {"en": "I'm lost.", "ja": "道に迷いました。", "zh-tw": "我迷路了。"}],
+]

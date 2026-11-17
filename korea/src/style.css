@@ -206,3 +206,15 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .stay { margin-top: 16px; }
 .checks .stage { display: block; font: 700 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 14px 0 2px; }
 .hero + .wrap { padding-top: 16px; }
+.bar-btns { display: flex; gap: 6px; flex: none; }
+.sheet { position: fixed; inset: 0; z-index: 40; background: rgba(8,12,30,.45); display: flex; align-items: flex-end; justify-content: center; }
+.sheet-in { background: var(--surface); color: var(--ink); width: 100%; max-width: 560px; max-height: 88vh; overflow: auto; border-radius: 22px 22px 0 0; padding: 18px 16px 28px; }
+.sheet-top { display: flex; align-items: center; justify-content: space-between; }
+.sheet-top h2 { margin: 0; font-size: 22px; }
+.sub-h { font: 700 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 18px 0 8px; }
+.calls { display: grid; gap: 8px; }
+.call { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); }
+.call b { font: 800 24px var(--display); color: var(--brand); min-width: 64px; }
+.call span { font-size: 15px; line-height: 1.4; }
+.show { z-index: 50; }
+.toast { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 10px 16px; border-radius: 99px; font-size: 14px; z-index: 30; max-width: 92vw; }

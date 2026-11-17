@@ -220,6 +220,18 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 .stay { margin-top: 16px; }
 .checks .stage { display: block; font: 700 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 14px 0 2px; }
 .hero + .wrap { padding-top: 16px; }
+.bar-btns { display: flex; gap: 6px; flex: none; }
+.sheet { position: fixed; inset: 0; z-index: 40; background: rgba(8,12,30,.45); display: flex; align-items: flex-end; justify-content: center; }
+.sheet-in { background: var(--surface); color: var(--ink); width: 100%; max-width: 560px; max-height: 88vh; overflow: auto; border-radius: 22px 22px 0 0; padding: 18px 16px 28px; }
+.sheet-top { display: flex; align-items: center; justify-content: space-between; }
+.sheet-top h2 { margin: 0; font-size: 22px; }
+.sub-h { font: 700 13px var(--body); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 18px 0 8px; }
+.calls { display: grid; gap: 8px; }
+.call { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); }
+.call b { font: 800 24px var(--display); color: var(--brand); min-width: 64px; }
+.call span { font-size: 15px; line-height: 1.4; }
+.show { z-index: 50; }
+.toast { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); background: var(--ink); color: var(--surface); padding: 10px 16px; border-radius: 99px; font-size: 14px; z-index: 30; max-width: 92vw; }
 </style>
 <script data-goatcounter="https://eddpositive.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "海外カードでT-money: 韓国の地下鉄・バスの払い方(2026)", "dateModified": "2026-11-17", "inLanguage": "ja", "url": "https://eddpositive.github.io/korea/ja/tmoney-subway-bus.html", "publisher": {"@type": "Organization", "name": "EasyModeKorea", "url": "https://eddpositive.github.io/korea/"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "T-moneyに海外カードでチャージできる?", "acceptedAnswer": {"@type": "Answer", "text": "iPhoneでは、モバイルT-moneyで一部の海外カードからチャージできるようになりました。すべてのカードブランドには対応していません。 モバイルT-moneyを入れて交通カードを追加する。 自分のカードでチャージを試す。対応していなければ下の予備の方法を使う。"}}]}]</script>
@@ -238,10 +250,10 @@ footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; margin-t
 <p class="verdict">前回の確認時点では、AndroidのT-moneyアプリで海外カードからのチャージはできませんでした。</p><ol class="steps"><li>コンビニでT-moneyカードを買う。</li><li>レジや駅の機械で現金チャージする。</li></ol><p class="fallback"><b>うまくいかない場合</b>T-moneyによると、別アプリの「Mobile Korea Tour Card」は海外カードに対応しています。</p></article><article class="card ok" data-p="arc"><div class="actions" style="justify-content:space-between;align-items:center"><h2>自分名義の韓国の番号(外国人登録証あり)の場合</h2><span class="pill ok">そのまま使える</span></div>
 <p class="verdict">韓国のカードがあれば、モバイルでもカードでもT-moneyは普通に使えます。</p><ol class="steps"><li>ウォレットアプリにT-moneyを追加するか、交通機能つきの韓国のカードを使う。</li></ol><p class="fallback"><b>うまくいかない場合</b>カードのT-moneyに現金チャージする方法はいつでも使えます。</p></article><button class="linkbtn" type="button" id="show-all" hidden>ほかの状況の回答を見る</button></main>
   <details class="panel"><summary>出典とメモ</summary><div class="in notes"><ul><li>確認日 2026年11月17日</li><li>ソウル市は2026年3月、Apple Pay内で海外カードからチャージできるようにする件はまだ協議中だと説明しました。</li><li><a href="https://biz.sbs.co.kr/amp/article/20000298518" rel="noopener" target="_blank">SBS Biz: foreign-card top-up for T-money (Mar 2026)</a></li><li><a href="https://mediahub.seoul.go.kr/archives/2017356" rel="noopener" target="_blank">Seoul city clarification (Mar 2026)</a></li></ul></div></details>
-  <nav class="topics"><a href="mobile-data-sim.html">電話・データ</a><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a></nav>
+  <nav class="topics"><a href="mobile-data-sim.html">電話・データ</a><a href="incheon-airport-to-seoul.html">空港から市内</a><a href="maps.html">地図</a><a href="taxi.html">タクシー</a><a href="ktx-train-booking.html">KTX</a><a href="restaurant-reservations.html">飲食店の予約</a><a href="food-delivery.html">デリバリー</a><a href="translation.html">翻訳</a></nav>
   <details class="about"><summary>このガイドについて</summary><div class="in">
 <p>確認方法: 各回答は公式発表と最近の報告で確認しています。「情報が割れている」は出典ごとに内容が違うという意味で、予備の方法も載せています。「使えた」「使えなかった」を押すと、回答の更新に役立ちます。</p><p>独立したガイドです。掲載しているアプリや企業とは提携していません。ルールはよく変わるので、使う前にアプリで確認してください。</p><p><a href="changes.html">変更履歴</a> · 韓国で宿を運営していますか? <a href="../hosts.html">このガイドをゲストに送る</a>(韓国語)。</p>
-<p><a href="mobile-data-sim.html">韓国で韓国の電話番号は必要?</a> · <a href="maps.html">韓国でGoogleマップは使える?</a> · <a href="taxi.html">韓国の番号なしでタクシーを呼べる?</a> · <a href="tmoney-subway-bus.html">T-moneyに海外カードでチャージできる?</a> · <a href="ktx-train-booking.html">外国人がKTXを予約するには?</a> · <a href="restaurant-reservations.html">韓国の番号なしでレストランを予約できる?</a> · <a href="food-delivery.html">旅行者でも韓国でデリバリーを頼める?</a> · <a href="translation.html">韓国旅行におすすめの翻訳アプリは?</a></p></div></details>
+<p><a href="mobile-data-sim.html">韓国で韓国の電話番号は必要?</a> · <a href="incheon-airport-to-seoul.html">仁川空港からソウル市内への行き方は?</a> · <a href="maps.html">韓国でGoogleマップは使える?</a> · <a href="taxi.html">韓国の番号なしでタクシーを呼べる?</a> · <a href="tmoney-subway-bus.html">T-moneyに海外カードでチャージできる?</a> · <a href="ktx-train-booking.html">外国人がKTXを予約するには?</a> · <a href="restaurant-reservations.html">韓国の番号なしでレストランを予約できる?</a> · <a href="food-delivery.html">旅行者でも韓国でデリバリーを頼める?</a> · <a href="translation.html">韓国旅行におすすめの翻訳アプリは?</a></p></div></details>
 </div>
 <div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-lbl">
   <div class="lbl" id="show-lbl"></div><div class="ko" lang="ko" id="show-ko"></div>
@@ -260,9 +272,11 @@ function show(label, ko, big, mean) {
   if (big) k.append(el("small", { text: big }));
   document.getElementById("show-mean").textContent = mean || "";
   document.getElementById("show").hidden = false; document.getElementById("show-close").focus();
+  try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(l => { wake = l; }).catch(() => {}); } catch (e) {}
   count("show-card", label);
 }
-function hideShow() { document.getElementById("show").hidden = true; if (lastFocus) lastFocus.focus(); }
+let wake = null;
+function hideShow() { document.getElementById("show").hidden = true; try { if (wake) wake.release(); } catch (e) {} wake = null; if (lastFocus) lastFocus.focus(); }
 document.getElementById("show-close").addEventListener("click", hideShow);
 document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !document.getElementById("show").hidden) hideShow(); });
 

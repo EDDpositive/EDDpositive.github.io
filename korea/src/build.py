@@ -8,7 +8,7 @@ import html, json, os, sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from data import CHECKED, CHECKED_ISO, LANGS, SOURCES, TASK_META  # noqa: E402
-from data_extra import BRAND, ICONS, KEYWORDS, PHRASES, PLAN, QUESTION, SHORT, UX, X  # noqa: E402
+from data_extra import BRAND, HELP, HELP_PHRASES, ICONS, KEYWORDS, PHRASES, PLAN, QUESTION, SHORT, UX, X  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 SITE = "https://eddpositive.github.io/korea/"
@@ -103,12 +103,25 @@ function show(label, ko, big, mean) {
   if (big) k.append(el("small", { text: big }));
   document.getElementById("show-mean").textContent = mean || "";
   document.getElementById("show").hidden = false; document.getElementById("show-close").focus();
+  try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(l => { wake = l; }).catch(() => {}); } catch (e) {}
   count("show-card", label);
 }
-function hideShow() { document.getElementById("show").hidden = true; if (lastFocus) lastFocus.focus(); }
+let wake = null;
+function hideShow() { document.getElementById("show").hidden = true; try { if (wake) wake.release(); } catch (e) {} wake = null; if (lastFocus) lastFocus.focus(); }
 document.getElementById("show-close").addEventListener("click", hideShow);
 document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !document.getElementById("show").hidden) hideShow(); });
 """
+
+
+def help_html(lang):
+    h = HELP[lang]
+    nums = "".join(f'<a class="call" href="tel:{'+82-2-1330' if n == '1330' else n}"><b>{n}</b><span>{e(d)}</span></a>' for n, d in h["nums"])
+    ph = "".join(f'<button type="button" class="btn alt" data-ko="{e(ko)}" data-mean="{e(m[lang])}">🗣 {e(m[lang])}</button>' for ko, m in HELP_PHRASES)
+    return f"""<div class="sheet" id="help" hidden role="dialog" aria-modal="true" aria-labelledby="help-t"><div class="sheet-in">
+  <div class="sheet-top"><h2 id="help-t">{e(h['title'])}</h2><button type="button" class="btn ghost small" id="help-close">{e(SHORT[lang]['close'])}</button></div>
+  <p class="sub-h">{e(h['calls'])}</p><div class="calls">{nums}</div>
+  <p class="sub-h">{e(h['phrases'])}</p><div class="actions">{ph}</div>
+</div></div>"""
 
 
 def build_tool(lang):
@@ -135,7 +148,7 @@ def build_tool(lang):
     <div id="onb2" hidden><h2>{e(ux['q2'])}</h2><div class="opts-big two">{q2}</div><button type="button" class="linkbtn" id="onb-back">← {e(ux['back'])}</button></div>
   </section>
 </div>
-<div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><button type="button" class="btn ghost small" id="change">{e(ux['change'])}</button></div></div>
+<div class="mybar" id="mybar" hidden><div class="wrap"><span id="mysetup"></span><span class="bar-btns"><button type="button" class="btn ghost small" id="help-btn">{e(HELP[lang]['btn'])}</button><button type="button" class="btn ghost small" id="change">{e(ux['change'])}</button></span></div></div>
 <div class="wrap" id="main" hidden>
   <label class="search"><span class="sr">{e(ux['search'])}</span><input id="q" type="search" placeholder="{e(ux['search'])}" autocomplete="off"></label>
   <p class="hint" id="nores" hidden>{e(ux['nores'])} <button type="button" class="linkbtn" id="clear">{e(ux['clear'])}</button></p>
@@ -147,7 +160,9 @@ def build_tool(lang):
   </div></details>
   {about(lang, up)}
 </div>
+{help_html(lang)}
 {SHOW_HTML(lang)}
+<div class="toast" id="offline" hidden role="status">{e(ux['offline'])}</div>
 <script>
 const D = {json.dumps(data, ensure_ascii=False)};
 {COMMON_JS}
@@ -171,9 +186,26 @@ function finish() {
   document.getElementById("onb").hidden = true; document.getElementById("main").hidden = false; document.getElementById("mybar").hidden = false;
   document.getElementById("mysetup").textContent = S.prof[P] + " · " + U[DEV];
   render(); count("setup/" + D.lang + "/" + P + "/" + DEV, "setup");
+  if (fromOnb) window.scrollTo(0, 0);
 }
+let fromOnb = false;
 document.querySelectorAll("[data-p]").forEach(b => b.addEventListener("click", () => { P = b.dataset.p; if (P === "arc") { DEV = "ios"; finish(); } else { setStep(2); document.querySelector("#onb2 .opt-big").focus(); } }));
-document.querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => { DEV = b.dataset.d; finish(); }));
+document.querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => { DEV = b.dataset.d; fromOnb = true; finish(); }));
+document.querySelectorAll("#onb [data-p]").forEach(b => b.addEventListener("click", () => { fromOnb = true; }));
+/* One answer open at a time keeps the list short on a phone. */
+document.getElementById("rows").addEventListener("toggle", ev => {
+  const r = ev.target; if (!r.classList || !r.classList.contains("row") || !r.open) return;
+  document.querySelectorAll(".row[open]").forEach(o => { if (o !== r) o.open = false; });
+  count("open/" + r.id, "open answer");
+}, true);
+const helpEl = document.getElementById("help");
+document.getElementById("help-btn").addEventListener("click", () => { helpEl.hidden = false; document.getElementById("help-close").focus(); count("help", "help"); });
+document.getElementById("help-close").addEventListener("click", () => { helpEl.hidden = true; document.getElementById("help-btn").focus(); });
+helpEl.addEventListener("click", ev => { if (ev.target === helpEl) helpEl.hidden = true; });
+helpEl.querySelectorAll("[data-ko]").forEach(b => b.addEventListener("click", () => show(S.show, b.dataset.ko, "", XS.means + ": " + b.dataset.mean)));
+document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !helpEl.hidden && document.getElementById("show").hidden) helpEl.hidden = true; });
+const off = () => { document.getElementById("offline").hidden = navigator.onLine; };
+window.addEventListener("online", off); window.addEventListener("offline", off); off();
 document.getElementById("onb-back").addEventListener("click", () => setStep(1));
 document.getElementById("change").addEventListener("click", openOnb);
 function render() {
