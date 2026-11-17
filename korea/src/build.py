@@ -8,7 +8,7 @@ import html, json, os, sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from data import CHECKED, CHECKED_ISO, LANGS, SOURCES, TASK_META  # noqa: E402
-from data_extra import BRAND, ICONS, KEYWORDS, PHRASES, SHORT, UX, X  # noqa: E402
+from data_extra import BRAND, ICONS, KEYWORDS, PHRASES, PLAN, SHORT, UX, X  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 SITE = "https://eddpositive.github.io/korea/"
@@ -118,11 +118,10 @@ def build_tool(lang):
     keys = ("staff", "means", "stay_title", "taxi_card", "taxi_ko", "taxi_means", "deliv_card", "deliv_ko", "deliv_means", "station", "checkin", "contact", "note", "map")
     tasks = task_list(lang)
     for t in tasks: t["kw"] = (KEYWORDS[t["id"]] + " " + t["short"] + " " + t["title"]).lower()
-    data = {"ui": U, "x": {k: x[k] for k in keys}, "s": S, "ux": ux, "tasks": tasks, "check": L["check"], "checked": CHECKED[lang], "lang": lang,
+    data = {"ui": U, "x": {k: x[k] for k in keys}, "s": S, "ux": ux, "tasks": tasks, "plan": PLAN[lang], "checked": CHECKED[lang], "lang": lang,
             "langs": {k: {"name": LANGS[k]["name"], "dir": LANGS[k]["dir"]} for k in LANGS}, "up": up}
     q1 = "".join(f'<button type="button" class="opt-big" data-p="{p}"><b>{e(ux["q1_opts"][p][0])}</b><span>{e(ux["q1_opts"][p][1])}</span></button>' for p in ("visitor", "krsim", "arc"))
     q2 = "".join(f'<button type="button" class="opt-big" data-d="{v}"><b>{e(U[v])}</b></button>' for v in ("ios", "android"))
-    steps = "".join(f"<li><b>{e(a)}</b>{e(b)}</li>" for a, b in x["first"])
     body = f"""
 {hero(lang, alt, up, '', '')}
 <h1 class="sr">{e(x['hook'])}</h1>
@@ -140,12 +139,11 @@ def build_tool(lang):
   <label class="search"><span class="sr">{e(ux['search'])}</span><input id="q" type="search" placeholder="{e(ux['search'])}" autocomplete="off"></label>
   <p class="hint" id="nores" hidden>{e(ux['nores'])} <button type="button" class="linkbtn" id="clear">{e(ux['clear'])}</button></p>
   <main class="rows" id="rows"></main>
-  <details class="panel" id="cl"><summary>{e(U['cl_title'])} <span class="count" id="pcount"></span></summary><div class="in">
-    <div class="progress"><div class="bar"><i id="pbar"></i></div><span id="ptext"></span></div>
+  <details class="panel" id="cl"><summary><span id="ptitle"></span> <span class="count" id="pcount"></span></summary><div class="in">
+    <div class="progress"><div class="bar"><i id="pbar"></i></div></div>
     <ul class="checks" id="checklist"></ul>
     <div class="actions"><button class="btn" type="button" id="copy-btn">{e(U['copy'])}</button><span class="copied" id="copied" role="status"></span></div>
   </div></details>
-  <details class="panel" id="first-24"><summary>{e(x['first_title'])}</summary><div class="in timeline"><p class="hint">{e(x['first_lead'])}</p><ol>{steps}</ol></div></details>
   {about(lang, up)}
 </div>
 {SHOW_HTML(lang)}
@@ -218,20 +216,21 @@ function render() {
   checklist(); filter();
 }
 function checklist() {
-  const items = (P === "arc" ? D.check.arc : D.check.visitor).slice();
-  if (P !== "arc") items.splice(3, 0, DEV === "ios" ? D.check.ios_tm : D.check.and_tm);
-  const key = "wik-done-" + D.lang + "-" + P + "-" + DEV;
+  const pl = D.plan, items = pl.items.filter(it => (!it.p || it.p.includes(P)) && (!it.d || P === "arc" || it.d.includes(DEV)));
+  document.getElementById("ptitle").textContent = P === "arc" ? pl.title_arc : pl.title;
+  const key = "wik-plan-" + D.lang + "-" + P + "-" + DEV;
   let done = []; try { done = JSON.parse(store(key) || "[]"); } catch (e) {}
-  const ul = document.getElementById("checklist"); ul.replaceChildren();
-  items.forEach((txt, i) => {
+  const ul = document.getElementById("checklist"); ul.replaceChildren(); let last = "";
+  items.forEach((it, i) => {
+    if (it.st !== last) { ul.append(el("li", { class: "stage", text: pl.stages[it.st] })); last = it.st; }
     const id = "ck-" + i, cb = el("input", { type: "checkbox", id });
     cb.checked = done.includes(i);
     cb.addEventListener("change", () => { done = cb.checked ? [...new Set([...done, i])] : done.filter(j => j !== i); store(key, JSON.stringify(done)); progress(done.length, items.length); });
-    ul.append(el("li", {}, [cb, el("label", { for: id, text: txt })]));
+    ul.append(el("li", {}, [cb, el("label", { for: id, text: it.t })]));
   });
   progress(done.length, items.length);
 }
-function progress(d, n) { document.getElementById("pcount").textContent = d + "/" + n; document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%"; document.getElementById("ptext").textContent = d + " / " + n; }
+function progress(d, n) { document.getElementById("pcount").textContent = d + "/" + n; document.getElementById("pbar").style.width = Math.round(100 * d / n) + "%";  }
 function filter() {
   const q = document.getElementById("q").value.trim().toLowerCase(); let shown = 0;
   document.querySelectorAll(".row").forEach(r => { const ok = !q || r.dataset.kw.includes(q); r.hidden = !ok; if (ok) shown++; });
@@ -241,7 +240,7 @@ function filter() {
 document.getElementById("q").addEventListener("input", filter);
 document.getElementById("clear").addEventListener("click", () => { const q = document.getElementById("q"); q.value = ""; filter(); q.focus(); });
 document.getElementById("copy-btn").addEventListener("click", async () => {
-  const txt = U.cl_head + "\n" + [...document.querySelectorAll("#checklist label")].map(l => "- " + l.textContent).join("\n") + "\n" + location.origin + location.pathname;
+  const txt = document.getElementById("ptitle").textContent + "\n" + [...document.querySelectorAll("#checklist li")].map(l => l.classList.contains("stage") ? "\n" + l.textContent : "- " + l.textContent).join("\n") + "\n" + location.origin + location.pathname;
   try { await navigator.clipboard.writeText(txt); document.getElementById("copied").textContent = "✓"; } catch (e) {}
   count("copy-checklist/" + D.lang, "copy checklist");
 });
@@ -316,11 +315,11 @@ def build_topic(lang, t):
         devices = ["ios", "android"] if t.get("dev") and p != "arc" else [None]
         for dv in devices:
             v = resolve(t, p or "visitor", dv or "ios")
-            heading = U["for_profile"][p] if p else U["labels"][v["s"]]
+            heading = U["for_profile"][p] if p else UX[lang]["tone"][v["s"]]
             if dv: heading += f" · {U[dv]}"
             route = "".join(f"<li>{e(r)}</li>" for r in v["route"])
             attrs = (f' data-p="{p}"' if p else "") + (f' data-d="{dv}"' if dv else "")
-            blocks.append(f"""<article class="card {v['s']}"{attrs}><div class="actions" style="justify-content:space-between;align-items:center"><h2>{e(heading)}</h2><span class="pill {v['s']}">{e(U['labels'][v['s']])}</span></div>
+            blocks.append(f"""<article class="card {v['s']}"{attrs}><div class="actions" style="justify-content:space-between;align-items:center"><h2>{e(heading)}</h2><span class="pill {v['s']}">{e(UX[lang]['tone'][v['s']])}</span></div>
 <p class="verdict">{e(v['verdict'])}</p><ol class="steps">{route}</ol><p class="fallback"><b>{e(fail_lbl)}</b>{e(v['fallback'])}</p></article>""")
     phrases = "".join(f'<button class="btn alt" type="button" data-show="{e(ko)}" data-lbl="{e(S["show"])}" data-mean="{e(x["means"])}: {e(m)}">🗣 {e(m)}</button>' for ko, m in t["phrases"])
     notes = "".join(f"<li>{e(n)}</li>" for n in t.get("notes", []))

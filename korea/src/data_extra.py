@@ -223,3 +223,88 @@ for _l, _t in {"en": "About this guide", "ja": "このガイドについて", "z
 
 for _l, _t in {"en": ("We'll show which Korean apps work for you.", "Clear"), "ja": ("あなたに使える韓国アプリを表示します。", "クリア"), "zh-tw": ("我們會告訴你哪些韓國App能用。", "清除")}.items():
     UX[_l]["why"], UX[_l]["clear"] = _t
+
+# One plan, in time order, filtered to the reader's setup. Replaces the old
+# "before you fly" checklist and "first 24 hours" timeline, which overlapped.
+# p: profiles it applies to (default: all); d: devices (default: all).
+V, K, A = "visitor", "krsim", "arc"
+PLAN = {
+    "en": {
+        "title": "Your trip plan", "title_arc": "Your setup list",
+        "stages": {"before": "Before you fly", "land": "When you land", "city": "Into the city", "eve": "First evening", "setup": "Set up once"},
+        "items": [
+            {"st": "before", "p": [V, K], "t": "Submit the e-Arrival Card online within 3 days of landing (e-arrivalcard.go.kr). Check if you need a K-ETA (k-eta.go.kr)."},
+            {"st": "before", "p": [V], "t": "Buy a Korea eSIM for data. Pick one with a 010 number if you want Korean SMS codes."},
+            {"st": "before", "p": [K], "t": "Make sure your Korean SIM is active and note your 010 number."},
+            {"st": "before", "p": [V, K], "t": "Install Naver Map and Papago. Download Papago's Korean offline pack."},
+            {"st": "before", "p": [V, K], "t": "Install k.ride or Uber for taxis."},
+            {"st": "before", "p": [V, K], "t": "Install CatchTable Global and sign up by email."},
+            {"st": "before", "p": [V, K], "d": ["ios"], "t": "Install Mobile T-money and test a top-up with your card."},
+            {"st": "before", "p": [V, K], "t": "Taking a train? Book KTX on KORAIL's English site. Tickets open two months ahead."},
+            {"st": "land", "p": [V, K], "t": "Turn on mobile data before you leave the plane."},
+            {"st": "land", "p": [V, K], "d": ["android"], "t": "Buy a T-money card at an airport convenience store. Top it up with cash."},
+            {"st": "land", "p": [V, K], "d": ["ios"], "t": "If Mobile T-money didn't take your card, buy a physical T-money card at a convenience store."},
+            {"st": "city", "p": [V, K], "t": "Take the airport railroad (AREX), an airport bus, or a taxi with k.ride or Uber."},
+            {"st": "city", "p": [V, K], "t": "Show your host's address card to the driver."},
+            {"st": "eve", "p": [V, K], "t": "Verify Naver with your passport, so you can book restaurants on Naver Map."},
+            {"st": "eve", "p": [V, K], "t": "Install Shuttle as a backup for food delivery."},
+            {"st": "setup", "p": [A], "t": "Set up PASS identity verification with your carrier."},
+            {"st": "setup", "p": [A], "t": "Install Naver Map, Kakao T and Papago."},
+            {"st": "setup", "p": [A], "t": "Add T-money to your phone, or use a transit-enabled Korean card."},
+            {"st": "setup", "p": [A], "t": "Install Baemin or Coupang Eats for delivery."},
+            {"st": "setup", "p": [A], "t": "Book KTX on the KORAIL+ app or the English site."},
+        ],
+    },
+    "ja": {
+        "title": "あなたの旅の準備", "title_arc": "最初にやる設定",
+        "stages": {"before": "出発前", "land": "到着したら", "city": "市内へ", "eve": "最初の夜", "setup": "最初に一度"},
+        "items": [
+            {"st": "before", "p": [V, K], "t": "到着前3日以内にe-Arrival Cardをオンライン提出(e-arrivalcard.go.kr)。K-ETAが必要か確認(k-eta.go.kr)。"},
+            {"st": "before", "p": [V], "t": "データ用の韓国eSIMを買う。韓国のSMS認証が必要なら010番号付きを選ぶ。"},
+            {"st": "before", "p": [K], "t": "韓国SIMが開通しているか確認し、010番号を控えておく。"},
+            {"st": "before", "p": [V, K], "t": "Naver MapとPapagoを入れる。Papagoの韓国語オフラインパックをダウンロード。"},
+            {"st": "before", "p": [V, K], "t": "タクシー用にk.rideかUberを入れる。"},
+            {"st": "before", "p": [V, K], "t": "CatchTable Globalを入れてメールで登録。"},
+            {"st": "before", "p": [V, K], "d": ["ios"], "t": "モバイルT-moneyを入れ、カードでチャージを試す。"},
+            {"st": "before", "p": [V, K], "t": "列車に乗るなら、KORAILの英語サイトでKTXを予約。2か月前から買えます。"},
+            {"st": "land", "p": [V, K], "t": "飛行機を降りる前にモバイルデータをオンに。"},
+            {"st": "land", "p": [V, K], "d": ["android"], "t": "空港のコンビニでT-moneyカードを買い、現金でチャージ。"},
+            {"st": "land", "p": [V, K], "d": ["ios"], "t": "モバイルT-moneyでカードが使えなかったら、コンビニでT-moneyカードを買う。"},
+            {"st": "city", "p": [V, K], "t": "空港鉄道(AREX)、空港バス、またはk.ride・Uberのタクシーで移動。"},
+            {"st": "city", "p": [V, K], "t": "宿の住所カードを運転手に見せる。"},
+            {"st": "eve", "p": [V, K], "t": "パスポートでNaverを認証。Naver Mapで店の予約ができるように。"},
+            {"st": "eve", "p": [V, K], "t": "デリバリーの予備としてShuttleを入れる。"},
+            {"st": "setup", "p": [A], "t": "通信会社でPASSの本人認証を設定。"},
+            {"st": "setup", "p": [A], "t": "Naver Map、Kakao T、Papagoを入れる。"},
+            {"st": "setup", "p": [A], "t": "スマホにT-moneyを追加するか、交通機能付きの韓国カードを使う。"},
+            {"st": "setup", "p": [A], "t": "デリバリー用に配達の民族かCoupang Eatsを入れる。"},
+            {"st": "setup", "p": [A], "t": "KTXはKORAIL+アプリか英語サイトで予約。"},
+        ],
+    },
+    "zh-tw": {
+        "title": "你的旅程準備", "title_arc": "第一次要做的設定",
+        "stages": {"before": "出發前", "land": "落地時", "city": "進市區", "eve": "第一個晚上", "setup": "一次設定好"},
+        "items": [
+            {"st": "before", "p": [V, K], "t": "在入境前3天內線上填寫e-Arrival Card(e-arrivalcard.go.kr)。確認是否需要K-ETA(k-eta.go.kr)。"},
+            {"st": "before", "p": [V], "t": "買上網用的韓國eSIM。需要韓國簡訊驗證碼的話,選有010號碼的方案。"},
+            {"st": "before", "p": [K], "t": "確認韓國SIM卡已開通,記下你的010號碼。"},
+            {"st": "before", "p": [V, K], "t": "安裝Naver Map和Papago。下載Papago的韓語離線包。"},
+            {"st": "before", "p": [V, K], "t": "安裝k.ride或Uber叫計程車。"},
+            {"st": "before", "p": [V, K], "t": "安裝CatchTable Global,用電子郵件註冊。"},
+            {"st": "before", "p": [V, K], "d": ["ios"], "t": "安裝行動T-money,用你的卡試著儲值。"},
+            {"st": "before", "p": [V, K], "t": "要搭火車的話,在KORAIL英文網站訂KTX。兩個月前開賣。"},
+            {"st": "land", "p": [V, K], "t": "下飛機前打開行動數據。"},
+            {"st": "land", "p": [V, K], "d": ["android"], "t": "在機場便利商店買T-money卡,用現金儲值。"},
+            {"st": "land", "p": [V, K], "d": ["ios"], "t": "如果行動T-money不接受你的卡,就到便利商店買實體T-money卡。"},
+            {"st": "city", "p": [V, K], "t": "搭機場鐵路(AREX)、機場巴士,或用k.ride、Uber叫車。"},
+            {"st": "city", "p": [V, K], "t": "把住宿的地址卡給司機看。"},
+            {"st": "eve", "p": [V, K], "t": "用護照驗證Naver,就能在Naver Map訂餐廳。"},
+            {"st": "eve", "p": [V, K], "t": "安裝Shuttle當外送備案。"},
+            {"st": "setup", "p": [A], "t": "向電信公司設定PASS身分驗證。"},
+            {"st": "setup", "p": [A], "t": "安裝Naver Map、Kakao T和Papago。"},
+            {"st": "setup", "p": [A], "t": "在手機加入T-money,或使用有交通功能的韓國卡。"},
+            {"st": "setup", "p": [A], "t": "外送安裝外送民族或Coupang Eats。"},
+            {"st": "setup", "p": [A], "t": "KTX用KORAIL+ App或英文網站訂票。"},
+        ],
+    },
+}
