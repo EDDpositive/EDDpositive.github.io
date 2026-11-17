@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://eddpositive.github.io/sajang/sitemap.xml
+Sitemap: https://eddpositive.github.io/korea/sitemap.xml

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>외국인 손님 도착 전 안내 링크 만들기 | Works in Korea</title>
+<meta name="description" content="게스트하우스·숙소 사장님용. 외국인 손님에게 체크인 전에 보내면 택시, 교통카드, KTX, 식당 예약, 배달을 미리 준비하게 도와주는 무료 안내 링크를 만드세요.">
+<link rel="canonical" href="https://eddpositive.github.io/korea/hosts.html">
+<style>
+:root {
+  /* 사장님용 한 장짜리 안내: 설명 → 링크 만들기 → 보낼 문구. */
+  --bg: #f4f5f2; --surface: #ffffff; --ink: #16202b; --muted: #5b6672; --line: #dde1dc;
+  --accent: #1f4fd1; --accent-soft: #e6ecfc;
+  --body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d; --accent: #7d9cff; --accent-soft: #1d2a4d; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0f141a; --surface: #171e26; --ink: #e8edf2; --muted: #9aa6b2; --line: #2a333d; --accent: #7d9cff; --accent-soft: #1d2a4d; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.65 var(--body); }
+.wrap { max-width: 720px; margin: 0 auto; padding: 28px 16px 48px; }
+h1 { font-size: clamp(24px, 5vw, 32px); line-height: 1.3; margin: 0 0 8px; text-wrap: balance; }
+h2 { font-size: 19px; margin: 26px 0 10px; }
+p { margin: 8px 0; }
+.lead { color: var(--muted); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 10px; }
+label { font-weight: 600; }
+input, textarea { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); }
+textarea { min-height: 150px; }
+.btn { font: 600 15px var(--body); padding: 10px 16px; border-radius: 10px; border: 0; background: var(--accent); color: #fff; cursor: pointer; justify-self: start; }
+.status { font-size: 14px; color: var(--muted); }
+ul { padding-left: 20px; margin: 8px 0; display: grid; gap: 4px; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: 13px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p><a href="./">← Works in Korea (영문 안내 보기)</a></p>
+  <h1>외국인 손님에게 체크인 전에 보내는 무료 안내 링크</h1>
+  <p class="lead">"택시는 어떻게 불러요?", "교통카드는 어디서 충전해요?" 같은 질문을 손님이 도착하기 전에 미리 해결해 드려요.</p>
+
+  <h2>손님이 받는 것</h2>
+  <ul>
+    <li>손님의 휴대폰 상황(해외 번호·한국 유심·외국인등록증)에 맞춰 지금 되는 방법만 보여 줘요.</li>
+    <li>택시, 지하철·버스 교통카드, KTX, 식당 예약, 배달, 번역을 다뤄요.</li>
+    <li>"출국 전에 할 일" 목록을 손님이 그대로 복사해 갈 수 있어요.</li>
+    <li>항목마다 마지막 확인 날짜와 출처를 보여 줘요. 바뀐 규정은 계속 고쳐요.</li>
+  </ul>
+
+  <h2>링크 만들기</h2>
+  <div class="card">
+    <label for="host-name">숙소 이름 (영문 추천)</label>
+    <input id="host-name" type="text" maxlength="60" value="Hongdae Guesthouse" autocomplete="organization">
+    <label for="link">손님에게 보낼 링크</label>
+    <input id="link" type="text" readonly>
+    <label for="msg">예약 확정 메시지에 붙일 문구 (영문)</label>
+    <textarea id="msg" readonly></textarea>
+    <button class="btn" type="button" id="copy">문구와 링크 복사</button>
+    <span class="status" id="status" role="status"></span>
+  </div>
+
+  <h2>비용과 조건</h2>
+  <p>지금은 무료예요. 링크를 열면 맨 위에 숙소 이름이 표시돼요. 손님 정보는 받지 않아요.</p>
+
+  <footer>Works in Korea는 특정 앱이나 회사와 제휴하지 않은 독립 안내입니다.</footer>
+</div>
+<script>
+const BASE = "https://eddpositive.github.io/korea/";
+const nameEl = document.getElementById("host-name");
+function update() {
+  const name = nameEl.value.trim() || "your host";
+  const link = BASE + "?host=" + encodeURIComponent(name);
+  document.getElementById("link").value = link;
+  document.getElementById("msg").value =
+    "Before you arrive: many Korean apps don't accept foreign phone numbers or cards. " +
+    "This free guide shows what works for your phone, for taxis, subway cards, KTX trains, restaurant bookings and food delivery, " +
+    "plus a short to-do list for before your flight:\n" + link + "\n\nSee you soon!\n" + name;
+}
+nameEl.addEventListener("input", update);
+document.getElementById("copy").addEventListener("click", async () => {
+  const st = document.getElementById("status");
+  try { await navigator.clipboard.writeText(document.getElementById("msg").value); st.textContent = "복사했어요."; }
+  catch (e) { st.textContent = "복사가 막혀 있어요. 위 문구를 길게 눌러 직접 복사해 주세요."; }
+});
+update();
+</script>
+</body>
+</html>
